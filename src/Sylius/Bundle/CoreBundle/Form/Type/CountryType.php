@@ -63,8 +63,6 @@ class CountryType extends AbstractResourceType
                     $nameOptions['choices'] = $this->getAvailableCountries();
                 }
 
-                $nameOptions['choices_as_values'] = false;
-
                 $form = $event->getForm();
                 $form->add('code', 'country', $nameOptions);
             }
