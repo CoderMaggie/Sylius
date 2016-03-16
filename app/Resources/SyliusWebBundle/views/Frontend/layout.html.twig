@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' charset='UTF-8'/>
+
+    {% block stylesheets %}
+        {{ include('@SyliusWeb/_stylesheets.html.twig') }}
+    {% endblock %}
+
+    <title>CJ-MaX {% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    {% block header %}
+        <div class="container">
+            {% block navbar %}
+                {{ include('@SyliusWeb/Frontend/_navbar.html.twig') }}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    <div id="sidebar" class="hidden-sm hidden-xs">
+        {% block sidebar %}
+        {% endblock %}
+    </div>
+
+    <div id="topbar">
+        {% block topbar %}
+        {% endblock %}
+    </div>
+
+    <div class="container">
+        <div class="col-md-12">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <footer id="footer">
+        {% block footer %}
+        {% endblock %}
+        <p>&copy; <a href="#">CJ-MaX</a>, 2016 - {{ 'now'|date('Y') }}.</p>
+    </footer>
+
+    {% block javascripts %}
+        {{ include('@SyliusWeb/_javascripts.html.twig') }}
+    {% endblock %}
+</body>
+</html>
