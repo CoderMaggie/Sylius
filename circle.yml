@@ -1,0 +1,17 @@
+machine:
+   php:
+     version: 5.5.9
+
+dependencies:
+    override:
+        - composer install --prefer-dist --no-interaction
+
+database:
+    override:
+        - app/console doctrine:database:create --env=test
+        - app/console doctrine:schema:create --env=test
+
+test:
+  override:
+    - bin/phpspec run -fpretty
+    - bin/behat

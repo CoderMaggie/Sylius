@@ -1,45 +1,45 @@
-![Sylius](https://dl.dropboxusercontent.com/u/46579820/sylius-logo.jpg)
+CJ-MaX
+------
 
-[![Gitter chat](https://badges.gitter.im/Sylius/Sylius.png)](https://gitter.im/Sylius/Sylius)
-[![License](https://img.shields.io/packagist/l/Sylius/Sylius.svg)](https://packagist.org/packages/sylius/sylius)
+CJ-MaX powered by Sylius.
 
-Sylius is an open source e-commerce solution for **PHP**, based on the [**Symfony2**](http://symfony.com) framework.
+[![Build status...](https://circleci.com/gh/Lakion/CJ-MaX.svg?style=svg&circle-token=8a59c9388cde465be97edf9941954454a76bffab)]
+(https://circleci.com/gh/Lakion/CJ-MaX)
+[![Code quality...](https://scrutinizer-ci.com/g/Lakion/CJ-MaX/badges/quality-score.png?b=master&s=f837ea39be33b8dbfd0b5e8de1fc8f12dade2ad8)]
+(https://scrutinizer-ci.com/g/Lakion/CJ-MaX/)
 
-Ultimate goal of the project is to create a webshop engine, which is user-friendly, *loved* by developers and has a helpful community.
+Requirements
+============
 
-Sylius is constructed from fully decoupled components (bundles in Symfony2 glossary), which means that every feature (products catalog, shipping engine, promotions system...) can be used in any other application. 
-
-We're using full-stack BDD methodology, with [phpspec](http://phpspec.net) and [Behat](http://behat.org).
-
-This package contains the Sylius Standard Edition, which serves as a foundation for your custom apps.
+* ``PHP 5.5.9 or higher``
+* ``Composer``
+* ``Bower (NodeJS)``
 
 Installation
-------------
+============
 
-``` bash
+```bash
+$ git clone git@github.com:Lakion/CJ-MaX.git CJ-MaX
+$ cd CJ-MaX
+
+$ brew install node
+$ npm install -g bower
+$ bower install
+
 $ wget http://getcomposer.org/composer.phar
-$ php composer.phar create-project sylius/sylius-standard path/to/install
-$ cd path/to/install
+$ php composer.phar install
+
 $ php app/console sylius:install
 ```
 
-Contributing
-------------
+Testing
+=======
 
-All informations about contributing to Sylius can be found on [this page](http://docs.sylius.org/en/latest/contributing/index.html).
-
-Sylius on Twitter
------------------
-
-If you want to keep up with the updates, [follow the official Sylius account on twitter](http://twitter.com/Sylius).
-
-MIT License
------------
-
-License can be found [here](https://github.com/Sylius/Sylius/blob/master/LICENSE).
-
-Authors
--------
-
-Sylius was originally created by [Paweł Jędrzejewski](http://pjedrzejewski.com).
-See the list of [contributors](https://github.com/Sylius/Sylius/contributors).
+```bash
+$ app/console do:da:cr --env test
+$ app/console do:sc:cr --env test
+$ bin/behat features/
+$ bin/behat features/ -p javascript
+$ bin/phpspec run
+$ bin/phpunit src/
+```
