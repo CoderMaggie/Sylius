@@ -13,7 +13,7 @@
 
 <body>
     {% block header %}
-        <div class="container">
+        <div id="header" class="container">
             {% block navbar %}
                 {{ include('@SyliusWeb/Frontend/_navbar.html.twig') }}
             {% endblock %}
@@ -25,22 +25,24 @@
         {% endblock %}
     </div>
 
-    <div id="topbar">
-        {% block topbar %}
-        {% endblock %}
-    </div>
-
     <div class="container">
-        <div class="col-md-12">
+        <div id="topbar" class="col-md-12">
+            {% block topbar %}
+            {% endblock %}
+        </div>
+
+        <div id="content" class="col-md-12">
             {% block content %}
             {% endblock %}
         </div>
     </div>
 
     <footer id="footer">
-        {% block footer %}
-        {% endblock %}
-        <p>&copy; <a href="#">CJ-MaX</a>, 2016 - {{ 'now'|date('Y') }}.</p>
+        <div class="container">
+            {% block footer %}
+            {% endblock %}
+            <p class="pull-left">&copy; <a href="#">CJ-MaX</a>, 2016 - {{ 'now'|date('Y') }}.</p>
+        </div>
     </footer>
 
     {% block javascripts %}
