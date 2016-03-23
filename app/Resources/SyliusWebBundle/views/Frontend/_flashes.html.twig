@@ -1,0 +1,8 @@
+{% for type in ['success', 'error', 'notice'] %}
+    {% for flash in app.session.flashbag.get(type) %}
+        <div class="alert alert-{{ type == 'error' ? 'danger' : type == 'notice' ? 'warning' : type }}">
+            <a class="close" data-dismiss="alert" href="#"><i class="fa fa-times"></i></a>
+            {{ flash|trans }}
+        </div>
+    {% endfor %}
+{% endfor %}

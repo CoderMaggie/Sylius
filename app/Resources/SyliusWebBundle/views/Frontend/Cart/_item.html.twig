@@ -1,0 +1,21 @@
+{% set product = item.vars.value.variant.product %}
+<tr>
+    <td colspan="3">
+        {{ include(
+            'SyliusWebBundle:Frontend/Product:_variant.html.twig',
+            {'variant': item.vars.value.variant}
+        ) }}
+    </td>
+    <td>
+        {{ form_row(item.quantity, {'label': false}) }}
+    </td>
+    <td>
+        {{ item.vars.value.unitPrice|sylius_price }}
+    </td>
+    <td>
+        {{ item.vars.value.total|sylius_price }}
+    </td>
+    <td>
+        <a href="{{ path('sylius_cart_item_remove', {'id': item.vars.value.id}) }}"><i class="fa fa-trash-o fa-2x"></i></a>
+    </td>
+</tr>
