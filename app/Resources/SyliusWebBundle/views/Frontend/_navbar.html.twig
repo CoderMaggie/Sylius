@@ -1,0 +1,50 @@
+<div id="navbar" class="navbar navbar-default navbar-fixed-top yamm" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <div class="navbar-buttons">
+                <a href="#" class="btn btn-primary navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <b class="caret"></b>
+                </a>
+                <a class="btn btn-primary navbar-toggle" href={{ path('sylius_cart_summary') }}>
+                    <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
+                </a>
+                <button type="button" class="navbar-toggle btn-default" data-toggle="collapse" data-target="#search">
+                    <span class="sr-only">Toggle search</span>
+                    <i class="fa fa-search"></i>
+                </button>
+                <button type="button" class="navbar-toggle" data-toggle="modal" data-target="#login-modal">
+                    <span class="sr-only">User login</span>
+                    <i class="fa fa-user"></i>
+                </button>
+            </div>
+
+            <div class="navbar-brand home">
+                <a href="{{ path('sylius_homepage') }}">
+                    <h1 class='logo'><span> CJ-MaX </span></h1>
+                </a>
+            </div>
+        </div>
+
+        <div class="visible-xs visible-sm">
+            <div class="collapse navbar-collapse">
+                {{ knp_menu_render('sylius.frontend.main', {'template': 'SyliusWebBundle:Frontend:menu.html.twig', 'currentClass': 'active', 'ancestorClass': 'active'}) }}
+            </div>
+        </div>
+
+        <div class="hidden-xs hidden-sm pull-right">
+            <p class="navbar-text">{{ 'sylius.backend_welcome'|trans({'%name%': app.user.customer.fullname})|raw }}</p>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle navbar-widget" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('sylius_homepage') }}"><i class="glyphicon glyphicon-home"></i> {{ 'sylius.backend.menu.main.homepage'|trans({}, 'menu') }}</a></li>
+                        <li><a href="{{ path('sylius_user_security_logout') }}"><i class="glyphicon glyphicon-off"></i> {{ 'sylius.backend.logout'|trans }}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

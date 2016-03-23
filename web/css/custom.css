@@ -1,0 +1,133 @@
+.spacer-50 {
+    clear: both;
+    margin-bottom: 50px;
+}
+.btn-cart {
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #f7dfa5, #f0c14b) repeat scroll 0 0;
+    color: #000;
+}
+.add-cart-block-vertical .btn {
+    margin-bottom: 10px;
+}
+
+/* Reduce whitespace in box */
+.box {
+    padding: 0;
+}
+.box h3, .box h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.box + .box {
+    border-top: none;
+    margin-top: -10px;
+}
+
+/* text block that can replace a grid-item image */
+.text-instead-of-image ul {
+    padding-left: 1em;
+    text-align: left;
+}
+#content .grid-items-mini .text-instead-of-image ul {
+    /* @todo much larger font size on xs screens */
+}
+
+.text-instead-of-image h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* styles for smaller "mini" product tiles */
+#content .grid-items-mini .grid-item .text {
+    padding: 4px 0;
+}
+#content .grid-items-mini .grid-item .text h3 {
+    margin: 0;
+    font-size: 14px;
+    height: 33px;
+    overflow: hidden;
+}
+#content .gi-categories .grid-item .text h3 {
+    margin: 0;
+}
+
+/* displaying categories in the grid */
+.catpro-thumb {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#content .quick-view .sub-categories h3 {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* filters when viewing a grid of products */
+#content .panel.filter-panel {
+    border-bottom: none;
+}
+.filter-panel .panel-heading {
+    padding: 5px 10px;
+}
+.filter-panel .panel-body {
+    padding: 0 10px 3px;
+}
+.filter-panel .checkbox, .filter-panel .radio {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.filter-panel .filter-toggle {
+    padding: 0;
+    text-align: center;
+}
+.filter-panel .filter-toggle h3 {
+    font-size: 14px;
+}
+
+/* Product detail page */
+#content #productMain .summary ul {
+    margin: 0 auto 10px;
+    max-width: 500px;
+    text-align: left;
+}
+#content #productMain .summary p {
+    margin: 0 auto 10px;
+    max-width: 600px;
+    text-align: left;
+}
+#content #productMain .price {
+    margin: 10px 0;
+    font-size: 24px;
+}
+#content #productMain .price-actions {
+    padding-top: 12px;
+}
+
+#product-tags dt, #product-technical dt {
+    margin-top: 8px;
+}
+#productMain #thumbs {
+    margin: 10px 0;
+}
+#productImage #mainImage {
+    position: relative;
+    height: 350px;
+}
+#productImage #mainImage img {
+    max-height: 350px;
+}
+
+/* Responsive images that fit within a square */
+.square-box {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+}
+.square-box img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
