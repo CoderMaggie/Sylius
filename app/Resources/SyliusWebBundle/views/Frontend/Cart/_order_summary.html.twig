@@ -1,0 +1,37 @@
+{% set taxAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::TAX_ADJUSTMENT') %}
+{% set shippingAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::SHIPPING_ADJUSTMENT') %}
+{% set promotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::PROMOTION_ADJUSTMENT') %}
+
+<div class="box" id="order-summary">
+    <div class="box-header">
+        <h3>Order summary</h3>
+    </div>
+    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>Order subtotal</td>
+                <th>{{ cart.itemsTotal|sylius_price }}</th>
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                {% set shippingTotal = cart.adjustmentsTotal(taxAdjustment) + cart.adjustmentsTotal(shippingAdjustment) %}
+                <th>{{ shippingTotal|sylius_price }}</th>
+            </tr>
+            <tr>
+                <td>Tax</td>
+                <th>{{ cart.getAdjustmentsTotalRecursively(taxAdjustment)|sylius_price }}</th>
+            </tr>
+            <tr>
+                <td>Discount</td>
+                <th>{{ (-1 * cart.adjustmentsTotalRecursively(promotionAdjustment))|sylius_price }}</th>
+            </tr>
+            <tr class="total">
+                <td>Grand total</td>
+                <th>{{ cart.total|sylius_price }}</th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

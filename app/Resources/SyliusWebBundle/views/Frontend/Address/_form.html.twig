@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-sm-6">
+        {{ form_label(form.firstName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+        {{ form_widget(form.firstName) }}
+    </div>
+    <div class="col-sm-6">
+        {{ form_label(form.lastName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+        {{ form_widget(form.lastName) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        {{ form_label(form.company, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+        {{ form_widget(form.company) }}
+    </div>
+    <div class="col-sm-6">
+        {{ form_label(form.city, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+        {{ form_widget(form.city) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-md-3">
+        {{ form_label(form.street, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+        {{ form_widget(form.street) }}
+    </div>
+    <div class="col-sm-6 col-md-3">
+        {{ form_label(form.postcode, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+        {{ form_widget(form.postcode) }}
+    </div>
+
+    <div class="col-sm-6 col-md-3">
+        {{ form_label(form.countryCode, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+        {{ form_widget(form.countryCode) }}
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="province-container" data-url="{{ path('sylius_province_choice_form') }}">
+            {% if form.provinceCode is defined %}
+                {{ form_label(form.provinceCode, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                {{ form_widget(form.provinceCode, {'attr': {'class': 'select2'}}) }}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        {{ form_label(form.phoneNumber, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+        {{ form_widget(form.phoneNumber) }}
+    </div>
+</div>
