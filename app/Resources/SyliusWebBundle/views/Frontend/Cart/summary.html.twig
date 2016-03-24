@@ -1,14 +1,18 @@
 {% extends '@SyliusWeb/Frontend/layout.html.twig' %}
 
+{% set taxAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::TAX_ADJUSTMENT') %}
+{% set shippingAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::SHIPPING_ADJUSTMENT') %}
+{% set promotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::PROMOTION_ADJUSTMENT') %}
+
 {% block title %}
     - Summary
 {% endblock %}
 
 {% block topbar %}
-    <ul class="breadcrumb">
+    <ol class="breadcrumb">
         <li><a href="#">Home</a></li>
         <li>Shopping cart</li>
-    </ul>
+    </ol>
 {% endblock %}
 
 {% block content %}
@@ -16,92 +20,32 @@
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
                 <h1>Shopping cart</h1>
-                <p class="text-muted">You currently have 3 items in your cart.</p>
+                <p class="text-muted">You currently have {{ cart.items|length }} item{% if cart.items|length != 1 %}s{% endif %} in your cart.</p>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-9 clearfix" id="cart">
-            <div class="box">
-                <form>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th colspan="2">Product</th>
-                                    <th id="quantity">Quantity</th>
-                                    <th>Unit Price</th>
-                                    <th>Discount</th>
-                                    <th colspan="2">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <a href="#">
-                                        <img src="{{ asset('bundles/framework/images/logo_symfony.png') }}" alt="White Blouse Armani">
-                                    </a>
-                                </td>
-                                <td><a href="#">White Blouse Armani</a>
-                                </td>
-                                <td>
-                                    <input value="2" class="form-control">
-                                </td>
-                                <td>$123.00</td>
-                                <td>$0.00</td>
-                                <td>$246.00</td>
-                                <td><a href="#"><i class="fa fa-trash-o fa-2x"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="#">
-                                        <img src="{{ asset('bundles/framework/images/logo_symfony.png') }}" alt="Black Blouse Armani">
-                                    </a>
-                                </td>
-                                <td><a href="#">Black Blouse Armani</a>
-                                </td>
-                                <td>
-                                    <input value="1" class="form-control">
-                                </td>
-                                <td>$200.00</td>
-                                <td>$0.00</td>
-                                <td>$200.00</td>
-                                <td><a href="#"><i class="fa fa-trash-o fa-2x"></i></a>
-                                </td>
-                            </tr>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th colspan="5">Total</th>
-                                <th colspan="2">$446.00</th>
-                            </tr>
-                            </tfoot>
-                        </table>
-                    </div>
 
-                    <div class="box-footer">
-                        <div class="pull-left">
-                            <a href="#" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
-                        </div>
-                        <div class="pull-right">
-                            <button class="btn btn-default"><i class="fa fa-refresh"></i> Update cart</button>
-                            <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+    {{ parent() }}
+
+    <div class="row">
+        <form action="{{ path('sylius_cart_save') }}" method="post" novalidate>
+        <div class="col-md-9 clearfix" id="cart">
+            {% if not cart.empty %}
+
+            <div class="box">
+
+                {% include '@SyliusWeb/Frontend/Cart/_cart.html.twig' %}
             </div>
 
-            <div class="spacer-50">&nbsp;</div>
+            {% endif %}
 
+            <div class="spacer-50">&nbsp;</div>
             <div class="row">
                 <div class="col-md-3">
                     <div class="box">
-                        <h3>You may also like these products</h3>
+                        <h3 class="text-muted">You may also like these products</h3>
                     </div>
                 </div>
-
                 <div class="col-md-3">
                     <div class="product">
                         <div class="image" style="height:184px;">
@@ -124,7 +68,8 @@
                             <p class="price">£143.00</p>
                         </div>
                     </div>
-                </div>                <div class="col-md-3">
+                </div>
+                <div class="col-md-3">
                     <div class="product">
                         <div class="image" style="height:184px;">
                             <a href="#">
@@ -141,51 +86,59 @@
         </div>
 
         <div class="col-md-3">
+            {% if not cart.empty %}
             <div class="box" id="order-summary">
                 <div class="box-header">
                     <h3>Order summary</h3>
                 </div>
                 <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-
                 <div class="table-responsive">
                     <table class="table">
                         <tbody>
-                        <tr>
-                            <td>Order subtotal</td>
-                            <th>$446.00</th>
-                        </tr>
-                        <tr>
-                            <td>Shipping</td>
-                            <th>$10.00</th>
-                        </tr>
-                        <tr>
-                            <td>Tax</td>
-                            <th>$0.00</th>
-                        </tr>
-                        <tr class="total">
-                            <td>Total</td>
-                            <th>$456.00</th>
-                        </tr>
+                            <tr>
+                                <td>Order subtotal</td>
+                                <th>{{ cart.itemsTotal|sylius_price }}</th>
+                            </tr>
+                            <tr>
+                                <td>Shipping</td>
+                                {% set shippingTotal = cart.adjustmentsTotal(taxAdjustment) + cart.adjustmentsTotal(shippingAdjustment) %}
+                                <th>{{ shippingTotal|sylius_price }}</th>
+                            </tr>
+                            <tr>
+                                <td>Tax</td>
+                                <th>{{ cart.getAdjustmentsTotalRecursively(taxAdjustment)|sylius_price }}</th>
+                            </tr>
+                            <tr>
+                                <td>Discount</td>
+                                <th>{{ (-1 * cart.adjustmentsTotalRecursively(promotionAdjustment))|sylius_price }}</th>
+                            </tr>
+                            <tr class="total">
+                                <td>Grand total</td>
+                                <th>{{ cart.total|sylius_price }}</th>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            {% endif %}
 
             <div class="box">
                 <div class="box-header">
                     <h4>Coupon code</h4>
                 </div>
                 <p class="text-muted">If you have a coupon code, please enter it in the box below.</p>
-                <form>
-                    <div class="input-group">
-                        <input type="text" class="form-control">
+                <div class="input-group">
+                    {{ form_row(form.promotionCoupon, {'label': false}) }}
 
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button"><i class="fa fa-gift"></i></button>
-                        </span>
-                    </div>
-                </form>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-gift"></i></button>
+                    </span>
+                </div>
             </div>
         </div>
+            <div class="hidden">
+                {{ form_rest(form) }}
+            </div>
+        </form>
     </div>
 {% endblock %}

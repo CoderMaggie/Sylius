@@ -25,26 +25,8 @@
             </div>
         </div>
 
-        <div class="visible-xs visible-sm">
-            <div class="collapse navbar-collapse">
-                {{ knp_menu_render('sylius.frontend.main', {'template': 'SyliusWebBundle:Frontend:menu.html.twig', 'currentClass': 'active', 'ancestorClass': 'active'}) }}
-            </div>
-        </div>
-
-        <div class="hidden-xs hidden-sm pull-right">
-            <p class="navbar-text">{{ 'sylius.backend_welcome'|trans({'%name%': app.user.customer.fullname})|raw }}</p>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle navbar-widget" data-toggle="dropdown">
-                        <i class="glyphicon glyphicon-chevron-down"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ path('sylius_homepage') }}"><i class="glyphicon glyphicon-home"></i> {{ 'sylius.backend.menu.main.homepage'|trans({}, 'menu') }}</a></li>
-                        <li><a href="{{ path('sylius_user_security_logout') }}"><i class="glyphicon glyphicon-off"></i> {{ 'sylius.backend.logout'|trans }}</a></li>
-                    </ul>
-                </li>
-            </ul>
+        <div class="collapse navbar-collapse pull-right hidden-sx hidden-sm">
+            {{ knp_menu_render('sylius.frontend.main', {'template': 'SyliusWebBundle:Frontend:menu.html.twig', 'currentClass': 'active', 'ancestorClass': 'active'}) }}
         </div>
     </div>
 </div>

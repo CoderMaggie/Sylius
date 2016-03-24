@@ -33,6 +33,12 @@
 
         <div id="content" class="col-md-12">
             {% block content %}
+                <div id="flashes" class="col-md-12">
+                    {{ include('@SyliusWeb/Frontend/_flashes.html.twig') }}
+
+                    {% block flashes %}
+                    {% endblock %}
+                </div>
             {% endblock %}
         </div>
     </div>
