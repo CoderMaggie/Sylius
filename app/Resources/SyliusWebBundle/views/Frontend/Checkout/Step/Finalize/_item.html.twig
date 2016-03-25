@@ -1,0 +1,18 @@
+{% set product = item.product %}
+<tr>
+    <td colspan="3">
+        {{ include(
+            'SyliusWebBundle:Frontend/Product:_variant.html.twig',
+            {'variant': item.variant}
+        ) }}
+    </td>
+    <td>
+        {{ item.quantity }}
+    </td>
+    <td>
+        {{ item.unitPrice|sylius_price }}
+    </td>
+    <td>
+        {{ item.total|sylius_price }}
+    </td>
+</tr>
