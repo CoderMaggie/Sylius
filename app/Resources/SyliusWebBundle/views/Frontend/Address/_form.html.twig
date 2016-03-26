@@ -2,10 +2,12 @@
     <div class="col-sm-6">
         {{ form_label(form.firstName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
         {{ form_widget(form.firstName) }}
+        {{ form_errors(form.firstName) }}
     </div>
     <div class="col-sm-6">
         {{ form_label(form.lastName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
         {{ form_widget(form.lastName) }}
+        {{ form_errors(form.lastName) }}
     </div>
 </div>
 
@@ -17,6 +19,7 @@
     <div class="col-sm-6">
         {{ form_label(form.city, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
         {{ form_widget(form.city) }}
+        {{ form_errors(form.city) }}
     </div>
 </div>
 
@@ -24,21 +27,25 @@
     <div class="col-sm-6 col-md-3">
         {{ form_label(form.street, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
         {{ form_widget(form.street) }}
+        {{ form_errors(form.street) }}
     </div>
     <div class="col-sm-6 col-md-3">
         {{ form_label(form.postcode, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
         {{ form_widget(form.postcode) }}
+        {{ form_errors(form.postcode) }}
     </div>
 
     <div class="col-sm-6 col-md-3">
         {{ form_label(form.countryCode, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
         {{ form_widget(form.countryCode) }}
+        {{ form_errors(form.countryCode) }}
     </div>
     <div class="col-sm-6 col-md-3">
         <div class="province-container" data-url="{{ path('sylius_province_choice_form') }}">
             {% if form.provinceCode is defined %}
                 {{ form_label(form.provinceCode, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
                 {{ form_widget(form.provinceCode, {'attr': {'class': 'select2'}}) }}
+                {{ form_errors(form.provinceCode) }}
             {% endif %}
         </div>
     </div>
