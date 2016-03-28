@@ -1,0 +1,14 @@
+{% extends '@SyliusWeb/Frontend/layout.html.twig' %}
+
+{% block content %}
+    {% block flashes %}
+        {% for type in ['success', 'error', 'notice'] %}
+            {% for flash in app.session.flashbag.get(type) %}
+                <div class="alert alert-{{ type == 'error' ? 'danger' : type == 'notice' ? 'warning' : type }}">
+                    <a class="close" data-dismiss="alert" href="#">×</a>
+                    {{ flash|trans() }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endblock %}
+{% endblock %}
