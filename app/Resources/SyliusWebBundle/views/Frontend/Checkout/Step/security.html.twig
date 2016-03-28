@@ -1,0 +1,104 @@
+{% extends '@SyliusWeb/Frontend/layout.html.twig' %}
+
+{% block title %}
+    - Checkout
+{% endblock %}
+
+{% block topbar %}
+    <ul class="breadcrumb">
+        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
+        <li>New account / Sign in</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+    {{ parent() }}
+
+    <div class="col-md-12 clearfix" id="checkout">
+        <div class="box">
+
+            <ul class="nav nav-pills nav-justified">
+                <li class="disabled"><a href="{{ path('sylius_checkout_addressing') }}"><i class="fa fa-map-marker"></i><br>Address</a>
+                </li>
+                <li class="disabled"><a href="{{ path('sylius_checkout_shipping') }}"><i class="fa fa-truck"></i><br>Shipping Method</a>
+                </li>
+                <li class="disabled"><a href="{{ path('sylius_checkout_payment') }}"><i class="fa fa-money"></i><br>Payment Method</a>
+                </li>
+                <li class="disabled"><a href="{{ path('sylius_checkout_finalize') }}"><i class="fa fa-eye"></i><br>Order Review</a>
+                </li>
+            </ul>
+
+            <div class="content">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="box">
+                            <div class="col-sm-12 text-center">
+                                <h1>New account</h1>
+                            </div>
+                            <form action="{{ path(context.process.forwardRoute, {'stepName': context.currentStep.name}) }}" method="post" novalidate>
+                                {{ form_errors(registration_form) }}
+
+                                <div class="form-group">
+                                    {{ form_label(registration_form.email, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                                    {{ form_widget(registration_form.email) }}
+                                    {{ form_errors(registration_form.email) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(registration_form.user.plainPassword.first, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                                    {{ form_widget(registration_form.user.plainPassword.first) }}
+                                    {{ form_errors(registration_form.user.plainPassword.first) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(registration_form.user.plainPassword.second, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                                    {{ form_widget(registration_form.user.plainPassword.second) }}
+                                    {{ form_errors(registration_form.user.plainPassword.second) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(registration_form.firstName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                                    {{ form_widget(registration_form.firstName) }}
+                                    {{ form_errors(registration_form.firstName) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(registration_form.lastName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                                    {{ form_widget(registration_form.lastName) }}
+                                    {{ form_errors(registration_form.lastName) }}
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Register</button>
+                                </div>
+
+                                <div class="hidden">
+                                    {{ form_rest(registration_form) }}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="box">
+                            <div class="col-sm-12 text-center">
+                                <h1>Login</h1>
+                            </div>
+                            <form action="{{ path('sylius_user_security_check') }}" method="post">
+                                <div class="form-group">
+                                    <label for="username" class="text-muted required pull-left">Email</label>
+                                    <input type="text" id="username" name="_username" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="text-muted required pull-left">Password</label>
+                                    <input type="password" id="password" name="_password" class="form-control" />
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i>Login</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
