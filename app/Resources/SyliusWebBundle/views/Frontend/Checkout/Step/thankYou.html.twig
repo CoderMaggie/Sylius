@@ -1,0 +1,21 @@
+{% extends '@SyliusWeb/Frontend/layout.html.twig' %}
+
+{% block title %}
+    - Checkout
+{% endblock %}
+
+{% block topbar %}
+    <ul class="breadcrumb">
+        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
+        <li>Checkout - Thank you</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+{{ parent() }}
+
+    <div class="box col-sm-12 text-center">
+        <h1>Thank You {{ order.customer.fullname }}</h1>
+    </div>
+{% endblock %}
