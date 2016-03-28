@@ -30,6 +30,16 @@
 
             <div class="box">
                 {% include '@SyliusWeb/Frontend/Cart/_cart.html.twig' %}
+
+                <div class="box-footer">
+                    <div class="pull-left">
+                        <a href="#" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                    </div>
+                    <div class="pull-right">
+                        <button class="btn btn-default"><i class="fa fa-refresh"></i> Update cart</button>
+                        <a href="{{ path('sylius_checkout_start') }}" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
             </div>
 
             {% endif %}
