@@ -1,0 +1,71 @@
+{% extends 'SyliusWebBundle:Frontend:layout.html.twig' %}
+
+{% block title %}
+    - Register
+{% endblock %}
+
+{% block topbar %}
+    <ul class="breadcrumb">
+        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
+        <li>Register</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="box text-center">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <h1>Register</h1>
+            </div>
+        </div>
+    </div>
+
+    {{ parent() }}
+
+    <div class="col-md-6 col-md-offset-3">
+        <div class="box">
+            <form action="{{ path('sylius_user_registration') }}" method="post">
+                <div class="row">
+                    {{ form_errors(form) }}
+
+                    <div class="col-md-12">
+                        {{ form_label(form.email, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_label(form.firstName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_widget(form.firstName) }}
+                        {{ form_errors(form.firstName) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_label(form.lastName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_widget(form.lastName) }}
+                        {{ form_errors(form.lastName) }}
+                    </div>
+                    <div class="spacer-50">&nbsp;</div>
+                    <div class="col-md-12">
+                        {{ form_label(form.user.plainPassword.first, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_widget(form.user.plainPassword.first) }}
+                        {{ form_errors(form.user.plainPassword.first) }}
+                    </div>
+                    <div class="col-md-12">
+                        {{ form_label(form.user.plainPassword.second, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_widget(form.user.plainPassword.second) }}
+                        {{ form_errors(form.user.plainPassword.second) }}
+                    </div>
+
+                    {{ form_rest(form) }}
+                </div>
+                <div class="spacer-50">&nbsp;</div>
+
+                <div class="box form-actions clearfix text-center">
+                    <button class="btn btn-primary btn-lg" type="submit">
+                        <i class="fa fa-user-plus"></i>
+                        Register
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
