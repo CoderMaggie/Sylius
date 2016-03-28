@@ -82,7 +82,10 @@
 
         <div class="col-md-3">
             {% if not cart.empty %}
-                {{ include('@SyliusWeb/Frontend/Cart/_order_summary.html.twig') }}
+                {{ include(
+                    '@SyliusWeb/Frontend/Cart/_order_summary.html.twig',
+                    {'order': cart}
+                ) }}
             {% endif %}
 
             <div class="box">
