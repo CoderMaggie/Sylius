@@ -1,0 +1,73 @@
+{% extends '@SyliusWeb/Frontend/Account/layout.html.twig' %}
+{% from '@SyliusWeb/Frontend/Macros/actions.html.twig' import update %}
+
+{% block title %}
+    - Personal information
+{% endblock %}
+
+{% block topbar %}
+    <ul class="breadcrumb">
+        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
+        <li><a href={{ path('sylius_account_profile_show') }}>Account</a></li>
+        <li>Personal information</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="box text-center">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <h1>Personal information</h1>
+            </div>
+        </div>
+    </div>
+
+    {{ parent() }}
+
+    <div class="col-md-9 clearfix">
+        <div class="box">
+            <form action="{{ path('sylius_account_profile_update') }}" {{ form_enctype(form) }} method="post">
+                <div class="row">
+                    {{ form_errors(form) }}
+
+                    <div class="col-md-12">
+                        {{ form_label(form.email, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_label(form.firstName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_widget(form.firstName) }}
+                        {{ form_errors(form.firstName) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_label(form.lastName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_widget(form.lastName) }}
+                        {{ form_errors(form.lastName) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_label(form.birthday, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_widget(form.birthday) }}
+                        {{ form_errors(form.birthday) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_label(form.gender, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_widget(form.gender) }}
+                        {{ form_errors(form.gender) }}
+                    </div>
+                    <div class="col-md-12">
+                        {{ form_label(form.phoneNumber, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_widget(form.phoneNumber) }}
+                        {{ form_errors(form.phoneNumber) }}
+                    </div>
+                </div>
+
+                {{ form_rest(form) }}
+                {{ update() }}
+            </form>
+        </div>
+    </div>
+
+    {% include('SyliusWebBundle:Frontend/Account:menu.html.twig') %}
+
+{% endblock %}
