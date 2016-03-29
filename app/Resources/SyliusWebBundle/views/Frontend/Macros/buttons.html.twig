@@ -5,7 +5,7 @@
         {% if icon is not empty %}
             <i class="fa fa-{{ icon }}"></i>
         {% endif %}
-        {{ message }}
+        {{ message|trans }}
     </a>
 {% endmacro %}
 
