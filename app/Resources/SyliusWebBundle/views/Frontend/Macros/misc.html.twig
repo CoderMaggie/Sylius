@@ -1,0 +1,14 @@
+{% macro order_state_label(state) %}
+
+    {% if state == 'cancelled' or state == 'abandoned' %}
+        {% set class = 'danger' %}
+    {% elseif state == 'shipped' %}
+        {% set class = 'info' %}
+    {% elseif state == 'pending' %}
+        {% set class = 'warning' %}
+    {% else %}
+        {% set class = 'success' %}
+    {% endif %}
+
+    <span class="label label-{{ class }} label-state">{{ state|trans|humanize }}</span>
+{% endmacro %}

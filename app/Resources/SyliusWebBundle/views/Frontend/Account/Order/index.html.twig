@@ -1,0 +1,22 @@
+{% import '@SyliusWeb/Frontend/Macros/buttons.html.twig' as buttons %}
+{% extends '@SyliusWeb/Frontend/Account/layout.html.twig' %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="box text-center">
+            <h1>Your orders</h1>
+        </div>
+    </div>
+
+    {{ parent() }}
+
+    <div class="col-md-9 clearfix">
+        <div class="box">
+
+            {% include "@SyliusWeb/Frontend/Account/Order/_list.html.twig" %}
+
+        </div>
+    </div>
+
+    {% include('@SyliusWeb/Frontend/Account/menu.html.twig') %}
+{% endblock %}
