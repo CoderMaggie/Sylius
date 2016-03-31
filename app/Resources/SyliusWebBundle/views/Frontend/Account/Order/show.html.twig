@@ -1,0 +1,53 @@
+{% import '@SyliusWeb/Frontend/Macros/buttons.html.twig' as buttons %}
+{% extends '@SyliusWeb/Frontend/Account/layout.html.twig' %}
+
+{% set orderHeadline = 'Order #'~ order.number %}
+
+{% block title %}
+    - {{ orderHeadline }}
+{% endblock %}
+
+{% block topbar %}
+    <ul class="breadcrumb">
+        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
+        <li><a href={{ path('sylius_account_profile_show') }}>Account</a></li>
+        <li><a href={{ path('sylius_account_order_index') }}>Orders</a></li>
+        <li>{{ '#' ~ order.number }}</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="box text-center">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <h1>{{ orderHeadline }}</h1>
+            </div>
+        </div>
+    </div>
+
+    {{ parent() }}
+
+    <div class="col-md-9 clearfix" id="customer-order">
+        <div class="box">
+            <div class="row text-center" id="information">
+                <div class="col-md-6">
+                    <h4>{{ 'sylius.account.order.created_at'|trans }} {{ order.createdAt|date() }}</h4>
+                </div>
+                <div class="col-md-6">
+                    <h4>
+                        {{ 'sylius.account.order.state'|trans }} - {{ order.state|humanize }}
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="box">
+
+            {% include "@SyliusWeb/Frontend/Account/Order/_detail.html.twig" %}
+
+        </div>
+    </div>
+
+    {% include('SyliusWebBundle:Frontend/Account:menu.html.twig') %}
+
+{% endblock %}
