@@ -1,17 +1,17 @@
 {% macro grid(products) %}
-<div class="row products">
-    {% for product in products %}
-        <div class="col-md-4 col-sm-6">
-            {% include 'SyliusWebBundle:Frontend/Product:_single.html.twig' %}
-        </div>
-    {% else %}
-        <div class="col-md-12">
-            <div class="box text-center text-muted">
-                <h4>There are no products to display</h4>
+    <div class="row products">
+        {% for product in products %}
+            <div class="col-md-4 col-sm-6">
+                {% include 'SyliusWebBundle:Frontend/Product:_single.html.twig' %}
             </div>
-        </div>
-    {% endfor %}
-</div>
+        {% else %}
+            <div class="col-md-12">
+                <div class="box text-center text-muted">
+                    <h4>There are no products to display</h4>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endmacro %}
 
 {% macro sylius_display_price(variant) %}
@@ -37,4 +37,24 @@
     <a href={{ path(url) }}>
         {{ plain_ribbon(type) }}
     </a>
+{% endmacro %}
+
+{% macro all_ribbons(method, product) %}
+    {% if product.masterVariant.isPriceReduced %}
+        {{ attribute(_self, method, {'type': 'sale', 'url': product}) }}
+    {% endif %}
+    {% if date('now')|date_modify('-7 day') < date(product.masterVariant.availableOn) %}
+        {{ attribute(_self, method, {'type': 'new', 'url': product}) }}
+    {% endif %}
+    {% if not product.hasVariants and not sylius_inventory_is_available(product.masterVariant) %}
+        {{ attribute(_self, method, {'type': 'out-of-stock', 'url': product}) }}
+    {% endif %}
+{% endmacro %}
+
+{% macro render_reviews(product) %}
+    <div class="box" id="reviews">
+        <h3>Product reviews</h3>
+        {% render(url('sylius_product_reviews', { 'productId': product.id, limit: 3 })) %}
+    </div>
+    {% render(url('sylius_product_review_create', { 'productId': product.id })) %}
 {% endmacro %}

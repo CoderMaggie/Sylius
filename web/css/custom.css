@@ -139,3 +139,7 @@
     width: inherit;
     background-color: maroon;
 }
+
+#product-variants tbody tr:hover {
+    background: lightgrey;
+}
