@@ -1,0 +1,32 @@
+{% extends '@SyliusWeb/Frontend/layout.html.twig' %}
+{% from '@SyliusWeb/Frontend/Product/macros.html.twig' import grid %}
+
+{% block title %}
+    - {{ taxon.name }}
+{% endblock %}
+
+{% block topbar %}
+    <ul class="breadcrumb">
+        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
+        <li>{{ taxon.name }}</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="box text-center">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <h1>{{ taxon.name|humanize }}</h1>
+                <h3 class="text-muted">{{ taxon.description|humanize }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+         {% include '@SyliusWeb/Frontend/Product/menu.html.twig' %}
+    </div>
+
+    <div class="col-sm-9">
+        {{ grid(products) }}
+    </div>
+{% endblock %}

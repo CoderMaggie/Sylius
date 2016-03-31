@@ -1,0 +1,40 @@
+{% macro grid(products) %}
+<div class="row products">
+    {% for product in products %}
+        <div class="col-md-4 col-sm-6">
+            {% include 'SyliusWebBundle:Frontend/Product:_single.html.twig' %}
+        </div>
+    {% else %}
+        <div class="col-md-12">
+            <div class="box text-center text-muted">
+                <h4>There are no products to display</h4>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro sylius_display_price(variant) %}
+    <p class="price">
+    {% if (variant.isPriceReduced) %}
+        <span class='text-muted' style="text-decoration: line-through">{{ variant.originalPrice|sylius_price }}</span>
+    {% endif %}
+    <span>{{ sylius_calculate_price(variant)|sylius_price }}</span>
+    </p>
+{% endmacro %}
+
+{% macro plain_ribbon(type) %}
+    <div class="ribbon {{ type }}">
+        <div class="theribbon">
+            {{ type|upper|replace('-', ' ') }}
+        </div>
+        <div class="ribbon-background"></div>
+    </div>
+{% endmacro %}
+
+{% macro linked_ribbon(type, url) %}
+    {% from _self import plain_ribbon %}
+    <a href={{ path(url) }}>
+        {{ plain_ribbon(type) }}
+    </a>
+{% endmacro %}

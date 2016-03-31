@@ -1,0 +1,22 @@
+{% import '@SyliusWeb/Frontend/Product/macros.html.twig' as macro %}
+
+<div class="product">
+    <div class="image">
+        <a href={{ path(product) }}>
+            <img class="image1 img-responsive" src="{{ product.image ? product.image.path|imagine_filter('sylius_medium') : 'http://placehold.it/262x255' }}" alt="{{ product.name }}">
+            <div class="text">
+                <h4>{{ product.name }}</h4>
+                {{ macro.sylius_display_price(product.masterVariant) }}
+            </div>
+        </a>
+    </div>
+    {% if product.masterVariant.isPriceReduced %}
+        {{ macro.linked_ribbon('sale', product) }}
+    {% endif %}
+    {% if date('now')|date_modify('-7 day') < date(product.masterVariant.availableOn) %}
+        {{ macro.linked_ribbon('new', product) }}
+    {% endif %}
+    {% if not product.hasVariants and not sylius_inventory_is_available(product.masterVariant) %}
+        {{ macro.linked_ribbon('out-of-stock', product) }}
+    {% endif %}
+</div>

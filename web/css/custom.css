@@ -131,3 +131,11 @@
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 }
+
+.ribbon.out-of-stock {
+    top: 100px;
+}
+.ribbon.out-of-stock .theribbon {
+    width: inherit;
+    background-color: maroon;
+}
