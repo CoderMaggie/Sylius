@@ -29,7 +29,13 @@ $ bower install
 $ wget http://getcomposer.org/composer.phar
 $ php composer.phar install
 
-$ php app/console sylius:install
+$ php app/console doctrine:database:create
+$ php app/console doctrine:fixtures:load --fixtures src/AppBundle/DataFixtures/ORM
+$ php app/console sylius:search:index
+$ php app/console doctrine:phpcr:repository:init
+$ php app/console doctrine:phpcr:fixtures:load
+
+$ php app/console sylius:install:assets
 ```
 
 Testing
