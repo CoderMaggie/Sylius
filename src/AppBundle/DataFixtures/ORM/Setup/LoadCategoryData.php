@@ -5,7 +5,6 @@ namespace AppBundle\DataFixtures\Setup;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Bundle\FixturesBundle\DataFixtures\DataFixture;
 use Sylius\Component\Taxonomy\Model\TaxonInterface;
-use Sylius\Component\Taxonomy\Model\TaxonomyInterface;
 
 class LoadCategoryData extends DataFixture
 {
@@ -14,7 +13,7 @@ class LoadCategoryData extends DataFixture
      */
     public function load(ObjectManager $manager)
     {
-        $gameLength = $this->createTaxonomy($manager, 'Game Length');
+        $gameLength = $this->createTaxon($manager, 'Game Length');
 
         $this->createTaxon($manager, 'Quick (<15 mins)', $gameLength);
         $this->createTaxon($manager, 'Short (15-30 mins)', $gameLength);
@@ -22,7 +21,7 @@ class LoadCategoryData extends DataFixture
         $this->createTaxon($manager, 'Long (1-2 hours)', $gameLength);
         $this->createTaxon($manager, 'Epic (3+ hours)', $gameLength);
 
-        $gameLength = $this->createTaxonomy($manager, 'Number of Players');
+        $gameLength = $this->createTaxon($manager, 'Number of Players');
 
         $this->createTaxon($manager, 'Solitaire (1)', $gameLength);
         $this->createTaxon($manager, '2', $gameLength);
@@ -32,10 +31,10 @@ class LoadCategoryData extends DataFixture
         $this->createTaxon($manager, '6', $gameLength);
         $this->createTaxon($manager, 'Party Games (7+)', $gameLength);
 
-        $gameLength = $this->createTaxonomy($manager, 'Publisher');
+        $gameLength = $this->createTaxon($manager, 'Publisher');
         $this->createTaxon($manager, 'Mayfair', $gameLength);
 
-        $gameLength = $this->createTaxonomy($manager, 'Game System');
+        $gameLength = $this->createTaxon($manager, 'Game System');
         $this->createTaxon($manager, 'Catan', $gameLength);
 
         $manager->flush();
@@ -51,37 +50,22 @@ class LoadCategoryData extends DataFixture
 
     /**
      * @param ObjectManager $manager
-     * @param $taxonomy
+     * @param TaxonInterface $parentTaxon
+     * 
+     * @return TaxonInterface
      */
-    private function createTaxon(ObjectManager $manager, $name, $taxonomy)
+    private function createTaxon(ObjectManager $manager, $name, TaxonInterface $parentTaxon = null)
     {
         /* @var TaxonInterface $taxon */
         $taxon = $this->get('sylius.factory.taxon')->createNew();
         $taxon->setCode($this->getCode($name));
         $taxon->setName($name);
-        $taxon->setTaxonomy($taxonomy);
-        $taxonomy->addTaxon($taxon);
+        $taxon->setParent($parentTaxon);
 
         $manager->persist($taxon);
         $this->setReference('App.Taxon.'.$name, $taxon);
-    }
-
-    /**
-     * @param ObjectManager $manager
-     *
-     * @return TaxonomyInterface
-     */
-    private function createTaxonomy(ObjectManager $manager, $name)
-    {
-        /* @var TaxonomyInterface $taxonomy */
-        $taxonomy = $this->get('sylius.factory.taxonomy')->createNew();
-        $taxonomy->setCode($this->getCode($name));
-        $taxonomy->setName($name);
-
-        $manager->persist($taxonomy);
-        $this->setReference('App.Taxonomy.'.$name, $taxonomy);
-
-        return $taxonomy;
+        
+        return $taxon;
     }
 
     private function getCode($name)
