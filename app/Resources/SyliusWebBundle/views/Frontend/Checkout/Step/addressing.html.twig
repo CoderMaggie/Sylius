@@ -34,7 +34,7 @@
 
     <div class="col-md-9 clearfix" id="checkout">
         <div class="box">
-            <form method="post" action="{{ path(context.process.forwardRoute, {'stepName': context.currentStep.name}) }}" class="form-horizontal" novalidate>
+            <form method="post" action="{{ path(context.process.forwardRoute, {'stepName': context.currentStep.name}) }}" novalidate>
 
                 <ul class="nav nav-pills nav-justified">
                     <li class="active"><a href="#"><i class="fa fa-map-marker"></i><br>Address</a>
@@ -99,7 +99,7 @@
 
     <div class="col-md-3">
         {% if not order.empty %}
-            {{ include('@SyliusWeb/Frontend/Cart/_order_summary.html.twig') }}
+            {{ include('@SyliusWeb/Frontend/Cart/_orderSummary.html.twig') }}
         {% endif %}
     </div>
 
