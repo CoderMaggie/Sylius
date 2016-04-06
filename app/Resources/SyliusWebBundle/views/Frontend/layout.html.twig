@@ -47,7 +47,7 @@
         <div class="container">
             {% block footer %}
             {% endblock %}
-            <p class="pull-left">&copy; <a href="#">CJ-MaX</a>, 2016 - {{ 'now'|date('Y') }}.</p>
+            <p class="pull-left">&copy; <a href="#">CJ-MaX</a>, 2016{% if ('now'|date('Y') != 2016) %} - {{ 'now'|date('Y') }} {% endif %}.</p>
         </div>
     </footer>
 
