@@ -1,6 +1,11 @@
 <div id="navbar" class="navbar navbar-default navbar-fixed-top yamm" role="navigation">
     <div class="container">
         <div class="navbar-header">
+            <a class="navbar-brand home" href="{{ path('sylius_homepage') }}">
+                CJ-MaX
+                <span class="sr-only">Minimal - go to homepage</span>
+            </a>
+
             <div class="navbar-buttons">
                 <a href="#" class="btn btn-primary navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <b class="caret"></b>
@@ -17,16 +22,46 @@
                     <i class="fa fa-user"></i>
                 </button>
             </div>
-
-            <div class="navbar-brand home">
-                <a href="{{ path('sylius_homepage') }}">
-                    <h1 class='logo'><span> CJ-MaX </span></h1>
-                </a>
-            </div>
         </div>
 
-        <div class="collapse navbar-collapse pull-right hidden-sx hidden-sm">
-            {{ knp_menu_render('sylius.frontend.main', {'template': 'SyliusWebBundle:Frontend:menu.html.twig', 'currentClass': 'active', 'ancestorClass': 'active'}) }}
+        <div class="navbar-collapse collapse" id="navigation">
+            {{ knp_menu_render('menu.categories', {'template': '@SyliusWeb/Frontend/Menu/_main.html.twig'}) }}
+        </div>
+
+        <div class="navbar-collapse right" id="basket-overview">
+            <a class="btn btn-primary navbar-btn" href={{ path('sylius_cart_summary') }}>
+                <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">Cart</span>
+            </a>
+        </div>
+
+        <div class="navbar-collapse right">
+            <button type="button" class="btn navbar-btn btn-default" data-toggle="collapse" data-target="#search">
+                <span class="sr-only">Toggle search</span>
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+
+        <div class="navbar-collapse right">
+            {#<button type="button" class="btn navbar-btn btn-default" data-toggle="modal" data-target="#login-modal">#}
+                {#<span class="sr-only">User login</span>#}
+            <a class="btn btn-primary navbar-btn" href={{ path('sylius_user_security_login') }}>
+                <i class="fa fa-users"></i>
+            </a>
+            {#</button>#}
+        </div>
+
+        <div class="clearfix collapse" id="search" style="height: auto;">
+            <form action="/search/" class="navbar-form" role="search" method="GET">
+                <input type="hidden" name="search_param" value="all" id="search_param">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="search" name="q" placeholder="Search">
+                    <span class="input-group-btn">
+                        <button id="search-button" type="submit" class="btn btn-primary">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
         </div>
     </div>
 </div>
