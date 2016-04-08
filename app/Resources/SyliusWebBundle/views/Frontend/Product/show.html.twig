@@ -122,7 +122,7 @@
                                 {% if not product.hasVariants and not sylius_inventory_is_available(product.masterVariant) %}
                                     <h2 class="text-center" style="color: maroon">Out of stock</h2>
                                 {% else %}
-                                    <p>
+                                    <p class="form-group">
                                         {{ form_label(form.quantity, null, {'label_attr': {'class': 'text-center'}}) }}
                                         {{ form_widget(form.quantity) }}
                                         {{ form_errors(form.quantity) }}
