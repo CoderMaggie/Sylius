@@ -28,3 +28,9 @@ sylius_account_profile_show:
         _controller: FrameworkBundle:Redirect:redirect
         route: sylius_account_profile_update
         permanent: true
+
+sylius_contact:
+    path: /contact/
+    methods: ['GET', 'POST']
+    defaults:
+        _controller: AppBundle:Contact:sendMail

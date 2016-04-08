@@ -1,0 +1,118 @@
+{% extends '@SyliusWeb/Frontend/layout.html.twig' %}
+
+{% block title %}
+    - Contact
+{% endblock %}
+
+{% block topbar %}
+    <ul class="breadcrumb">
+        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
+        <li>Contact</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="box text-center">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <h1>Contact</h1>
+                <p class="lead">
+                    Are you curious about something?<br>
+                    Do you have some kind of problem with our products?
+                </p>
+                <p>Please feel free to contact us.</p>
+            </div>
+        </div>
+    </div>
+
+    {{ parent() }}
+
+    <div class="box" id="contact">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3>
+                    <i class="fa fa-map-marker"></i>
+                    Address
+                </h3>
+                <p>
+                    13/25 New Avenue<br>
+                    New Heaven<br>
+                    45Y 73J<br>
+                    England<br>
+                    Great Britain
+                </p>
+            </div>
+            <div class="col-sm-4">
+                <h3>
+                    <i class="fa fa-phone"></i>
+                    Call support
+                </h3>
+                <p class="text-muted">
+                    This number is toll free if calling from Great Britain otherwise we advise you to use the electronic
+                    form of communication.
+                </p>
+                <p><strong>+33 111 111 111</strong></p>
+            </div>
+            <div class="col-sm-4">
+                <h3>
+                    <i class="fa fa-envelope"></i>
+                    Electronic support
+                </h3>
+                <div class="text-muted">
+                    <p>Please feel free to write an email to us at</p>
+                    <p><strong><a href="mailto:">support@example.com</a></strong></p>
+                    <p>or use the contact form below.</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2 class="text-center">Contact form</h2>
+        <form method="post" id="contact-form" novalidate="novalidate">
+
+            {{ form_errors(form) }}
+
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="col-sm-6 form-group">
+                        {{ form_label(form.firstName, null, {'label_attr': {'class': 'col-sm-12 text-left'}}) }}
+                        {{ form_widget(form.firstName) }}
+                        {{ form_errors(form.firstName) }}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        {{ form_label(form.lastName, null, {'label_attr': {'class': 'col-sm-12 text-left'}}) }}
+                        {{ form_widget(form.lastName) }}
+                        {{ form_errors(form.lastName) }}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        {{ form_label(form.email, null, {'label_attr': {'class': 'col-sm-12 text-left'}}) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        {{ form_label(form.subject, null, {'label_attr': {'class': 'col-sm-12 text-left'}}) }}
+                        {{ form_widget(form.subject) }}
+                        {{ form_errors(form.subject) }}
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        {{ form_label(form.message, null, {'label_attr': {'class': 'col-sm-12 text-left'}}) }}
+                        {{ form_widget(form.message) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-envelope-o"></i>
+                            Send message
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden">
+                {{ form_rest(form) }}
+            </div>
+
+        </form>
+    </div>
+{% endblock %}
