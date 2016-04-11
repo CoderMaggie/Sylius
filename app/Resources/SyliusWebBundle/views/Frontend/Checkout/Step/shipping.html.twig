@@ -40,20 +40,21 @@
                 <div class="content">
 
                     {{ form_errors(form) }}
+                    {{ form_errors(form.shipments[0].method) }}
 
                     <div class="row">
-                        {% for shipment in order.shipments %}
-                            {% set shippingMethodForm = form.shipments[loop.index0].method.children|first %}
-                            {% set shippingMethodCost = form.shipments[loop.index0].method.vars.shipping_costs|first %}
+                        {% set shippingMethodForms = form.shipments[0].method.children %}
+                        {% for shippingMethodForm in shippingMethodForms %}
+                            {% set shippingMethodCost = form.shipments[0].method.vars.shipping_costs[shippingMethodForm.vars.value] %}
 
                             <div class="col-sm-6">
                                 <div class="box shipping-method text-center">
                                     <h3>{{ form_label(shippingMethodForm, null, {'label_attr': {'class': 'col-sm-12'}}) }}</h3>
                                     <p class="text-muted">
-                                        {% if shippingMethodCost is not empty or shippingMethodCost != 0 %}
-                                            Cost: {{ shippingMethodCost|sylius_money }}
-                                        {% else %}
+                                        {% if shippingMethodCost == 0 %}
                                             Free
+                                        {% else %}
+                                            Cost: {{ shippingMethodCost|sylius_price }}
                                         {% endif %}
                                     </p>
                                     <div class="box-footer text-center">
