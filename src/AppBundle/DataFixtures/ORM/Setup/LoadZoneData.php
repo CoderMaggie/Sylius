@@ -14,7 +14,7 @@ class LoadZoneData extends DataFixture
      */
     public function load(ObjectManager $manager)
     {
-        $uk = $this->createZone('UK', ZoneInterface::TYPE_COUNTRY, array('GB-ENG'));
+        $uk = $this->createZone('UK', ZoneInterface::TYPE_COUNTRY, array('GB'));
         $manager->persist($uk);
         $manager->flush();
 
@@ -53,10 +53,6 @@ class LoadZoneData extends DataFixture
             /* @var $zoneMember ZoneMemberInterface */
             $zoneMember = $this->getZoneMemberFactory($type)->createNew();
             $zoneMember->setCode($id);
-
-            if ($this->hasReference('App.'.ucfirst($type).'.'.$id)) {
-                $zoneMember->{'set'.ucfirst($type)}($this->getReference('App.'.ucfirst($type).'.'.$id));
-            }
 
             $zone->addMember($zoneMember);
         }
