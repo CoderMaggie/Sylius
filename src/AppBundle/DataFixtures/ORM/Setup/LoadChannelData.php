@@ -21,7 +21,7 @@ class LoadChannelData extends DataFixture
             'http://example.com/',
             array('en_GB'),
             array('GBP'),
-            array('Free'),
+            array('DHL', 'UPS'),
             array('Offline')
         );
 

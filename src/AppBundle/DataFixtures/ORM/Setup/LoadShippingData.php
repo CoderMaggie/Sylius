@@ -15,7 +15,8 @@ class LoadShippingData extends DataFixture
      */
     public function load(ObjectManager $manager)
     {
-        $manager->persist($this->createShippingMethod('Free', 'UK', DefaultCalculators::FLAT_RATE, array('amount' => 0)));
+        $manager->persist($this->createShippingMethod('DHL', 'UK', DefaultCalculators::FLAT_RATE, array('amount' => 0)));
+        $manager->persist($this->createShippingMethod('UPS', 'UK', DefaultCalculators::FLAT_RATE, array('amount' => 15)));
         $manager->flush();
     }
 

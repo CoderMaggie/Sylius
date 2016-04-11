@@ -13,9 +13,9 @@ class LoadCountryData extends DataFixture
     public function load(ObjectManager $manager)
     {
         $countryFactory = $this->get('sylius.factory.country');
-        $countries = array('GB-ENG');
+        $countries = array('GB');
 
-        foreach ($countries as $isoName => $name) {
+        foreach ($countries as $isoName) {
             $country = $countryFactory->createNew();
             $country->setCode($isoName);
 
