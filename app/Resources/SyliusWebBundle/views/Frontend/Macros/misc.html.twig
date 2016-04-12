@@ -12,3 +12,9 @@
 
     <span class="label label-{{ class }} label-state">{{ state|trans|humanize }}</span>
 {% endmacro %}
+
+{% macro pagination(paginator) %}
+    {% if paginator.haveToPaginate() %}
+        {{ pagerfanta(paginator, 'twitter_bootstrap3_translated') }}
+    {% endif %}
+{% endmacro %}
