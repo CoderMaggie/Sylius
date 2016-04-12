@@ -26,10 +26,9 @@
     <div class="col-md-9 clearfix">
         <div class="box">
             <div class="row">
-                <h4>{{ customer.lastName|upper }} {{ customer.firstName }}</h4>
+                <h4>{{ customer.firstName }} {{ customer.lastName }}</h4>
                 <div class="spacer-50">&nbsp;</div>
-                <p>{{ 'sylius.ui.id'|trans }} {{ app.user.id }}</p>
-                <p>{{ 'sylius.ui.email'|trans }} {{ customer.email }}</p>
+                <p>{{ 'sylius.ui.email'|trans }}: {{ customer.email }}</p>
                 <p>{{ 'sylius.ui.you_are_customer_since'|trans }} {{ app.user.createdAt|date() }}</p>
             </div>
         </div>

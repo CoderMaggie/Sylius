@@ -25,7 +25,9 @@
     <ul class="breadcrumb">
         <li><a href={{ path('sylius_homepage') }}>Home</a></li>
         {% for taxon in product.taxons %}
-            <li><a href={{ path(taxon.permalink) }}>{{ taxon.name }}</a></li>
+            {% if taxon.getRoot.name == 'Publisher' or taxon.getRoot.name == 'Game System' %}
+                <li><a href={{ path(taxon.permalink) }}>{{ taxon.name }}</a></li>
+            {% endif %}
         {% endfor %}
         <li>{{ product.name }}</li>
     </ul>
@@ -182,8 +184,6 @@
                 </table>
             {% endif %}
         </div>
-
-        {{ macro.render_reviews(product) }}
 
     </div>
 
