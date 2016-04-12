@@ -1,9 +1,11 @@
+{% set cart = sylius_cart_get() %}
+
 <div id="navbar" class="navbar navbar-default navbar-fixed-top yamm" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand home" href="{{ path('sylius_homepage') }}">
-                CJ-MaX
-                <span class="sr-only">Minimal - go to homepage</span>
+                <h3><u>CJ-MaX</u></h3>
+                <span class="sr-only">CJ-MaX - go to homepage</span>
             </a>
 
             <div class="navbar-buttons">
@@ -11,7 +13,7 @@
                     <b class="caret"></b>
                 </a>
                 <a class="btn btn-primary navbar-toggle" href={{ path('sylius_cart_summary') }}>
-                    <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
+                    <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs"></span>
                 </a>
                 <button type="button" class="navbar-toggle btn-default" data-toggle="collapse" data-target="#search">
                     <span class="sr-only">Toggle search</span>
@@ -30,7 +32,9 @@
 
         <div class="navbar-collapse right" id="basket-overview">
             <a class="btn btn-primary navbar-btn" href={{ path('sylius_cart_summary') }}>
-                <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">Cart</span>
+                <i class="fa fa-shopping-cart"></i>
+                <span class="hidden-sm">{{ cart.countItems() }}</span> item{% if cart.countItems() != 1 %}s{% endif %}
+                <span class="hidden-md">in cart</span>
             </a>
         </div>
 
@@ -42,26 +46,11 @@
         </div>
 
         <div class="navbar-collapse right">
-            {#<button type="button" class="btn navbar-btn btn-default" data-toggle="modal" data-target="#login-modal">#}
-                {#<span class="sr-only">User login</span>#}
             <a class="btn btn-primary navbar-btn" href={{ path('sylius_user_security_login') }}>
                 <i class="fa fa-users"></i>
             </a>
-            {#</button>#}
         </div>
 
-        <div class="clearfix collapse" id="search" style="height: auto;">
-            <form action="/search/" class="navbar-form" role="search" method="GET">
-                <input type="hidden" name="search_param" value="all" id="search_param">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="search" name="q" placeholder="Search">
-                    <span class="input-group-btn">
-                        <button id="search-button" type="submit" class="btn btn-primary">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </form>
-        </div>
+        {{ include('@SyliusWeb/Frontend/_search.html.twig') }}
     </div>
 </div>

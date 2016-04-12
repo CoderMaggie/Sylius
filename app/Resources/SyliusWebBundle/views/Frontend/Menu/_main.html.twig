@@ -16,7 +16,6 @@
 {% endblock %}
 
 {% block item %}
-
     {% import 'knp_menu.html.twig' as knp_menu %}
 
     {% if item.displayed %}
@@ -68,7 +67,6 @@
                     </div>
                 </div>
             {% else %}
-                {#{{ block('linkElement') }}#}
                 {{ block('list') }}
             {% endif %}
         </li>

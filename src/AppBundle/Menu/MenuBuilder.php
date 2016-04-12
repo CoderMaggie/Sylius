@@ -26,10 +26,8 @@ class MenuBuilder
      * @param FactoryInterface $factory
      * @param RepositoryInterface $taxonRepository
      */
-    public function __construct(
-        FactoryInterface $factory,
-        RepositoryInterface $taxonRepository
-    ) {
+    public function __construct(FactoryInterface $factory, RepositoryInterface $taxonRepository)
+    {
         $this->factory = $factory;
         $this->taxonRepository = $taxonRepository;
     }
@@ -59,7 +57,7 @@ class MenuBuilder
      */
     private function getCategories()
     {
-        return $this->taxonRepository->findBy(['parent' => NULL]);
+        return $this->taxonRepository->findRootNodes();
     }
 
     /**
