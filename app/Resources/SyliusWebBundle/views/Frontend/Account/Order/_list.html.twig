@@ -1,5 +1,5 @@
 {% import '@SyliusWeb/Frontend/Macros/buttons.html.twig' as buttons %}
-{% from '@SyliusWeb/Frontend/Macros/misc.html.twig' import order_state_label %}
+{% from '@SyliusWeb/Frontend/Macros/misc.html.twig' import shipment_state_label %}
 
 <div class="row">
     {% if orders is not empty %}
@@ -7,11 +7,11 @@
             <table class="table" id="orders">
                 <thead>
                 <tr>
-                    <td>{{ 'sylius.account.order.created_at'|trans }}</td>
-                    <td>{{ 'sylius.order.number'|trans }}</td>
-                    <td>{{ 'sylius.order.total'|trans }}</td>
-                    <td>{{ 'sylius.shipment.state'|trans }}</td>
-                    <td>{{ 'sylius.account.order.invoice'|trans }}</td>
+                    <td>{{ 'sylius.ui.created_at'|trans }}</td>
+                    <td>{{ 'sylius.ui.number'|trans }}</td>
+                    <td>{{ 'sylius.ui.total'|trans }}</td>
+                    <td>{{ 'sylius.ui.state'|trans }}</td>
+                    <td>{{ 'sylius.ui.invoice'|trans }}</td>
                     <td>&nbsp;</td>
                 </tr>
                 </thead>
@@ -22,7 +22,7 @@
                         <td>{{ order.number }}</td>
                         <td>{{ order.total|sylius_money(order.currency) }}</td>
                         <td>
-                            {{ order_state_label(order.state) }}
+                            {{ shipment_state_label(order.shipments.last.state) }}
                         </td>
                         <td>
                             {% if order.isInvoiceAvailable %}

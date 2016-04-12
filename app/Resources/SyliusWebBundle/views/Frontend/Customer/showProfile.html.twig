@@ -15,8 +15,8 @@
     <div class="box text-center">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <h1>{{ 'sylius.account.home.welcome'|trans }}</h1>
-                <div>{{ 'sylius.account.home.outline'|trans }}</div>
+                <h1>{{ 'sylius.ui.welcome'|trans }}</h1>
+                <div>{{ 'sylius.ui.welcome_to_your_space'|trans }}</div>
             </div>
         </div>
     </div>
@@ -28,9 +28,9 @@
             <div class="row">
                 <h4>{{ customer.lastName|upper }} {{ customer.firstName }}</h4>
                 <div class="spacer-50">&nbsp;</div>
-                <p>{{ 'sylius.account.home.id'|trans }} {{ app.user.id }}</p>
-                <p>{{ 'sylius.account.home.email'|trans }} {{ customer.email }}</p>
-                <p>{{ 'sylius.account.home.since'|trans }} {{ app.user.createdAt|date() }}</p>
+                <p>{{ 'sylius.ui.id'|trans }} {{ app.user.id }}</p>
+                <p>{{ 'sylius.ui.email'|trans }} {{ customer.email }}</p>
+                <p>{{ 'sylius.ui.you_are_customer_since'|trans }} {{ app.user.createdAt|date() }}</p>
             </div>
         </div>
     </div>

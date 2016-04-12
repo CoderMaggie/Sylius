@@ -6,7 +6,7 @@
 
 {% block topbar %}
     <ol class="breadcrumb">
-        <li><a href="#">Home</a></li>
+        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
         <li>Shopping cart</li>
     </ol>
 {% endblock %}
@@ -50,7 +50,7 @@
         <div class="col-md-3">
             {% if not cart.empty %}
                 {{ include(
-                    '@SyliusWeb/Frontend/Cart/_order_summary.html.twig',
+                    '@SyliusWeb/Frontend/Cart/_orderSummary.html.twig',
                     {'order': cart}
                 ) }}
             {% endif %}
