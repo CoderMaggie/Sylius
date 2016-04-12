@@ -1,1 +1,16 @@
-services: ~
+services:
+    app.menu_builder:
+        class: AppBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", "@sylius.repository.taxon"]
+
+    app.main_menu:
+        class: Knp\Menu\MenuItem
+        factory: ["@app.menu_builder", createMainMenu]
+        tags:
+        - { name: knp_menu.menu, alias: menu.main}
+
+    app.categories_menu:
+        class: Knp\Menu\MenuItem
+        factory: ["@app.menu_builder", createCategoriesMenu]
+        tags:
+        - { name: knp_menu.menu, alias: menu.categories}
