@@ -19,8 +19,8 @@
                     <span class="sr-only">Toggle search</span>
                     <i class="fa fa-search"></i>
                 </button>
-                <button type="button" class="navbar-toggle" data-toggle="modal" data-target="#login-modal">
-                    <span class="sr-only">User login</span>
+                <button type="button" class="navbar-toggle">
+                    <span class="hidden-xs">User login</span>
                     <i class="fa fa-user"></i>
                 </button>
             </div>
@@ -46,7 +46,7 @@
         </div>
 
         <div class="navbar-collapse right">
-            <a class="btn btn-primary navbar-btn" href={{ path('sylius_user_security_login') }}>
+            <a class="btn btn-primary navbar-btn" href={{ path('sylius_account_profile_show') }}>
                 <i class="fa fa-users"></i>
             </a>
         </div>
