@@ -73,7 +73,7 @@ doctrine_phpcr:
         username: %sylius.phpcr.user%
         password: %sylius.phpcr.pass%
     odm:
-        auto_mapping: trueP
+        auto_mapping: true
         auto_generate_proxy_classes: %kernel.debug%
 
 swiftmailer:
