@@ -73,7 +73,7 @@ doctrine_phpcr:
         username: %sylius.phpcr.user%
         password: %sylius.phpcr.pass%
     odm:
-        auto_mapping: true
+        auto_mapping: trueP
         auto_generate_proxy_classes: %kernel.debug%
 
 swiftmailer:
@@ -83,3 +83,16 @@ swiftmailer:
     username:  %sylius.mailer.user%
     password:  %sylius.mailer.password%
     spool:     { type: memory }
+
+payum:
+    gateways:
+        paypal_express_checkout:
+            paypal_express_checkout_nvp:
+                username:  %paypal.express_checkout.username%
+                password:  %paypal.express_checkout.password%
+                signature: %paypal.express_checkout.signature%
+                sandbox:   %paypal.express_checkout.sandbox%
+
+sylius_payment:
+    gateways:
+        paypal_express_checkout: Paypal Express Checkout

@@ -15,6 +15,8 @@ class LoadPaymentMethodsData extends DataFixture
     public function load(ObjectManager $manager)
     {
         $manager->persist($this->createPaymentMethod('Offline', 'offline'));
+        $manager->persist($this->createPaymentMethod('Paypal', 'paypal_express_checkout'));
+
         $manager->flush();
     }
 
