@@ -10,10 +10,6 @@
     margin-bottom: 10px;
 }
 
-/* Reduce whitespace in box */
-.box {
-    padding: 0;
-}
 .box h3, .box h4 {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -27,9 +23,6 @@
 .text-instead-of-image ul {
     padding-left: 1em;
     text-align: left;
-}
-#content .grid-items-mini .text-instead-of-image ul {
-    /* @todo much larger font size on xs screens */
 }
 
 .text-instead-of-image h3 {
@@ -130,4 +123,16 @@
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
+}
+
+.ribbon.out-of-stock {
+    top: 100px;
+}
+.ribbon.out-of-stock .theribbon {
+    width: inherit;
+    background-color: maroon;
+}
+
+#product-variants tbody tr:hover {
+    background: lightgrey;
 }

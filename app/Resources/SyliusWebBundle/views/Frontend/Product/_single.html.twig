@@ -1,0 +1,16 @@
+{% import '@SyliusWeb/Frontend/Product/macros.html.twig' as macro %}
+
+<div class="product">
+    <div class="image">
+        <a href={{ path(product) }}>
+            <img class="image1 img-responsive"
+                 src="{{ product.image ? product.image.path|imagine_filter('sylius_medium') : 'http://placehold.it/262x255' }}"
+                 alt="{{ product.name }}">
+            <div class="text">
+                <h4>{{ product.name }}</h4>
+                {{ macro.sylius_display_price(product.masterVariant) }}
+            </div>
+        </a>
+    </div>
+    {{ macro.all_ribbons('linked_ribbon', product) }}
+</div>

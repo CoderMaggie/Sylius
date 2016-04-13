@@ -26,19 +26,20 @@
         <div class="box">
             <form action="{{ path('sylius_user_security_check') }}" method="post">
                 <div class="row">
-                    {{ form_errors(form) }}
+                    {% if error is not null %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
 
-                    <div class="col-md-12">
+                    <div class="col-md-12 form-group">
                         {{ form_label(form._username, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
-                        {{ form_widget(form._username) }}
+                        {{ form_widget(form._username, {'value': last_username|default('')}) }}
                         {{ form_errors(form._username) }}
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 form-group">
                         {{ form_label(form._password, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
                         {{ form_widget(form._password) }}
                         {{ form_errors(form._password) }}
                     </div>
-                    <div class="spacer-50">&nbsp;</div>
                 </div>
 
                 <div class="box">

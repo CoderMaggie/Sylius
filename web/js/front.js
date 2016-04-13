@@ -125,6 +125,13 @@ function utils() {
 	var radio = $(this).find(':radio');
 	radio.prop('checked', true);
     });
+
+	/* click on the table row activates the radio */
+	$('#product-variants').on('click', 'tbody tr', function () {
+		var radio = $(this).find(':radio');
+		radio.prop('checked', true);
+	});
+
     /* click on the box activates the link in it */
 
     $('.box.clickable').on('click', function (e) {
