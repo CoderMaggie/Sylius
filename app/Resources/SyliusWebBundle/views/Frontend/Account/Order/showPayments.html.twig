@@ -1,0 +1,65 @@
+{% import '@SyliusWeb/Frontend/Macros/buttons.html.twig' as buttons %}
+{% extends '@SyliusWeb/Frontend/Account/layout.html.twig' %}
+
+{% set orderHeadline = 'Order #'~ order.number %}
+
+{% block title %}
+    - {{ orderHeadline }}
+{% endblock %}
+
+{% block topbar %}
+    <ul class="breadcrumb">
+        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
+        <li>{{ 'sylius.account.title'|trans }}</li>
+        <li><a href={{ path('sylius_account_order_index') }}>{{ 'sylius.ui.orders'|trans }}</a></li>
+        <li>{{ '#' ~ order.number }}</li>
+        <li>{{ 'sylius.ui.payments'|trans }}</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="box text-center">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <h1>{{ orderHeadline }} {{ 'sylius.ui.payments'|trans }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 clearfix" id="customer-order">
+            <div class="box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ 'sylius.ui.payment_method'|trans }}</th>
+                                <th>{{ 'sylius.ui.state'|trans }}</th>
+                                <th>{{ 'sylius.ui.action'|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody id="payments">
+                            {% for payment in order.payments %}
+                                <tr>
+                                    <th scope="row">{{ payment.id }}</th>
+                                    <td>{{ payment.method.name }}</td>
+                                    <td>{{ payment.state }}</td>
+                                    <td>
+                                        {% if 'new' == payment.state %}
+                                            <a href="{{ url('sylius_order_purchase', { 'paymentId': payment.id }) }}" class="btn btn-default">
+                                                <span>Pay</span>
+                                                <i class="fa fa-credit-card"></i>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

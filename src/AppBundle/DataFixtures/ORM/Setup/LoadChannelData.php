@@ -22,7 +22,7 @@ class LoadChannelData extends DataFixture
             array('en_GB'),
             array('GBP'),
             array('DHL', 'UPS'),
-            array('Offline')
+            array('Offline', 'Paypal')
         );
 
         $manager->persist($channel);
