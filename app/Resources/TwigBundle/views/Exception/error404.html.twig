@@ -1,0 +1,19 @@
+{% extends '@SyliusWeb/Frontend/layout.html.twig' %}
+{% from '@SyliusWeb/Frontend/Macros/buttons.html.twig' import btn as button %}
+
+{% block title %}
+    - 404
+{% endblock %}
+
+{% block content %}
+    <div class="col-sm-6 col-sm-offset-3" id="error-page">
+        <div class="box">
+            <p class="text-center">
+                <a href={{ path('sylius_homepage') }}><h1>CJ-MaX</h1></a>
+            </p>
+            <h3>We are sorry - this page is not here anymore</h3>
+            <h4 class="text-muted">Error 404 - Page not found</h4>
+            {{ button(path('sylius_homepage'), ' Go to homepage', 'home-button', 'home', 'btn-primary') }}
+        </div>
+    </div>
+{% endblock %}
