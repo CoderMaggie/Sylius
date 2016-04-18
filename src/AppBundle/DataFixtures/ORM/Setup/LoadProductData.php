@@ -14,23 +14,22 @@ class LoadProductData extends DataFixture
      */
     public function load(ObjectManager $manager)
     {
-        /** @var ProductInterface $product */
-        $product = $this->get('sylius.factory.product')->createNew();
-        $product->setName('Mayfair Games Catan Board Game');
-        $product->setDescription('Your adventurous settlers seek to tame the remote but rich isle of Catan. Start by revealing Catan\'s many harbors and regions: pastures, fields, mountains, hills, forests, and desert. The random mix creates a different board virtually every game.');
-        $product->setPrice(10000);
-        $product->setSku('123456789');
-        $product->addChannel($this->getReference('App.Channel.WEB-UK'));
-        $product->addTaxon($this->getReference('App.Taxon.2'));
-        $product->addTaxon($this->getReference('App.Taxon.3'));
-        $product->addTaxon($this->getReference('App.Taxon.4'));
-        $product->addTaxon($this->getReference('App.Taxon.5'));
-        $product->addTaxon($this->getReference('App.Taxon.Mayfair'));
-        $product->addTaxon($this->getReference('App.Taxon.Catan'));
-        $product->addTaxon($this->getReference('App.Taxon.Basic (30-60 mins)'));
-        $product->setMainTaxon($this->getReference('App.Taxon.Mayfair'));
+        $description = 'Your adventurous settlers seek to tame the remote but rich isle of Catan. Start by revealing Catan\'s many harbors and regions: pastures, fields, mountains, hills, forests, and desert. The random mix creates a different board virtually every game.';
 
-        $manager->persist($product);
+
+        $this->createProduct('Game for 2 persons', $description, 1000, '12345678', $manager,
+            ['App.Taxon.2']);
+        $this->createProduct('Game for 3 persons', $description, 1000, '22345678', $manager,
+            ['App.Taxon.3']);
+        $this->createProduct('Quick Game', $description, 1000, '32345678', $manager,
+            ['App.Taxon.Quick (<15 mins)']);
+        $this->createProduct('Party Game', $description, 1000, '42345678', $manager,
+            ['App.Taxon.Party Games (7+)']);
+        $this->createProduct('Catan Game', $description, 1000, '52345678', $manager,
+        ['App.Taxon.Catan']);
+        $this->createProduct('Multicategorized Game', $description, 5000, '62345678', $manager,
+            ['App.Taxon.Quick (<15 mins)', 'App.Taxon.2', 'App.Taxon.3', 'App.Taxon.Mayfair', 'App.Taxon.Catan']);
+
         $manager->flush();
     }
 
@@ -40,5 +39,34 @@ class LoadProductData extends DataFixture
     public function getOrder()
     {
         return 50;
+    }
+
+    /**
+     * @param string $name
+     * @param string $description
+     * @param int $price
+     * @param string $sku
+     * @param Objectmanager $manager
+     * @param array $taxons
+     *
+     * @return ProductInterface
+     */
+    private function createProduct($name, $description, $price, $sku, ObjectManager $manager, array $taxons)
+    {
+        /** @var ProductInterface $product */
+        $product = $this->get('sylius.factory.product')->createNew();
+
+        $product->setName($name);
+        $product->setDescription($description);
+        $product->setPrice($price);
+        $product->setSku($sku);
+
+        $product->addChannel($this->getReference('App.Channel.WEB-UK'));
+
+        foreach ($taxons as $taxon) {
+            $product->addTaxon($this->getReference($taxon));
+        }
+
+        $manager->persist($product);
     }
 }
