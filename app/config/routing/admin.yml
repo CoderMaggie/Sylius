@@ -1,2 +1,5 @@
 sylius_admin_carousel_item:
     resource: 'carousel_item.yml'
+
+sylius_admin_product_grid_item:
+    resource: 'product_grid_item.yml'

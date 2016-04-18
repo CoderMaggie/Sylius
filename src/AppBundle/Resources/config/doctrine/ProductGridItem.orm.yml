@@ -1,0 +1,20 @@
+AppBundle\Entity\ProductGridItem:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        position:
+            type: integer
+        enabled:
+            type: boolean
+        path:
+            type: string
+            nullable: true
+    manyToOne:
+        product:
+            targetEntity: Sylius\Component\Core\Model\Product

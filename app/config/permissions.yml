@@ -1,15 +1,23 @@
 sylius_rbac:
     permissions:
+        # Carousel item
         app.manage.carousel_items: Manage carousel items
         app.carousel_item.index: List carousel items
         app.carousel_item.create: Create carousel item
         app.carousel_item.update: Edit carousel item
         app.carousel_item.delete: Delete carousel item
+        # Product grid item
+        app.manage.product_grid_items: Manage product grid items
+        app.product_grid_item.index: List product grid items
+        app.product_grid_item.create: Create product grid item
+        app.product_grid_item.update: Edit product grid item
+        app.product_grid_item.delete: Delete product grid item
     permissions_hierarchy:
         app.manage.carousel_items: [app.carousel_item.index, app.carousel_item.create, app.carousel_item.update, app.carousel_item.delete]
+        app.manage.product_grid_items: [app.product_grid_item.index, app.product_grid_item.create, app.product_grid_item.update, app.product_grid_item.delete]
     roles:
         administrator:
             name: Administrator
             description: Administrator user
-            permissions: [app.manage.carousel_items, sylius.manage.settings, sylius.manage.locale, sylius.manage.currency, sylius.manage.country, sylius.manage.province, sylius.manage.zone, sylius.manage.payment_method, sylius.manage.channel]
+            permissions: [app.manage.carousel_items, app.manage.product_grid_items, sylius.manage.settings, sylius.manage.locale, sylius.manage.currency, sylius.manage.country, sylius.manage.province, sylius.manage.zone, sylius.manage.payment_method, sylius.manage.channel]
             security_roles: [ROLE_ADMINISTRATION_ACCESS, ROLE_ALLOWED_TO_SWITCH]

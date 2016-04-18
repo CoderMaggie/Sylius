@@ -1,2 +1,3 @@
 imports:
     - { resource: 'grids/carousel_item.yml' }
+    - { resource: 'grids/product_grid_item.yml' }

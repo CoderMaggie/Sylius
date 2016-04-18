@@ -7,3 +7,7 @@ app:
         url: Url
         position: Position
         file: File
+        product_grid_items: Product grid items
+        new_product_grid_item: New product grid item
+        edit_product_grid_item: Edit product grid item
+        product_name: Product name
