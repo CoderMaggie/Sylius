@@ -1,0 +1,13 @@
+app:
+    contact:
+        first_name:
+            not_blank: Please enter first name.
+        last_name:
+            not_blank: Please enter last name.
+        email:
+            valid: Provided email is not valid.
+            not_blank: Please enter email address.
+        subject:
+            not_blank: Please enter the subject.
+        message:
+            not_blank: Please enter the message.
