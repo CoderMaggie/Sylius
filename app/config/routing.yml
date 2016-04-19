@@ -42,3 +42,15 @@ sylius_contact:
 app_admin:
     resource: 'routing/admin.yml'
     prefix: /admin
+
+app_product_similar:
+    path: /similar/
+    defaults:
+        _controller: sylius.controller.product:indexAction
+        _sylius:
+            paginate: false
+            repository:
+                method: findSimilar
+                arguments: [$productId, ['Game System', 'Publisher'], $limit]
+            template: $template
+            permission: false

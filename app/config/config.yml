@@ -101,3 +101,9 @@ payum:
 sylius_payment:
     gateways:
         paypal_express_checkout: Paypal Express Checkout
+
+sylius_product:
+    resources:
+        product:
+            classes:
+                repository: AppBundle\Repository\ProductRepository
