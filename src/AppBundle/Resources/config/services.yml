@@ -14,3 +14,10 @@ services:
         factory: ["@app.menu_builder", createCategoriesMenu]
         tags:
         - { name: knp_menu.menu, alias: menu.categories}
+
+    app.listener.image_upload:
+        class: AppBundle\EventListener\ImageUploadListener
+        arguments: ['@sylius.image_uploader']
+        tags:
+          - { name: kernel.event_listener, event: app.carousel_item.pre_create, method: uploadImage }
+          - { name: kernel.event_listener, event: app.carousel_item.pre_update, method: uploadImage }

@@ -1,0 +1,36 @@
+sylius_grid:
+    grids:
+        app_admin_carousel_item:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: %app.model.carousel_item.class%
+            sorting:
+                position: asc
+            fields:
+                path:
+                    type: string
+                    label: app.ui.path
+                tooltip:
+                    type: string
+                    label: app.ui.tooltip
+                url:
+                    type: string
+                    label: app.ui.url
+                position:
+                    type: string
+                    label: app.ui.position
+                enabled:
+                    type: twig
+                    label: sylius.ui.enabled
+                    options:
+                        template: SyliusAdminBundle:Grid/Field:enabled.html.twig
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

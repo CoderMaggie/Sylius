@@ -1,0 +1,16 @@
+app_admin_carousel_item:
+    resource: |
+        alias: app.carousel_item
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        except: ['show']
+        redirect: update
+        grid: app_admin_carousel_item
+        vars:
+            all:
+                subheader: app.ui.carousel_items
+                templates:
+                    form: :CarouselItem:_form.html.twig
+            index:
+                icon: 'block layout'
+    type: sylius.resource

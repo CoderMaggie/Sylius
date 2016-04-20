@@ -54,6 +54,36 @@ class CarouselItemSpec extends ObjectBehavior
         $this->disable();
         $this->shouldNotBeEnabled();
     }
+
+    function its_position_is_mutable()
+    {
+        $this->setPosition(5);
+        $this->getPosition()->shouldReturn(5);
+    }
+
+    function it_does_not_have_file_by_default()
+    {
+        $this->hasFile()->shouldReturn(false);
+        $this->getFile()->shouldReturn(null);
+    }
+
+    function it_does_not_have_path_by_default()
+    {
+        $this->hasPath()->shouldReturn(false);
+        $this->getPath()->shouldReturn(null);
+    }
+
+    function its_file_is_mutable(\SplFileInfo $file)
+    {
+        $this->setFile($file);
+        $this->getFile()->shouldReturn($file);
+    }
+
+    function its_path_is_mutable()
+    {
+        $this->setPath('path/to/file');
+        $this->getPath()->shouldReturn('path/to/file');
+    }
     
     function it_has_tooltip()
     {
@@ -70,13 +100,5 @@ class CarouselItemSpec extends ObjectBehavior
         
         $this->setUrl('http://test.com');
         $this->getUrl()->shouldReturn('http://test.com');
-    }
-
-    function it_has_position()
-    {
-        $this->getPosition()->shouldReturn(null);
-
-        $this->setPosition(1);
-        $this->getPosition()->shouldReturn(1);
     }
 }

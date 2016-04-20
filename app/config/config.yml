@@ -1,7 +1,12 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: migrations.yml }
     - { resource: @SyliusCoreBundle/Resources/config/app/main.yml }
+    - { resource: @SyliusAdminBundle/Resources/config/grids.yml }
+    - { resource: resources.yml }
+    - { resource: grids.yml }
+    - { resource: permissions.yml }
 
 framework:
     translator:      { fallback: %sylius.locale% }
