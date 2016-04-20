@@ -59,9 +59,9 @@
         ]
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "": "src/",
-            "Context": "features/"
+            "Context\\": "features/Context/"
         }
     },
     "config": {

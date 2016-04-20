@@ -1,6 +1,3 @@
 suites:
     cjmax:
-        namespace: AppBundle
-        psr4_prefix: AppBundle
-        spec_path: src/AppBundle
-        src_path: src/AppBundle
+        src_path: src/
