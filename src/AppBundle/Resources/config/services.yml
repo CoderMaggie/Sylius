@@ -24,3 +24,5 @@ services:
         tags:
           - { name: kernel.event_listener, event: app.carousel_item.pre_create, method: uploadImage }
           - { name: kernel.event_listener, event: app.carousel_item.pre_update, method: uploadImage }
+          - { name: kernel.event_listener, event: app.product_grid_item.pre_create, method: uploadImage }
+          - { name: kernel.event_listener, event: app.product_grid_item.pre_update, method: uploadImage }

@@ -23,6 +23,7 @@ class ImageUploadListener
     {
         $subject = $event->getSubject();
         Assert::isInstanceOf($subject, ImageInterface::class);
+
         if ($subject->hasFile()) {
             $this->imageUploader->upload($subject);
         }
