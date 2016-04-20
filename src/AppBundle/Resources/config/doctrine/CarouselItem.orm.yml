@@ -1,0 +1,23 @@
+AppBundle\Entity\CarouselItem:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        path:
+            type: string
+            nullable: true
+        tooltip:
+            type: string
+            nullable: true
+        url:
+            type: string
+            nullable: true
+        position:
+            type: integer
+        enabled:
+            type: boolean
