@@ -21,6 +21,21 @@ use Sylius\Component\Core\Model\TaxonInterface;
 class ProductRepository extends BaseProductRepository
 {
     /**
+     * @return QueryBuilder
+     */
+    public function createListQueryBuilder(array $criteria = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('o');
+
+        $queryBuilder
+            ->addSelect('taxon')
+            ->leftJoin('o.taxons', 'taxon')
+        ;
+
+        return $queryBuilder;
+    }
+
+    /**
      * @param int $id
      *
      * @return ProductInterface|null

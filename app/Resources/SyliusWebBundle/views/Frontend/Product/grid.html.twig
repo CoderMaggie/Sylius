@@ -1,0 +1,29 @@
+{% from '@SyliusWeb/Frontend/Product/macros.html.twig' import grid %}
+
+{% set definition = grid.definition %}
+{% set data = grid.data %}
+
+<div class="col-sm-3">
+    {% if definition.filters|length > 0 %}
+        <form method="get" action="{{ path('app_shop_product_index') }}">
+            {% for filter in definition.filters %}
+                <div class="panel panel-default sidebar-menu">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ filter.label|trans }}</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="form-group">
+                            {{ sylius_grid_render_filter(grid, filter) }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+    {% endif %}
+</div>
+
+<div class="col-sm-9">
+    {{ grid(data) }}
+</div>

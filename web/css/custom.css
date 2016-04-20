@@ -165,3 +165,7 @@
 #navbar-search .input-group {
     display: block;
 }
+
+#content .panel.sidebar-menu .panel-body label {
+   width: 100%;
+}

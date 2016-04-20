@@ -54,3 +54,12 @@ app_product_similar:
                 arguments: [$productId, $parameters, $limit]
             template: $template
             permission: false
+
+app_shop_product_index:
+    path: /products/
+    defaults:
+        _controller: sylius.controller.product:indexAction
+        _sylius:
+            permission: false
+            grid: sylius_shop_product
+            template: SyliusWebBundle:Frontend/Product:index.html.twig
