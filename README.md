@@ -25,6 +25,8 @@ $ cd CJ-MaX
 $ brew install node
 $ npm install -g bower
 $ bower install
+$ npm install
+$ gulp
 
 $ wget http://getcomposer.org/composer.phar
 $ php composer.phar install
