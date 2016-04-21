@@ -1,32 +1,9 @@
- <div id="slider" class="owl-carousel owl-theme">
-    <div class="item">
-        <a href="#">
-            <img src="http://placehold.it/437x150" alt="" class="img-responsive">
-        </a>
-    </div>
-    <div class="item">
-        <a href="#">
-            <img src="http://placehold.it/437x150" alt="" class="img-responsive">
-        </a>
-    </div>
-    <div class="item">
-        <a href="#">
-            <img src="http://placehold.it/437x150/990000" alt="" class="img-responsive">
-        </a>
-    </div>
-    <div class="item">
-        <a href="#">
-            <img src="http://placehold.it/437x150" alt="" class="img-responsive">
-        </a>
-    </div>
-    <div class="item">
-        <a href="#">
-            <img src="//placehold.it/437x150/990000" alt="" class="img-responsive">
-        </a>
-    </div>
-    <div class="item">
-        <a href="#">
-            <img src="http://placehold.it/437x150" alt="" class="img-responsive">
-        </a>
-    </div>
+<div id="slider" class="owl-carousel owl-theme">
+    {% for item in carouselItems %}
+        <div class="item">
+            <a href="{{ item.url }}">
+                <img src="{{ item.path }}" alt="{{ item.tooltip }}" class="img-responsive">
+            </a>
+        </div>
+    {% endfor %}
 </div>

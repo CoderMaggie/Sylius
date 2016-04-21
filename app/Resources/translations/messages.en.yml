@@ -1,0 +1,5 @@
+app:
+    ui:
+        carousel_items: Carousel items
+        new_carousel_item: New carosuel item
+        edit_carousel_item: Edit carousel item

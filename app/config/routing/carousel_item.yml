@@ -12,5 +12,5 @@ app_admin_carousel_item:
                 templates:
                     form: :CarouselItem:_form.html.twig
             index:
-                icon: 'block layout'
+                icon: 'file image outline'
     type: sylius.resource

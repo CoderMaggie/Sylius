@@ -1,3 +1,6 @@
+parameters:
+    sylius.controller.frontend.homepage.class: AppBundle\Controller\Frontend\HomepageController
+
 services:
     app.menu_builder:
         class: AppBundle\Menu\MenuBuilder

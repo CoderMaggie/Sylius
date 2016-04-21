@@ -8,9 +8,6 @@ sylius_grid:
             sorting:
                 position: asc
             fields:
-                path:
-                    type: string
-                    label: app.ui.path
                 tooltip:
                     type: string
                     label: app.ui.tooltip
