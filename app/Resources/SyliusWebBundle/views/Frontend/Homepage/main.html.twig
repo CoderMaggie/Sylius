@@ -131,10 +131,23 @@
         <footer id="footer">
             <div class="container">
                 {% block footer %}
+                    {{ include('@SyliusWeb/Frontend/_footer.html.twig') }}
                 {% endblock %}
-                <p class="pull-left">&copy; <a href="#">CJ-MaX</a>, 2016{% if ('now'|date('Y') != 2016) %} - {{ 'now'|date('Y') }} {% endif %}.</p>
             </div>
         </footer>
+        <div id="copyright">
+            <div class="container">
+                <div class="col-md-12">
+                    <p class="pull-left">
+                        &copy; 2016{% if ('now'|date('Y') != 2016) %} - {{ 'now'|date('Y') }} {% endif %}
+                        BoardGameMonster is a trading name of Caponica Ltd.
+                    </p>
+                    <p class="pull-right">
+                        <img src="{{ asset('img/payment.png') }}">
+                    </p>
+                </div>
+            </div>
+        </div>
 
         {% block javascripts %}
             {{ include('@SyliusWeb/_javascripts.html.twig') }}
