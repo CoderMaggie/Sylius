@@ -21,11 +21,31 @@ use Sylius\Component\Core\Model\TaxonInterface;
 class ProductRepository extends BaseProductRepository
 {
     /**
+     * @param int $id
+     *
+     * @return ProductInterface|null
+     */
+    public function findWithTaxons($id)
+    {
+        $queryBuilder = $this->createQueryBuilder('o');
+
+        return
+            $queryBuilder
+                ->leftJoin('o.taxons', 'taxon')
+                ->andWhere($queryBuilder->expr()->eq('o.id', $id))
+                ->getQuery()
+                ->getOneOrNullResult()
+        ;
+    }
+
+    /**
      * @param int $productId
      * @param array $parameters
-     * @param int $limit
+     * @param int|null $limit
      *
      * @return ProductInterface[]
+     *
+     * @throws \InvalidArgumentException
      */
     public function findSimilar($productId, array $parameters = [], $limit = null)
     {
@@ -33,13 +53,18 @@ class ProductRepository extends BaseProductRepository
             throw new \InvalidArgumentException('The parameter array cannot be empty.');
         }
 
-        /** @var ProductInterface $product */
-        $product = $this->find($productId);
+        $product = $this->findWithTaxons($productId);
+        if (null === $product) {
+            throw new \InvalidArgumentException(sprintf('Product with id "%s" has not been found.', $productId));
+        }
+
         $results = [];
 
         foreach ($parameters as $parameter) {
-            if (null !== $parentTaxon = $this->getSpecificTaxon($product, $parameter)) {
-                $results = $this->getByParentTaxon($parentTaxon, $productId, $limit);
+            $rootTaxon = $this->getTaxonWithRoot($product, $parameter);
+
+            if (null !== $rootTaxon) {
+                $results = $this->getByTaxon($rootTaxon, $productId, $limit);
                 if (!empty($results)) {
                     return $results;
                 }
@@ -50,25 +75,21 @@ class ProductRepository extends BaseProductRepository
     }
 
     /**
-     * @param TaxonInterface $parentTaxon
+     * @param TaxonInterface $taxon
      * @param int $productId
-     * @param int $limit
+     * @param int|null $limit
      *
      * @return ProductInterface[]
      */
-    private function getByParentTaxon(TaxonInterface $parentTaxon, $productId, $limit = null)
+    private function getByTaxon(TaxonInterface $taxon, $productId, $limit = null)
     {
         $queryBuilder = $this->createQueryBuilder('o');
-        $orX = $queryBuilder->expr()->orX();
-
-        foreach ($parentTaxon->getChildren() as $childTaxon) {
-            $orX->add($queryBuilder->expr()->eq('taxon.id', $childTaxon->getId()));
-        }
+        $taxonId = $taxon->getId();
 
         return
             $queryBuilder
                 ->innerJoin('o.taxons', 'taxon')
-                ->add('where', $orX)
+                ->andWhere($queryBuilder->expr()->eq('taxon.id', $taxonId))
                 ->andWhere(
                     $queryBuilder->expr()->not(
                         $queryBuilder->expr()->eq('o.id', $productId)
@@ -81,17 +102,21 @@ class ProductRepository extends BaseProductRepository
 
     /**
      * @param ProductInterface $product
-     * @param string $taxonName
+     * @param string $rootName
      *
      * @return TaxonInterface|null
+     *
+     * @throws \InvalidArgumentException
      */
-    private function getSpecificTaxon(ProductInterface $product, $taxonName)
+    private function getTaxonWithRoot(ProductInterface $product, $rootName)
     {
         foreach ($product->getTaxons() as $taxon) {
-            if (!$taxon->isRoot()) {
-                $taxon = $taxon->getParent();
+            if ($taxon->isRoot()) {
+                throw new \InvalidArgumentException('Product should not be assigned to the root taxon.');
             }
-            if ($taxonName === $taxon->getName()) {
+
+            $rootTaxon = $taxon->getRoot();
+            if ($rootName === $rootTaxon->getName()) {
                 return $taxon;
             }
         }

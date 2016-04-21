@@ -44,13 +44,13 @@ app_admin:
     prefix: /admin
 
 app_product_similar:
-    path: /similar/
+    path: /products/{productId}/similar/
     defaults:
         _controller: sylius.controller.product:indexAction
         _sylius:
             paginate: false
             repository:
                 method: findSimilar
-                arguments: [$productId, ['Game System', 'Publisher'], $limit]
+                arguments: [$productId, $parameters, $limit]
             template: $template
             permission: false

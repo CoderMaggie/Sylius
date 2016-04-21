@@ -107,3 +107,11 @@ sylius_product:
         product:
             classes:
                 repository: AppBundle\Repository\ProductRepository
+
+sylius_core:
+    routing:
+        %sylius.model.product.class%:
+            defaults:
+                sylius:
+                    method: findWithTaxons
+                    arguments: [$id]
