@@ -35,19 +35,38 @@ class MenuBuilder
     /**
      * @return ItemInterface
      */
-    public function createCategoriesMenu()
+    public function createFullCategoriesMenu()
     {
         $menu = $this->factory->createItem('root');
-
         $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
 
         $taxons = $this->getCategories();
-
-        foreach ($taxons as $taxon) {
-            $this->addTaxonAsChild($menu, $taxon);
-        }
+        $this->addAllChildren($menu, $taxons);
 
         $menu->addChild('Contact', ['route' => 'sylius_contact']);
+
+        return $menu;
+    }
+
+    /**
+     * @param array|null $categories
+     *
+     * @return ItemInterface
+     */
+    public function createPartialCategoriesMenu($categories = [])
+    {
+        if (empty($categories)) {
+            throw new \InvalidArgumentException(
+                'The "categories" array cannot be empty.
+                Check "app.menu.top.categories" parameter in parameters.yml.'
+            );
+        }
+
+        $menu = $this->factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
+
+        $taxons = $this->getCategories();
+        $this->addGivenChildren($menu, $taxons, $categories);
 
         return $menu;
     }
@@ -62,9 +81,35 @@ class MenuBuilder
 
     /**
      * @param ItemInterface $menu
+     * @param TaxonInterface[] $taxons
+     */
+    private function addAllChildren(ItemInterface $menu, array $taxons)
+    {
+        foreach ($taxons as $taxon) {
+            $this->addTaxonAsChild($menu, $taxon);
+        }
+    }
+
+    /**
+     * @param ItemInterface $menu
+     * @param TaxonInterface[] $taxons
+     * @param array $categories
+     */
+    private function addGivenChildren(ItemInterface $menu, array $taxons, array $categories)
+    {
+        foreach ($taxons as $taxon) {
+            $taxonName = $taxon->getName();
+            if (in_array($taxonName, $categories)) {
+                $this->addTaxonAsChild($menu, $taxon);
+            }
+        }
+    }
+
+    /**
+     * @param ItemInterface $menu
      * @param TaxonInterface $parentTaxon
      */
-    private function addTaxonAsChild($menu, $parentTaxon)
+    private function addTaxonAsChild(ItemInterface $menu, TaxonInterface $parentTaxon)
     {
         $category = $menu->addChild($parentTaxon->getName(), ['route' => $parentTaxon])
             ->setAttribute('class', 'dropdown yamm-fw')
@@ -82,7 +127,7 @@ class MenuBuilder
      * @param ItemInterface $category
      * @param TaxonInterface $parentTaxon
      */
-    private function appendCategoryDropdown($category, $parentTaxon)
+    private function appendCategoryDropdown(ItemInterface $category, TaxonInterface $parentTaxon)
     {
         $taxons = $parentTaxon->getChildren();
 

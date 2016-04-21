@@ -66,3 +66,7 @@ parameters:
 
     wkhtmltopdf.bin_path: /usr/bin/wkhtmltopdf
     wkhtmltoimage.bin_path: /usr/bin/wkhtmltoimage
+
+    app.menu.top.categories:
+        - Publisher
+        - Game System
