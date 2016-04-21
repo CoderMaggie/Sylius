@@ -1,6 +1,10 @@
 sylius_web:
     resource: "@SyliusWebBundle/Resources/config/routing/main.yml"
 
+sylius_admin:
+    resource: "@SyliusAdminBundle/Resources/config/routing.yml"
+    prefix: /admin
+
 create:
     resource: "@CmfCreateBundle/Resources/config/routing/rest.xml"
 
@@ -34,3 +38,7 @@ sylius_contact:
     methods: ['GET', 'POST']
     defaults:
         _controller: AppBundle:Contact:sendMail
+
+app_admin:
+    resource: 'routing/admin.yml'
+    prefix: /admin

@@ -5,7 +5,6 @@ namespace AppBundle\DataFixtures\Setup;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Bundle\FixturesBundle\DataFixtures\DataFixture;
 use Sylius\Component\Core\Model\ProductInterface;
-use Sylius\Component\Payment\Model\PaymentMethodInterface;
 
 class LoadProductData extends DataFixture
 {
@@ -15,7 +14,6 @@ class LoadProductData extends DataFixture
     public function load(ObjectManager $manager)
     {
         $description = 'Your adventurous settlers seek to tame the remote but rich isle of Catan. Start by revealing Catan\'s many harbors and regions: pastures, fields, mountains, hills, forests, and desert. The random mix creates a different board virtually every game.';
-
 
         $this->createProduct('Game for 2 persons', $description, 1000, '12345678', $manager,
             ['App.Taxon.2']);
