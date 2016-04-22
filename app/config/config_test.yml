@@ -18,7 +18,7 @@ doctrine:
     dbal:
         dbname: %sylius.database.name%_test
         path:   %sylius.database.path%
-        driver_class: Sylius\Bundle\CoreBundle\Tests\MySqlDriver
+        driver_class: Sylius\Bundle\CoreBundle\Test\MySqlDriver
 
 sylius_money:
     currency: EUR
@@ -29,6 +29,7 @@ sylius_payment:
         cc:     Credit Card
         test:   Test
         stripe: Stripe
+        paypal_express_checkout: Paypal Express Checkout
 
 doctrine_cache:
     providers:

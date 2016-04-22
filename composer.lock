@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "268bf1725b0a1a3ea6b4e73f45e454e2",
-    "content-hash": "76f10ec7f72792f8956221c59247c980",
+    "hash": "81e3f367158d43ede5722487e83ac8e3",
+    "content-hash": "d356a81c8365788fb5c1c5c8a9c0ca71",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -6737,12 +6737,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Sylius/Sylius.git",
-                "reference": "8ddfe82658086564eddd5886447a4018d84c8656"
+                "reference": "8f7a898bd9d89509a0d10f51828b364abb52cfee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Sylius/Sylius/zipball/8ddfe82658086564eddd5886447a4018d84c8656",
-                "reference": "8ddfe82658086564eddd5886447a4018d84c8656",
+                "url": "https://api.github.com/repos/Sylius/Sylius/zipball/8f7a898bd9d89509a0d10f51828b364abb52cfee",
+                "reference": "8f7a898bd9d89509a0d10f51828b364abb52cfee",
                 "shasum": ""
             },
             "require": {
@@ -6767,7 +6767,7 @@
                 "jackalope/jackalope": "^1.1.4",
                 "jackalope/jackalope-doctrine-dbal": "^1.1.2",
                 "jms/serializer-bundle": "^0.13|^1.0",
-                "jms/translation-bundle": "~1.1",
+                "jms/translation-bundle": "^1.1",
                 "knplabs/knp-gaufrette-bundle": "~0.1",
                 "knplabs/knp-menu-bundle": "~1.1",
                 "knplabs/knp-snappy-bundle": "~1.2",
@@ -6787,23 +6787,14 @@
                 "symfony-cmf/create-bundle": "~1.2",
                 "symfony-cmf/media-bundle": "~1.2",
                 "symfony-cmf/menu-bundle": "~1.2",
-                "symfony-cmf/routing-bundle": "^1.4.0-RC1",
+                "symfony-cmf/routing-bundle": "^1.4",
                 "symfony/assetic-bundle": "^2.6",
-                "symfony/event-dispatcher": "^2.7",
-                "symfony/expression-language": "^2.7",
-                "symfony/form": "^2.7",
-                "symfony/framework-bundle": "^2.7",
-                "symfony/intl": "^2.7",
                 "symfony/monolog-bundle": "^2.7",
-                "symfony/options-resolver": "^2.7",
                 "symfony/polyfill-iconv": "~1.0",
                 "symfony/polyfill-intl-icu": "~1.0",
                 "symfony/polyfill-mbstring": "~1.0",
-                "symfony/property-access": "^2.7",
-                "symfony/proxy-manager-bridge": "^2.7",
                 "symfony/swiftmailer-bundle": "^2.3",
                 "symfony/symfony": "^2.7.7",
-                "symfony/twig-bundle": "^2.7",
                 "twig/extensions": "~1.0",
                 "twig/twig": "~1.11",
                 "webmozart/assert": "^1.0",
@@ -6936,19 +6927,19 @@
             ],
             "description": "E-Commerce platform for PHP, based on Symfony framework.",
             "homepage": "http://sylius.org",
-            "time": "2016-04-04 08:39:42"
+            "time": "2016-04-22 13:23:27"
         },
         {
             "name": "symfony-cmf/block-bundle",
             "version": "1.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony-cmf/BlockBundle.git",
+                "url": "https://github.com/symfony-cmf/block-bundle.git",
                 "reference": "5490b5bba22a7552c9ea983aac72c698b06f5a06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/BlockBundle/zipball/5490b5bba22a7552c9ea983aac72c698b06f5a06",
+                "url": "https://api.github.com/repos/symfony-cmf/block-bundle/zipball/5490b5bba22a7552c9ea983aac72c698b06f5a06",
                 "reference": "5490b5bba22a7552c9ea983aac72c698b06f5a06",
                 "shasum": ""
             },
@@ -7011,12 +7002,12 @@
             "version": "1.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony-cmf/ContentBundle.git",
+                "url": "https://github.com/symfony-cmf/content-bundle.git",
                 "reference": "7f83953becaf1b523952d15ca519c72d4e4beebb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/ContentBundle/zipball/7f83953becaf1b523952d15ca519c72d4e4beebb",
+                "url": "https://api.github.com/repos/symfony-cmf/content-bundle/zipball/7f83953becaf1b523952d15ca519c72d4e4beebb",
                 "reference": "7f83953becaf1b523952d15ca519c72d4e4beebb",
                 "shasum": ""
             },
@@ -7072,12 +7063,12 @@
             "version": "1.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony-cmf/CoreBundle.git",
+                "url": "https://github.com/symfony-cmf/core-bundle.git",
                 "reference": "2795f93d0a0de9b4dd04572a424a770b8aba0c10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/CoreBundle/zipball/2795f93d0a0de9b4dd04572a424a770b8aba0c10",
+                "url": "https://api.github.com/repos/symfony-cmf/core-bundle/zipball/2795f93d0a0de9b4dd04572a424a770b8aba0c10",
                 "reference": "2795f93d0a0de9b4dd04572a424a770b8aba0c10",
                 "shasum": ""
             },
@@ -7195,12 +7186,12 @@
             "version": "1.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony-cmf/MediaBundle.git",
+                "url": "https://github.com/symfony-cmf/media-bundle.git",
                 "reference": "d98c18626e8d33df103103f5ae461bf2eca92d7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/MediaBundle/zipball/d98c18626e8d33df103103f5ae461bf2eca92d7d",
+                "url": "https://api.github.com/repos/symfony-cmf/media-bundle/zipball/d98c18626e8d33df103103f5ae461bf2eca92d7d",
                 "reference": "d98c18626e8d33df103103f5ae461bf2eca92d7d",
                 "shasum": ""
             },
@@ -7260,12 +7251,12 @@
             "version": "1.2.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony-cmf/MenuBundle.git",
+                "url": "https://github.com/symfony-cmf/menu-bundle.git",
                 "reference": "eb056fc02a6ad86af7be2ded97a9e6494d16c305"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/MenuBundle/zipball/eb056fc02a6ad86af7be2ded97a9e6494d16c305",
+                "url": "https://api.github.com/repos/symfony-cmf/menu-bundle/zipball/eb056fc02a6ad86af7be2ded97a9e6494d16c305",
                 "reference": "eb056fc02a6ad86af7be2ded97a9e6494d16c305",
                 "shasum": ""
             },
@@ -7380,12 +7371,12 @@
             "version": "1.4.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony-cmf/RoutingBundle.git",
+                "url": "https://github.com/symfony-cmf/routing-bundle.git",
                 "reference": "cd358f852fe5323407fbd67931c0e034f735660b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/RoutingBundle/zipball/cd358f852fe5323407fbd67931c0e034f735660b",
+                "url": "https://api.github.com/repos/symfony-cmf/routing-bundle/zipball/cd358f852fe5323407fbd67931c0e034f735660b",
                 "reference": "cd358f852fe5323407fbd67931c0e034f735660b",
                 "shasum": ""
             },
@@ -9593,7 +9584,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/coduo/php-matcher/zipball/1e70e5ca27e0447cdcc0941a56437cee01cfcd6c",
+                "url": "https://api.github.com/repos/coduo/php-matcher/zipball/a48618cdf1c63e40d0968e3d940fee10af228b07",
                 "reference": "1e70e5ca27e0447cdcc0941a56437cee01cfcd6c",
                 "shasum": ""
             },
