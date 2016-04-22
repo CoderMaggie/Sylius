@@ -19,5 +19,6 @@ AppBundle\Entity\CarouselItem:
             nullable: true
         position:
             type: integer
+            nullable: true
         enabled:
             type: boolean
