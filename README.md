@@ -24,6 +24,7 @@ $ cd CJ-MaX
 
 $ brew install node
 $ npm install -g bower
+$ npm install --global gulp-cli
 $ bower install
 $ npm install
 $ gulp
