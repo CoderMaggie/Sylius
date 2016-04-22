@@ -1,6 +1,6 @@
 AppBundle\Entity\CarouselItem:
     type: entity
-    table: null
+    table: carousel_item
     id:
         id:
             type: integer

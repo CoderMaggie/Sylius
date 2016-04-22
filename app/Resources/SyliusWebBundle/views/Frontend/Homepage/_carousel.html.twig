@@ -2,7 +2,7 @@
     {% for item in carouselItems %}
         <div class="item">
             <a href="{{ item.url }}">
-                <img src="{{ item.path }}" alt="{{ item.tooltip }}" class="img-responsive">
+                <img src="{{ item.path|imagine_filter('sylius_medium') }}" alt="{{ item.tooltip }}" class="img-responsive">
             </a>
         </div>
     {% endfor %}
