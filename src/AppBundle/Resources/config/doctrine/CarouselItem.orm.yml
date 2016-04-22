@@ -1,6 +1,6 @@
 AppBundle\Entity\CarouselItem:
     type: entity
-    table: null
+    table: carousel_item
     id:
         id:
             type: integer
@@ -19,5 +19,6 @@ AppBundle\Entity\CarouselItem:
             nullable: true
         position:
             type: integer
+            nullable: true
         enabled:
             type: boolean

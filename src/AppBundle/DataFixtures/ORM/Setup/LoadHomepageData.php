@@ -5,19 +5,34 @@ namespace AppBundle\DataFixtures\Setup;
 use AppBundle\Entity\CarouselItemInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Bundle\FixturesBundle\DataFixtures\DataFixture;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Magdalena Banasiak <magdalena.banasiak@lakion.com>
+ */
 class LoadHomepageData extends DataFixture
 {
+    protected $path = '/../../../Resources/fixtures/CarouselItems/';
+
     /**
      * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
-        $this->createCarouselItem(1, 'http://placehold.it/437x150', $manager);
-        $this->createCarouselItem(2, 'http://placehold.it/437x150/990000', $manager);
-        $this->createCarouselItem(3, 'http://placehold.it/437x150', $manager);
-        $this->createCarouselItem(4, 'http://placehold.it/437x150', $manager);
-        $this->createCarouselItem(5, 'http://placehold.it/437x150/990000', $manager);
+        $finder = new Finder();
+        $uploader = $this->get('sylius.image_uploader');
+
+        foreach ($finder->files()->in(__DIR__.$this->path) as $img) {
+            /** @var CarouselItemInterface $item */
+            $item = $this->get('app.factory.carousel_item')->createNew();
+            $item->setFile(new UploadedFile($img->getRealPath(), $img->getFilename()));
+
+            $uploader->upload($item);
+            $manager->persist($item);
+
+            $this->setReference('App.Image.'.$img->getBasename('.jpg'), $item);
+        }
 
         $manager->flush();
     }
@@ -28,21 +43,5 @@ class LoadHomepageData extends DataFixture
     public function getOrder()
     {
         return 10;
-    }
-
-    /**
-     * @param int $position
-     * @param string $path
-     * @param ObjectManager $manager
-     */
-    private function createCarouselItem($position, $path, ObjectManager $manager)
-    {
-        /** @var CarouselItemInterface $item */
-        $item = $this->get('app.factory.carousel_item')->createNew();
-
-        $item->setPosition($position);
-        $item->setPath($path);
-
-        $manager->persist($item);
     }
 }

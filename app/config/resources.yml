@@ -4,3 +4,5 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: AppBundle\Entity\CarouselItem
+                form:
+                    default: AppBundle\Form\Type\CarouselItemType
