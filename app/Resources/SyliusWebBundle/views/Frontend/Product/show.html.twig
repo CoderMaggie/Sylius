@@ -166,20 +166,19 @@
                         </div>
                     </div>
                 </div>
+                <h4 class="text-center">{{ product.name }}</h4>
+                <p class="price">{{ product.price|sylius_price }}</p>
+                <p class="text-center">
+                    <button type="submit" class="btn btn-primary btn-cart">
+                        <i class="fa fa-cart-plus"></i>
+                        {{ 'sylius.ui.add_to_cart'|trans }}
+                    </button>
+                </p>
             </div>
 
             <div class="hidden">
                 {{ form_rest(form) }}
             </div>
-
-            <h4 class="text-center">{{ product.name }}</h4>
-            <p class="price">{{ product.price|sylius_price }}</p>
-            <p class="text-center">
-                <button type="submit" class="btn btn-primary btn-cart">
-                    <i class="fa fa-cart-plus"></i>
-                    {{ 'sylius.ui.add_to_cart'|trans }}
-                </button>
-            </p>
         </div>
 
         <div class="col-sm-3 col-lg-2" id="productExtra">
@@ -196,8 +195,8 @@
         </form>
 
     </div>
-    <div class="box col-sm-10">
-        {% include '@SyliusWeb/Frontend/_recommended.html.twig' %}
+    <div>
+        {{ render(url('app_product_similar', {'productId': product.id, 'parameters': ['Game System', 'Publisher'], 'limit': 5, 'template': '@SyliusWeb/Frontend/Product/_similar.html.twig'})) }}
     </div>
 
 {% endblock %}

@@ -24,9 +24,15 @@ class LoadProductData extends DataFixture
         $this->createProduct('Party Game', $description, 1000, '42345678', $manager,
             ['App.Taxon.Party Games (7+)']);
         $this->createProduct('Catan Game', $description, 1000, '52345678', $manager,
-        ['App.Taxon.Catan']);
+            ['App.Taxon.Catan']);
         $this->createProduct('Multicategorized Game', $description, 5000, '62345678', $manager,
             ['App.Taxon.Quick (<15 mins)', 'App.Taxon.2', 'App.Taxon.3', 'App.Taxon.Mayfair', 'App.Taxon.Catan']);
+        $this->createProduct('Catan Crusaders', $description, 1000, '87935813', $manager,
+            ['App.Taxon.Catan', 'App.Taxon.Mayfair']);
+        $this->createProduct('Mayfair Adventurer', $description, 2000, '43517453', $manager,
+            ['App.Taxon.Mayfair']);
+        $this->createProduct('Mayfair Quick Game', $description, 1500, '80754812', $manager,
+            ['App.Taxon.Quick (<15 mins)', 'App.Taxon.Mayfair']);
 
         $manager->flush();
     }
@@ -44,7 +50,7 @@ class LoadProductData extends DataFixture
      * @param string $description
      * @param int $price
      * @param string $sku
-     * @param Objectmanager $manager
+     * @param ObjectManager $manager
      * @param array $taxons
      *
      * @return ProductInterface
