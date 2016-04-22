@@ -1,6 +1,6 @@
 AppBundle\Entity\ProductGridItem:
     type: entity
-    table: null
+    table: product_grid_item
     id:
         id:
             type: integer

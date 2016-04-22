@@ -1,0 +1,10 @@
+<div class="same-height-row row grid-items grid-items-mini gi-products">
+    {% for productGridItem in productGridItems %}
+        {{ include('@SyliusWeb/Frontend/Product/_productGridItem.html.twig') }}
+        {% if 4 == loop.index %}
+            {{ include('@SyliusWeb/Frontend/Product/_productsList1.html.twig') }}
+        {% elseif 9 == loop.index %}
+            {{ include('@SyliusWeb/Frontend/Product/_productsList2.html.twig') }}
+        {% endif %}
+    {% endfor %}
+</div>

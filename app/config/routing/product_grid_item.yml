@@ -4,7 +4,6 @@ app_admin_product_grid_item:
         section: admin
         templates: SyliusAdminBundle:Crud
         except: ['show']
-        redirect: update
         grid: app_admin_product_grid_item
         vars:
             all:

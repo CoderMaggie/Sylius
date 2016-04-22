@@ -9,6 +9,11 @@ use Sylius\Component\Core\Model\ProductInterface;
 class LoadProductData extends DataFixture
 {
     /**
+     * @var int
+     */
+    private $productNumber = 1;
+
+    /**
      * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
@@ -71,6 +76,8 @@ class LoadProductData extends DataFixture
             $product->addTaxon($this->getReference($taxon));
         }
 
+        $this->setReference('App.Product.'.$this->productNumber, $product);
         $manager->persist($product);
+        $this->productNumber++;
     }
 }

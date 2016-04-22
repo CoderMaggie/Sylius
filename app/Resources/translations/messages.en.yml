@@ -11,3 +11,4 @@ app:
         new_product_grid_item: New product grid item
         edit_product_grid_item: Edit product grid item
         product_name: Product name
+        product: Product

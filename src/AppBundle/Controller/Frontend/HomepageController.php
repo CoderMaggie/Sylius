@@ -27,11 +27,20 @@ class HomepageController extends BaseHomepageController
      */
     public function mainAction()
     {
-        /** @var RepositoryInterface $repository */
-        $repository = $this->get('app.repository.carousel_item');
+        /** @var RepositoryInterface $carouselItemRepository */
+        $carouselItemRepository = $this->get('app.repository.carousel_item');
+        /** @var RepositoryInterface $productGridItemRepository */
+        $productGridItemRepository = $this->get('app.repository.product_grid_item');
 
-        $carouselItems = $repository->findBy(['enabled' => true],['position' => 'ASC']);
+        $carouselItems = $carouselItemRepository->findBy(['enabled' => true],['position' => 'ASC']);
+        $productGridItems = $productGridItemRepository->findBy(['enabled' => true],['position' => 'ASC']);
 
-        return $this->render('SyliusWebBundle:Frontend/Homepage:main.html.twig', ['carouselItems' => $carouselItems]);
+        return $this->render(
+            'SyliusWebBundle:Frontend/Homepage:main.html.twig',
+            [
+                'carouselItems' => $carouselItems,
+                'productGridItems' => $productGridItems,
+            ]
+        );
     }
 }
