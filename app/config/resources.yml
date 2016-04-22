@@ -6,3 +6,9 @@ sylius_resource:
                 model: AppBundle\Entity\CarouselItem
                 form:
                     default: AppBundle\Form\Type\CarouselItemType
+        app.product_grid_item:
+            driver: doctrine/orm
+            classes:
+                model: AppBundle\Entity\ProductGridItem
+                form:
+                    default: AppBundle\Form\Type\ProductGridItemType

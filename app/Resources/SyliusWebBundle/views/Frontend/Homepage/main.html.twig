@@ -43,15 +43,7 @@
                                 <h3 class="text-uppercase">New and popular products</h3>
                                 <h4 class="text-muted"><span class="accent">Free shipping</span> on everything</h4>
                             </div>
-                            <div class="same-height-row row grid-items grid-items-mini gi-products">
-                                {{ render(url('sylius_partial_product_latest', {'limit': 4, 'template': '@SyliusWeb/Frontend/Product/newest.html.twig'})) }}
-
-                                {{ include('@SyliusWeb/Frontend/Product/newest_list.html.twig') }}
-
-                                {{ include('@SyliusWeb/Frontend/Product/bestsellers.html.twig') }}
-
-                                {{ include('@SyliusWeb/Frontend/Product/bestsellers_list.html.twig') }}
-                            </div>
+                            {{ include('@SyliusWeb/Frontend/Product/_productGrid.html.twig') }}
                             <div class="same-height-row row grid-items gi-categories">
                                 {{ include('@SyliusWeb/Frontend/Product/categories.html.twig') }}
                             </div>

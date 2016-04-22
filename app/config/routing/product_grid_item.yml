@@ -1,0 +1,15 @@
+app_admin_product_grid_item:
+    resource: |
+        alias: app.product_grid_item
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        except: ['show']
+        grid: app_admin_product_grid_item
+        vars:
+            all:
+                subheader: app.ui.product_grid_items
+                templates:
+                    form: :ProductGridItem:_form.html.twig
+            index:
+                icon: 'block layout'
+    type: sylius.resource

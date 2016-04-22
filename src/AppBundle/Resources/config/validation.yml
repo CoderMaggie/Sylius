@@ -1,0 +1,6 @@
+AppBundle\Entity\ProductGridItem:
+    properties:
+        position:
+            -  NotBlank: ~
+        product:
+            -  NotBlank: ~
