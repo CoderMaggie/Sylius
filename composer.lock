@@ -6737,12 +6737,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Sylius/Sylius.git",
-                "reference": "8f7a898bd9d89509a0d10f51828b364abb52cfee"
+                "reference": "4c9e58f159629a5aee4d05203089c1e65de4a565"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Sylius/Sylius/zipball/8f7a898bd9d89509a0d10f51828b364abb52cfee",
-                "reference": "8f7a898bd9d89509a0d10f51828b364abb52cfee",
+                "url": "https://api.github.com/repos/Sylius/Sylius/zipball/4c9e58f159629a5aee4d05203089c1e65de4a565",
+                "reference": "4c9e58f159629a5aee4d05203089c1e65de4a565",
                 "shasum": ""
             },
             "require": {
@@ -6927,7 +6927,7 @@
             ],
             "description": "E-Commerce platform for PHP, based on Symfony framework.",
             "homepage": "http://sylius.org",
-            "time": "2016-04-22 13:23:27"
+            "time": "2016-04-25 13:07:56"
         },
         {
             "name": "symfony-cmf/block-bundle",
