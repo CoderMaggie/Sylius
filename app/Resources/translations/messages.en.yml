@@ -12,3 +12,5 @@ app:
         edit_product_grid_item: Edit product grid item
         product_name: Product name
         product: Product
+        user_section: User section
+        pages: Pages

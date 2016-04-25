@@ -1,23 +1,25 @@
 <div class="col-md-3 col-sm-6">
-    <h4>Pages</h4>
-    <ul>
-        <li><a href="#">About us</a>
-        </li>
-        <li><a href="#">Terms and conditions</a>
-        </li>
-        <li><a href="#">FAQ</a>
-        </li>
-        <li><a href="#">Contact us</a>
-        </li>
-    </ul>
+    {% set links = cmf_children(cmf_find('/cms/pages')) %}
+    {% if links is not empty %}
+        <h4>{{ 'app.ui.pages'|trans }}</h4>
+        <ul>
+            {% for link in links %}
+                {% if cmf_is_linkable(link) %}
+                    <li>
+                        <a href="{{ path(link) }}">{{ link.title|striptags }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     <hr>
 
-    <h4>User section</h4>
+    <h4>{{ 'app.ui.user_section'|trans }}</h4>
     <ul>
-        <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+        <li><a href="{{ path('sylius_user_security_login') }}" data-toggle="modal" data-target="#login-modal">{{ 'sylius.ui.login'|trans }}</a>
         </li>
-        <li><a href="#">Regiter</a>
+        <li><a href="{{ path('sylius_user_registration') }}">{{ 'sylius.ui.register'|trans }}</a>
         </li>
     </ul>
 
