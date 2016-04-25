@@ -18,7 +18,7 @@
             <div class="grid-item gi-product">
                 <a href="{{ path(product) }}">
                 <div class="image same-height-always" style="height: 160px;">
-                        <img class="image1 img-responsive" src="{{ product.image ? product.image.path|imagine_filter('sylius_medium') : 'http://placehold.it/50x40' }}" alt="{{ product.name }}" />
+                        <img class="image1 img-responsive" src="{{ product.image ? product.image.path|imagine_filter('sylius_medium') : 'http://placehold.it/160x160' }}" alt="{{ product.name }}" />
                 </div>
                 <div class="text">
                     <h3>{{ product.name }}</h3>

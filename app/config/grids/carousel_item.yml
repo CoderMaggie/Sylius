@@ -8,15 +8,15 @@ sylius_grid:
             sorting:
                 position: asc
             fields:
+                position:
+                    type: string
+                    label: app.ui.position
                 tooltip:
                     type: string
                     label: app.ui.tooltip
                 url:
                     type: string
                     label: app.ui.url
-                position:
-                    type: string
-                    label: app.ui.position
                 enabled:
                     type: twig
                     label: sylius.ui.enabled

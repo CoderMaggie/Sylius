@@ -16,7 +16,7 @@
     {{ parent() }}
 
     <div class="row">
-        <div class="col-md-9 clearfix" id="checkout">
+        <div class="col-md-12 clearfix" id="checkout">
             <div class="box">
                 <ul class="nav nav-pills nav-justified">
                     <li><a href="{{ path('sylius_checkout_addressing') }}"><i class="fa fa-map-marker"></i><br>Address</a>
@@ -46,10 +46,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-md-3">
-            {{ include('@SyliusWeb/Frontend/Cart/_orderSummary.html.twig') }}
         </div>
     </div>
 {% endblock %}
