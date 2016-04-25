@@ -44,7 +44,7 @@
 
             {% endif %}
 
-            {{ include('@SyliusWeb/Frontend/Product/newest.html.twig') }}
+            {{ render(url('sylius_partial_product_latest', {'limit': 3, 'template': 'SyliusWebBundle:Frontend/Product:_similar.html.twig'})) }}
         </div>
 
         <div class="col-md-3">
