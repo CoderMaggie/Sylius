@@ -35,6 +35,10 @@
     margin-bottom: 10px;
 }
 
+#content {
+    padding-bottom: 50px;
+}
+
 /* styles for smaller "mini" product tiles */
 #content .grid-items-mini .grid-item .text {
     padding: 4px 0;
