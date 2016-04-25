@@ -43,22 +43,10 @@
                     <th colspan="2">order.promotionCoupon.code</th>
                 </tr>
             {% endif %}
-            <tr>
-                <th colspan="7"></th>
-            </tr>
             <tr class="total">
                 <th colspan="5">Grand total</th>
                 <th>{{ order.total|sylius_price }}</th>
             </tr>
-            {% if not order.lastPayment == null %}
-                <tr>
-                    <th colspan="7"></th>
-                </tr>
-                <tr>
-                    <th colspan="5">Payment</th>
-                    <th colspan="2">{{ order.lastPayment.amount|sylius_price }}</th>
-                </tr>
-            {% endif %}
         </tfoot>
     </table>
 </div>
