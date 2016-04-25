@@ -116,6 +116,11 @@
                     {% block advantages %}
                         {{ include('@SyliusWeb/Frontend/Homepage/_advantages.html.twig') }}
                     {% endblock %}
+                    {% block quick_view %}
+                    <div class="modal fade" id="product-quick-view-modal" tabindex="-1" role="dialog" aria-hidden="false">
+
+                    </div>
+                    {% endblock %}
                 </div>
             {% endblock %}
         </div>
@@ -143,6 +148,17 @@
 
         {% block javascripts %}
             {{ include('@SyliusWeb/_javascripts.html.twig') }}
+            <script>
+                $(".quick-view-button").on("click", "a", function () {
+                    $("#product-quick-view-modal").empty();
+
+                    $.ajax({
+                        url: $(this).attr("href")
+                    }).done( function(data) {
+                        $("#product-quick-view-modal").append(data);
+                    });
+                });
+            </script>
         {% endblock %}
     </body>
 </html>
