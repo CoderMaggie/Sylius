@@ -26,3 +26,8 @@ services:
           - { name: kernel.event_listener, event: app.carousel_item.pre_update, method: uploadImage }
           - { name: kernel.event_listener, event: app.product_grid_item.pre_create, method: uploadImage }
           - { name: kernel.event_listener, event: app.product_grid_item.pre_update, method: uploadImage }
+
+    app.admin.menu_builder_listener:
+        class: AppBundle\EventListener\MenuBuilderListener
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addBackendMenuItems }
