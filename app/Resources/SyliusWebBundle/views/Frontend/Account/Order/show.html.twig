@@ -1,7 +1,7 @@
 {% import '@SyliusWeb/Frontend/Macros/buttons.html.twig' as buttons %}
 {% extends '@SyliusWeb/Frontend/Account/layout.html.twig' %}
 
-{% set orderHeadline = 'Order #'~ order.number %}
+{% set orderHeadline = 'sylius.ui.order'|trans ~' #'~ order.number %}
 
 {% block title %}
     - {{ orderHeadline }}
@@ -10,8 +10,8 @@
 {% block topbar %}
     <ul class="breadcrumb">
         <li><a href={{ path('sylius_homepage') }}>Home</a></li>
-        <li>My account</li>
-        <li><a href={{ path('sylius_account_order_index') }}>Orders</a></li>
+        <li>{{ 'sylius.ui.my_account'|trans }}</li>
+        <li><a href={{ path('sylius_account_order_index') }}>{{ 'sylius.ui.orders'|trans }}</a></li>
         <li>{{ '#' ~ order.number }}</li>
     </ul>
 {% endblock %}
