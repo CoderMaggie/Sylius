@@ -16,7 +16,7 @@ services:
         class: Knp\Menu\MenuItem
         factory: ["@app.menu.builder", createPartialCategoriesMenu]
         arguments:
-            categories: %app.menu.top.categories%
+            categories: ['Publisher', 'Game System']
         tags:
         - { name: knp_menu.menu, alias: menu.partial_categories }
 

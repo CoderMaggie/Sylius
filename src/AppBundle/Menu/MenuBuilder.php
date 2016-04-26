@@ -6,6 +6,7 @@ use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Sylius\Component\Taxonomy\Model\TaxonInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Webmozart\Assert\Assert;
 
 /**
  * @author Magdalena Banasiak <magdalena.banasiak@lakion.com>
@@ -55,12 +56,7 @@ class MenuBuilder
      */
     public function createPartialCategoriesMenu($categories = [])
     {
-        if (empty($categories)) {
-            throw new \InvalidArgumentException(
-                'The "categories" array cannot be empty.
-                Check "app.menu.top.categories" parameter in parameters.yml.'
-            );
-        }
+        Assert::notEmpty($categories, 'The "categories" array cannot be empty.');
 
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
@@ -99,7 +95,7 @@ class MenuBuilder
     {
         foreach ($taxons as $taxon) {
             $taxonName = $taxon->getName();
-            if (in_array($taxonName, $categories)) {
+            if (in_array($taxonName, $categories, true)) {
                 $this->addTaxonAsChild($menu, $taxon);
             }
         }
