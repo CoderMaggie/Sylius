@@ -1,13 +1,15 @@
 {% extends 'SyliusWebBundle:Frontend:layout.html.twig' %}
 
+{% set registerLabel = 'sylius.ui.register'|trans %}
+
 {% block title %}
-    - Register
+    - {{ registerLabel }}
 {% endblock %}
 
 {% block topbar %}
     <ul class="breadcrumb">
-        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
-        <li>Register</li>
+        <li><a href={{ path('sylius_homepage') }}>{{ 'app.ui.home'|trans }}</a></li>
+        <li>{{ registerLabel }}</li>
     </ul>
 {% endblock %}
 
@@ -15,7 +17,7 @@
     <div class="box text-center">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <h1>Register</h1>
+                <h1>{{ registerLabel }}</h1>
             </div>
         </div>
     </div>
@@ -44,6 +46,11 @@
                             {{ form_widget(form.lastName) }}
                             {{ form_errors(form.lastName) }}
                         </div>
+                        <div class=col-md-12>
+                            {{ form_label(form.phoneNumber, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                            {{ form_widget(form.phoneNumber) }}
+                            {{ form_errors(form.phoneNumber) }}
+                        </div>
                     </div>
                     <div class="form-group col-md-12">
                         <div class="col-md-12">
@@ -64,7 +71,7 @@
                 <div class="box form-actions clearfix text-center">
                     <button class="btn btn-primary btn-lg" type="submit">
                         <i class="fa fa-user-plus"></i>
-                        Register
+                        {{ registerLabel }}
                     </button>
                 </div>
             </form>

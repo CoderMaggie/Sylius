@@ -1,15 +1,17 @@
 {% extends '@SyliusWeb/Frontend/Account/layout.html.twig' %}
 {% from '@SyliusWeb/Frontend/Macros/actions.html.twig' import update %}
 
+{% set personalInformationLabel = 'app.ui.personal_informaion'|trans %}
+
 {% block title %}
-    - Personal information
+    - {{ personalInformationLabel }}
 {% endblock %}
 
 {% block topbar %}
     <ul class="breadcrumb">
-        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
-        <li>My account</li>
-        <li>Personal information</li>
+        <li><a href={{ path('sylius_homepage') }}>{{ 'app.ui.home'|trans }}</a></li>
+        <li>{{ 'app.ui.my_account'|trans }}</li>
+        <li>{{ personalInformationLabel }}</li>
     </ul>
 {% endblock %}
 
@@ -17,7 +19,7 @@
     <div class="box text-center">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <h1>Personal information</h1>
+                <h1>{{ personalInformationLabel }}</h1>
             </div>
         </div>
     </div>

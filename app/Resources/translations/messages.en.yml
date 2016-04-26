@@ -14,3 +14,14 @@ app:
         product: Product
         user_section: User section
         pages: Pages
+        my_account: My account
+        home: Home
+        address_book: Address book
+        view_orders: View orders
+        change_password: Change password
+        personal_informaion: Personal information
+        shipping_fee: Shipping fee
+        discount: Discount
+        tax: Tax
+        your_orders: Your orders
+        you_have_no_orders: You have not placed any orders yet.
