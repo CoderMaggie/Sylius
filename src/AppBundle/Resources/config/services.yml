@@ -33,3 +33,8 @@ services:
         class: AppBundle\EventListener\MenuBuilderListener
         tags:
             - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addBackendMenuItems }
+
+    app.twig.extension.product_taxons:
+        class: AppBundle\Twig\ProductTaxonsExtension
+        tags:
+            - { name: 'twig.extension'}

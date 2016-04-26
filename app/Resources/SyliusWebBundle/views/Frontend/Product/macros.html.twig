@@ -53,6 +53,15 @@
     </a>
 {% endmacro %}
 
+{% macro quick_view_ribbon(type) %}
+    <div class="ribbon ribbon-quick-view {{ type }}">
+            <div class="theribbon">
+                {{ type|upper|replace('-', ' ') }}
+            </div>
+            <div class="ribbon-background"></div>
+    </div>
+{% endmacro %}
+
 {% macro all_ribbons(method, product) %}
     {% if product.masterVariant.isPriceReduced %}
         {{ attribute(_self, method, {'type': 'sale', 'url': product}) }}
