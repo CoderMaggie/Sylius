@@ -2,3 +2,10 @@ app:
     ui:
         pay: Pay
         show_to_friends: Show it to your friends
+    menu:
+        admin:
+            main:
+                homepage:
+                    carousel_items: Carousel items
+                    product_grid_items: Product grid items
+                    header: Homepage
