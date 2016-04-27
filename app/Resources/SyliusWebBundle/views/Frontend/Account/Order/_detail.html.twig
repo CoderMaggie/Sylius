@@ -62,24 +62,6 @@
                 <th colspan="5">{{ 'sylius.ui.grand_total'|trans }}</th>
                 <th colspan="2">{{ order.total|sylius_money(order.currency) }}</th>
             </tr>
-            <tr>
-                <th colspan="7"></th>
-            </tr>
-            <tr>
-                {% if order.lastPayment %}
-                    <th colspan="3">{{ 'sylius.ui.payment'|trans }}</th>
-                    <th colspan="2" class="text-right">
-                        {{ buttons.btn(
-                            path('sylius_order_payment_index', {'number': order.number}),
-                            'sylius.ui.view',
-                            'order-' ~ order.number ~ '-payments',
-                            'money',
-                            'btn btn-primary'
-                        ) }}
-                    </th>
-                    <th colspan="2">{{ order.lastPayment.amount|sylius_money(order.currency) }}</th>
-                {% endif %}
-            </tr>
         </tfoot>
     </table>
 </div>
@@ -108,6 +90,15 @@
             <div class="box">
                 <h4>{{ 'sylius.ui.payment_method'|trans }}</h4>
                 <p>{{ (order.payments|last).method.name }}</p>
+                {% if order.lastPayment %}
+                    {{ buttons.btn(
+                    path('sylius_order_payment_index', {'number': order.number}),
+                    'app.ui.pay',
+                    'order-' ~ order.number ~ '-payments',
+                    'money',
+                    'btn btn-primary'
+                    ) }}
+                {% endif %}
             </div>
         </div>
     {% endif %}
