@@ -36,3 +36,4 @@ app:
         product_details: Product details
         address: Address
         tags: Tags
+        order_review: Order review

@@ -18,16 +18,8 @@
     <div class="row">
         <div class="col-md-12 clearfix" id="checkout">
             <div class="box">
-                <ul class="nav nav-pills nav-justified">
-                    <li><a href="{{ path('sylius_checkout_addressing') }}"><i class="fa fa-map-marker"></i><br>Address</a>
-                    </li>
-                    <li><a href="{{ path('sylius_checkout_shipping') }}"><i class="fa fa-truck"></i><br>Shipping Method</a>
-                    </li>
-                    <li><a href="{{ path('sylius_checkout_payment') }}"><i class="fa fa-money"></i><br>Payment Method</a>
-                    </li>
-                    <li class="active"><a href="#"><i class="fa fa-eye"></i><br>Order Review</a>
-                    </li>
-                </ul>
+
+                {% include '@SyliusWeb/Frontend/Checkout/Step/_statusBar.html.twig' %}
 
                 {% include '@SyliusWeb/Frontend/Checkout/Step/Finalize/_order.html.twig' %}
 
