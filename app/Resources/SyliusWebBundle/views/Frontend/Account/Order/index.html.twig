@@ -1,10 +1,22 @@
 {% import '@SyliusWeb/Frontend/Macros/buttons.html.twig' as buttons %}
 {% extends '@SyliusWeb/Frontend/Account/layout.html.twig' %}
 
+{% block title %}
+    - {{ 'sylius.ui.orders'|trans }}
+{% endblock %}
+
+{% block topbar %}
+    <ul class="breadcrumb">
+        <li><a href={{ path('sylius_homepage') }}>{{ 'app.ui.home'|trans }}</a></li>
+        <li>{{ 'app.ui.my_account'|trans }}</li>
+        <li>{{ 'sylius.ui.orders'|trans }}</li>
+    </ul>
+{% endblock %}
+
 {% block content %}
     <div class="col-md-12">
         <div class="box text-center">
-            <h1>Your orders</h1>
+            <h1>{{ 'app.ui.your_orders'|trans }}</h1>
         </div>
     </div>
 
