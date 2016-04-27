@@ -145,3 +145,23 @@
 #product-variants tbody tr:hover {
     background: lightgrey;
 }
+
+.navbar .btn-primary {
+    margin-right: 0;
+    margin-left: 7px;
+}
+
+.navbar #search {
+    border: solid 1px #ccc;
+    margin-left: 7px;
+    margin-right: 0;
+    width: auto;
+}
+
+.navbar-form {
+    padding: 0 15px;
+}
+
+#navbar-search .input-group {
+    display: block;
+}
