@@ -2,6 +2,7 @@ app:
     ui:
         pay: Pay
         show_to_friends: Show it to your friends
+        you_may_also_like: You may also like these products
     menu:
         admin:
             main:
