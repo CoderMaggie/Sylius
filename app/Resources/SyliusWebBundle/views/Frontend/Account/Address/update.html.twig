@@ -1,0 +1,46 @@
+{% from '@SyliusWeb/Frontend/Macros/actions.html.twig' import update %}
+{% extends '@SyliusWeb/Frontend/Account/layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts output='assets/compiled/backend_province.js'
+    'bundles/syliusweb/js/province-choices.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block title %}
+    - {{ 'sylius.ui.edit'|trans }} {{ 'app.ui.address'|trans|lower }}
+{% endblock %}
+
+{% block topbar %}
+    <ul class="breadcrumb">
+        <li><a href={{ path('sylius_homepage') }}>{{ 'app.ui.home'|trans }}</a></li>
+        <li>{{ 'app.ui.my_account'|trans }}</li>
+        <li><a href={{ path('sylius_account_address_index') }}>{{ 'app.ui.address_book'|trans }}</a></li>
+        <li>{{ 'sylius.ui.edit'|trans }}</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="box text-center">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <h1>{{ 'sylius.ui.edit_my_address'|trans }}</h1>
+            </div>
+        </div>
+    </div>
+
+    {{ parent() }}
+
+    <div class="col-md-9">
+        <div class="row">
+            <form action="{{ path('sylius_account_address_update', {'id': address.id}) }}" method="post" class="form-horizontal" novalidate>
+                {% include 'SyliusWebBundle:Frontend/Address:_form.html.twig' %}
+                {{ update() }}
+            </form>
+        </div>
+    </div>
+
+    {{ include('@SyliusWeb/Frontend/Account/menu.html.twig') }}
+{% endblock %}
