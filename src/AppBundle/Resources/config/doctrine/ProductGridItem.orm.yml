@@ -15,6 +15,12 @@ AppBundle\Entity\ProductGridItem:
         path:
             type: string
             nullable: true
+        showRibbonHot:
+            type: boolean
+        showRibbonNew:
+            type: boolean
+        showRibbonSale:
+            type: boolean
     manyToOne:
         product:
             targetEntity: Sylius\Component\Core\Model\Product

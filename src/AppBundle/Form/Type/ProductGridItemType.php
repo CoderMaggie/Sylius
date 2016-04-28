@@ -16,6 +16,9 @@ class ProductGridItemType extends AbstractResourceType
             ->add('position', 'integer', ['label' => 'app.ui.position'])
             ->add('product', 'sylius_product_choice', ['label' => 'app.ui.product'])
             ->add('enabled', 'checkbox', ['label' => 'sylius.ui.enabled'])
+            ->add('showRibbonHot', 'checkbox', ['label' => 'app.admin.show_ribbon_hot'])
+            ->add('showRibbonNew', 'checkbox', ['label' => 'app.admin.show_ribbon_new'])
+            ->add('showRibbonSale', 'checkbox', ['label' => 'app.admin.show_ribbon_sale'])
             ->add('file', 'file', ['label' => 'app.ui.file', 'required' => false])
         ;
     }

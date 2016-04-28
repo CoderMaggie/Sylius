@@ -1,3 +1,4 @@
+{% import '@SyliusWeb/Frontend/Product/macros.html.twig' as macro %}
 {% set product = productGridItem.product %}
 {% if productGridItem.path is not empty %}
     {% set itemImagePath = productGridItem.path|imagine_filter('sylius_large') %}
@@ -22,21 +23,7 @@
         </div>
         <!-- /.text -->
 
-        <div class="ribbon hot">
-            <div class="theribbon">HOT</div>
-            <div class="ribbon-background"></div>
-        </div>
-
-        <div class="ribbon sale">
-            <div class="theribbon">SALE</div>
-            <div class="ribbon-background"></div>
-        </div>
-
-        <div class="ribbon new">
-            <div class="theribbon">NEW</div>
-            <div class="ribbon-background"></div>
-        </div>
-        <!-- /.ribbon -->
+        {{ macro.product_grid_ribbons(productGridItem) }}
     </div>
     <!-- /.product -->
 </div>

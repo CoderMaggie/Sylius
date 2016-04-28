@@ -65,6 +65,20 @@
     {% endif %}
 {% endmacro %}
 
+{% macro product_grid_ribbons(product) %}
+    {% from _self import plain_ribbon %}
+    {% if product.showRibbonNew %}
+        {{ plain_ribbon('new') }}
+    {% endif %}
+    {% if product.showRibbonHot %}
+        {{ plain_ribbon('hot') }}
+    {% endif %}
+
+    {% if product.showRibbonSale %}
+        {{ plain_ribbon('sale') }}
+    {% endif %}
+{% endmacro %}
+
 {% macro render_reviews(product) %}
     <div class="box" id="reviews">
         <h3>Product reviews</h3>
