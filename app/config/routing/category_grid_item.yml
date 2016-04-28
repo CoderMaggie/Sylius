@@ -1,0 +1,15 @@
+app_admin_category_grid_item:
+    resource: |
+        alias: app.category_grid_item
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        except: ['show']
+        grid: app_admin_category_grid_item
+        vars:
+            all:
+                subheader: app.ui.category_grid_items
+                templates:
+                    form: :CategoryGridItem:_form.html.twig
+            index:
+                icon: 'square outline'
+    type: sylius.resource
