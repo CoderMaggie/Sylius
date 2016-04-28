@@ -19,7 +19,7 @@ app:
         address_book: Address book
         view_orders: View orders
         change_password: Change password
-        personal_informaion: Personal information
+        personal_information: Personal information
         shipping_fee: Shipping fee
         discount: Discount
         tax: Tax
