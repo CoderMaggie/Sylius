@@ -1,3 +1,4 @@
+{% import '@SyliusWeb/Frontend/Product/macros.html.twig' as macro %}
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-body">
@@ -10,21 +11,21 @@
                         <img src="{{ product.image ? product.image.path|imagine_filter('sylius_large') : 'http://placehold.it/450x678' }}" alt="" class="img-responsive">
                     </div>
 
-                    <div class="ribbon ribbon-quick-view sale">
-                        <div class="theribbon">SALE</div>
-                        <div class="ribbon-background"></div>
-                    </div>
+                        {{ macro.all_ribbons('quick_view_ribbon', product) }}
 
-                    <div class="ribbon ribbon-quick-view new">
-                        <div class="theribbon">NEW</div>
-                        <div class="ribbon-background"></div>
+                    <div class="row thumbs">
+                        {% for image in product.images|slice(0, 3) %}
+                            <div class="col-xs-4">
+                                <a href="{{ image.path|imagine_filter('sylius_large') }}" title="{{ product.name }}" class="thumb">
+                                    <img class="img-responsive" src="{{ image.path|imagine_filter('sylius_small') }}" alt="{{ product.name }}">
+                                </a>
+                            </div>
+                        {% endfor %}
                     </div>
-
                 </div>
                 <div class="col-sm-6">
 
                     <h2>{{ product.name }}</h2>
-
                     <p class="text-muted text-small text-center">{{ product.description }}</p>
 
                     <form action="{{ path('sylius_cart_item_add', {'id': product.id}) }}" method="post" class="clearfix">
@@ -53,7 +54,6 @@
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>

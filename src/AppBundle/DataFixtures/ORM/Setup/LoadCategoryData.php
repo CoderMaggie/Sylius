@@ -50,24 +50,32 @@ class LoadCategoryData extends DataFixture
 
     /**
      * @param ObjectManager $manager
+     * @param string $name
      * @param TaxonInterface $parentTaxon
      * 
      * @return TaxonInterface
      */
     private function createTaxon(ObjectManager $manager, $name, TaxonInterface $parentTaxon = null)
     {
+        $code = $this->getCode($name);
+
         /* @var TaxonInterface $taxon */
         $taxon = $this->get('sylius.factory.taxon')->createNew();
-        $taxon->setCode($this->getCode($name));
+        $taxon->setCode($code);
         $taxon->setName($name);
         $taxon->setParent($parentTaxon);
 
         $manager->persist($taxon);
-        $this->setReference('App.Taxon.'.$name, $taxon);
-        
+        $this->setReference('App.Taxon.'.$code, $taxon);
+
         return $taxon;
     }
 
+    /**
+     * @param string $name
+     *
+     * @return string
+     */
     private function getCode($name)
     {
         return str_replace(' ', '-', $name);

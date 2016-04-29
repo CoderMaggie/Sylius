@@ -3,6 +3,11 @@
 
 {% set form = sylius_cart_form({'product': product}) %}
 
+{% set mainCategoriesNames = ['Publisher', 'Game System'] %}
+
+{% set minorCategories = product.taxons.toArray|app_product_taxons_excluding(mainCategoriesNames) %}
+{% set majorCategories = product.taxons.toArray|app_product_taxons(mainCategoriesNames) %}
+
 {% block javascripts %}
     {{ parent() }}
     {% javascripts output='assets/compiled/backend_review.js'
@@ -35,10 +40,10 @@
 {% block topbar %}
     <ul class="breadcrumb">
         <li><a href={{ path('sylius_homepage') }}>Home</a></li>
-        {% for taxon in product.taxons %}
-            {% if taxon.getRoot.name == 'Publisher' or taxon.getRoot.name == 'Game System' %}
+        {% for rootName, taxons in majorCategories %}
+            {% for taxon in taxons %}
                 <li><a href={{ path(taxon.permalink) }}>{{ taxon.name }}</a></li>
-            {% endif %}
+            {% endfor %}
         {% endfor %}
         <li>{{ product.name }}</li>
     </ul>
@@ -61,7 +66,7 @@
                 </div>
 
                 <div class="col-sm-12 summary">
-                    <p class="text-muted">Short description appears here. In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide. Pellentesque habitant morbi tristique senectus et netuss.</p>
+                    <p class="text-muted">{{ product.shortDescription }}</p>
                     <ul class="text-muted">
                         <li>Learn in only 15 minutes</li>
                         <li>Play in only 60 minutes</li>
@@ -102,7 +107,7 @@
         </div>
         <div class="col-sm-3 col-sm-pull-9 col-lg-4 col-lg-pull-8" id="productImage">
             <div id="mainImage">
-                <img class="img-responsive"
+                <img class="image1 img-responsive"
                      src="{{ product.image ? product.image.path|imagine_filter('sylius_large') : 'http://placehold.it/500x800' }}"
                      alt="{{ product.name }}">
             </div>
@@ -124,62 +129,60 @@
 
         <div class="col-sm-9 col-lg-10" id="productDetail">
             <div class="box" id="details">
-                <h4>Product details</h4>
+                <h4>{{ 'app.ui.product_details'|trans }}</h4>
 
                 <blockquote>
                     <p>{{ product.description }}</p>
                 </blockquote>
 
-                <h4>Contents</h4>
-                <ul>
-                    <li>72 Land tiles</li>
-                    <li>12 River tiles</li>
-                    <li>1 scoreboard</li>
-                    <li>40 followers in 5 colors</li>
-                    <li>5 abbots in 5 colors</li>
-                    <li>1 rulebook</li>
-                    <li>1 supplementary sheet</li>
-                </ul>
+                <div class="row">
+                    {% for attribute in product.attributes %}
+                        <div class="col-xs-6">
+                            <div class="box">
+                                <h4>{{ attribute.name }}</h4>
+                                <p>{{ attribute.value }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
 
                 <div class="same-height-row row">
                     <div class="col-xs-6">
                         <div id="product-technical" class="box same-height-always">
-                            <h4>Technical details</h4>
+                            <h4>{{ 'app.ui.technical_details'|trans }}</h4>
                             <dl>
-                                <dt>Publisher</dt>
-                                <dd><a href="#">Mayfair Games</a></dd>
-                                <dt>Game System</dt>
-                                <dd><a href="#">Catan</a></dd>
-                                <dt>Approx Weight</dt>
-                                <dd>1.5kg</dd>
-                                <dt>Approx Dimensions</dt>
-                                <dd>60x30x12cm</dd>
-                                <dt>Barcode</dt>
-                                <dd>123456789123</dd>
+                                {% for rootName, taxons in majorCategories %}
+                                    <dt>{{ rootName }}</dt>
+                                    {% for taxon in taxons %}
+                                        <dd><a href={{ path(taxon.permalink) }}>{{ taxon.name }}</a></dd>
+                                    {% endfor %}
+                                {% endfor %}
+
+                                <dt>{{ 'app.ui.weight'|trans }}</dt>
+                                <dd>{{ product.masterVariant.weight }}kg</dd>
+
+                                <dt>{{ 'app.ui.dimensions'|trans }}</dt>
+                                <dd>{{ product.masterVariant.width }}x{{ product.masterVariant.height }}x{{ product.masterVariant.depth }}cm</dd>
+
+                                <dt>{{ 'sylius.ui.sku'|trans }}</dt>
+                                <dd>{{ product.sku }}</dd>
                             </dl>
                         </div>
                     </div>
                     <div class="col-xs-6">
+                        {% if minorCategories is not empty %}
                         <div id="product-tags" class="box same-height-always">
                             <h4>Tags</h4>
                             <dl>
-                                <dt>Game length</dt>
-                                <dd><a href="#">30-60 minutes</a></dd>
-                                <dt>Number of Players</dt>
-                                <dd><a href="#">2 players</a></dd>
-                                <dd><a href="#">3 players</a></dd>
-                                <dd><a href="#">4 players</a></dd>
-                                <dt>Player Age</dt>
-                                <dd><a href="#">Older child</a></dd>
-                                <dd><a href="#">Teenager</a></dd>
-                                <dd><a href="#">Adult</a></dd>
-                                <dt>Tags</dt>
-                                <dd><a href="#">Gateway</a></dd>
-                                <dd><a href="#">Family</a></dd>
-                                <dd><a href="#">Award Winner</a></dd>
-                                <dd><a href="#">Best Seller</a></dd>
+                                {% for rootName, taxons in minorCategories %}
+                                    <dt>{{ rootName }}</dt>
+                                    {% for taxon in taxons %}
+                                        <dd><a href={{ path(taxon.permalink) }}>{{ taxon.name }}</a></dd>
+                                    {% endfor %}
+                                {% endfor %}
                             </dl>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
                 <h4 class="text-center">{{ product.name }}</h4>

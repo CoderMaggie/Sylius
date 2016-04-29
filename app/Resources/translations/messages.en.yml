@@ -25,3 +25,7 @@ app:
         tax: Tax
         your_orders: Your orders
         you_have_no_orders: You have not placed any orders yet.
+        weight: Weight
+        dimensions: Dimensions
+        technical_details: Technical details
+        product_details: Product details
