@@ -88,10 +88,7 @@ class LoadProductData extends DataFixture
 
         /** @var ProductVariantInterface $variant */
         $variant = $product->getMasterVariant();
-        $variant->setDepth($this->faker->numberBetween(0, 100));
-        $variant->setHeight($this->faker->numberBetween(0, 100));
-        $variant->setWidth($this->faker->numberBetween(0, 100));
-        $variant->setWeight($this->faker->randomFloat(2,0,5));
+        $this->setVariantProperties($variant);
 
         $product->addAttribute($this->getAttribute('contents'));
 
@@ -138,6 +135,7 @@ class LoadProductData extends DataFixture
 
             $product->setName($this->faker->word);
             $product->setDescription($this->faker->paragraph);
+            $product->setShortDescription($this->faker->sentence);
             $product->setPrice($this->faker->numberBetween(10, 300));
             $product->setSku($this->getUniqueSku());
             $product->addChannel($this->getReference('App.Channel.WEB-UK'));
@@ -156,7 +154,9 @@ class LoadProductData extends DataFixture
 
             $product->addTaxon($this->getReference($randomTaxon));
 
+            /** @var ProductVariantInterface $variant */
             $variant = $product->getMasterVariant();
+            $this->setVariantProperties($variant);
 
             $image = clone $this->getReference('App.Image.'.$img->getBasename('.jpg'));
 
@@ -192,5 +192,16 @@ class LoadProductData extends DataFixture
     protected function getUniqueSku($length = 5)
     {
         return $this->faker->unique()->randomNumber($length);
+    }
+
+    /**
+     * @param ProductVariantInterface $variant
+     */
+    protected function setVariantProperties(ProductVariantInterface $variant)
+    {
+        $variant->setDepth($this->faker->numberBetween(0, 100));
+        $variant->setHeight($this->faker->numberBetween(0, 100));
+        $variant->setWidth($this->faker->numberBetween(0, 100));
+        $variant->setWeight($this->faker->randomFloat(2,0,5));
     }
 }

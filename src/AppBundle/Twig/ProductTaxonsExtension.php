@@ -32,7 +32,7 @@ class ProductTaxonsExtension extends \Twig_Extension
         $taxonArray = $this->createTaxonArray($taxons);
 
         foreach ($excludes as $exclude) {
-            if (array_key_exists($exclude, $taxonArray)) {
+            if (isset($taxonArray[$exclude])) {
                 unset($taxonArray[$exclude]);
             }
         }
@@ -50,15 +50,19 @@ class ProductTaxonsExtension extends \Twig_Extension
     {
         $taxonArray = $this->createTaxonArray($taxons);
 
+        if (empty($includes)) {
+            return $taxonArray;
+        }
+
         $results = [];
 
         foreach ($includes as $include) {
-            if (array_key_exists($include, $taxonArray)) {
+            if (isset($taxonArray[$include])) {
                 $results[$include] = $taxonArray[$include];
             }
         }
 
-        return empty($results) ? $taxonArray : $results;
+        return empty($results) ? [] : $results;
     }
 
     /**
@@ -79,18 +83,22 @@ class ProductTaxonsExtension extends \Twig_Extension
         Assert::notEmpty($taxons, 'The "taxons" array cannot be empty.');
         Assert::allIsInstanceOf($taxons, TaxonInterface::class, sprintf('The "taxons" array doesn\'t contain only %s objects.', TaxonInterface::class));
 
-        $tagsArray = [];
+        $taxonArray = [];
 
         foreach ($taxons as $taxon) {
-            $rootName = $taxon->getRoot()->getName();
-
-            if (!array_key_exists($rootName, $tagsArray)) {
-                $tagsArray[$rootName] = [];
+            if ($taxon->isRoot()) {
+                continue;
             }
 
-            array_push($tagsArray[$rootName], $taxon);
+            $rootName = $taxon->getRoot()->getName();
+
+            if (!isset($taxonArray[$rootName])) {
+                $taxonArray[$rootName] = [];
+            }
+
+            $taxonArray[$rootName][] = $taxon;
         }
 
-        return $tagsArray;
+        return $taxonArray;
     }
 }
