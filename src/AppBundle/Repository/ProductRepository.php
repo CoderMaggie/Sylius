@@ -27,10 +27,21 @@ class ProductRepository extends BaseProductRepository
     {
         $queryBuilder = $this->createQueryBuilder('o');
 
-        $queryBuilder
-            ->addSelect('taxon')
-            ->leftJoin('o.taxons', 'taxon')
-        ;
+        if (null === $criteria) {
+            return $queryBuilder;
+        }
+
+        $i = 1;
+        foreach ($criteria as $taxonIds) {
+            $alias = 'o'.$i++;
+            $subQueryBuilder = $this->_em->createQueryBuilder()->select($alias.'.id')->from($this->_entityName, $alias);
+            $subQueryBuilder
+                ->innerJoin($alias.'.taxons', $alias.'taxon')
+                ->andWhere($subQueryBuilder->expr()->in($alias.'taxon.id', $taxonIds))
+            ;
+
+            $queryBuilder->andWhere($queryBuilder->expr()->in('o.id', $subQueryBuilder->getDQL()));
+        }
 
         return $queryBuilder;
     }
