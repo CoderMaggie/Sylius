@@ -47,6 +47,12 @@ class CategoryGridItemSpec extends ObjectBehavior
         $this->shouldNotBeEnabled();
     }
 
+    function its_title_is_mutable()
+    {
+        $this->setTitle('Title');
+        $this->getTitle()->shouldReturn('Title');
+    }
+
     function its_position_is_mutable()
     {
         $this->setPosition(5);

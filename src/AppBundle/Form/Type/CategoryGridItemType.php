@@ -13,6 +13,7 @@ class CategoryGridItemType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('title', 'text', ['label' => 'app.ui.title', 'required' => false])
             ->add('position', 'integer', ['label' => 'app.ui.position', 'required' => false])
             ->add('category', 'sylius_taxon_choice', ['label' => 'app.ui.category'])
             ->add('enabled', 'checkbox', ['label' => 'sylius.ui.enabled'])

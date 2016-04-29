@@ -8,6 +8,9 @@ sylius_grid:
             sorting:
                 position: asc
             fields:
+                title:
+                    type: string
+                    label: app.ui.title
                 position:
                     type: string
                     label: app.ui.position

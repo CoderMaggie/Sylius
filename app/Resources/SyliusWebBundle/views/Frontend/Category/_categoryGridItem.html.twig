@@ -8,13 +8,17 @@
 <div class="col-md-3 col-sm-4">
     <div class="grid-item gi-category">
         <div class="image same-height">
-            <a href="#">
+            <a href="{{ path(category) }}">
                 <img src="{{ itemImagePath }}" alt="" class="img-responsive image1">
             </a>
         </div>
         <!-- /.image -->
         <div class="text">
-            <h3><a href="{{ path(category) }}">{{ category.name }}</a></h3>
+            <h3>
+                <a href="{{ path(category) }}">
+                    {% if categoryGridItem.title is not empty %}{{ categoryGridItem.title }}{% else %}{{ category.name }}{% endif %}
+                </a>
+            </h3>
         </div>
         <!-- /.text -->
     </div>

@@ -8,6 +8,9 @@ AppBundle\Entity\CategoryGridItem:
             generator:
                 strategy: AUTO
     fields:
+        title:
+            type: string
+            nullable: true
         position:
             type: integer
             nullable: true

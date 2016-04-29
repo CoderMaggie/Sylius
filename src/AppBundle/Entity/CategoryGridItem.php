@@ -19,6 +19,11 @@ class CategoryGridItem implements ResourceInterface, ToggleableInterface, ImageI
     private $id;
 
     /**
+     * @var string
+     */
+    private $title;
+
+    /**
      * @var int
      */
     private $position;
@@ -46,6 +51,22 @@ class CategoryGridItem implements ResourceInterface, ToggleableInterface, ImageI
         return $this->id;
     }
 
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+    
     /**
      * @return int
      */
