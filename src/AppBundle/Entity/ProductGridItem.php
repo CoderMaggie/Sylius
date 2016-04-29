@@ -39,6 +39,21 @@ class ProductGridItem implements ResourceInterface, ToggleableInterface, ImageIn
     private $product;
 
     /**
+     * @var bool
+     */
+    private $showRibbonHot = false;
+
+    /**
+     * @var bool
+     */
+    private $showRibbonSale = false;
+
+    /**
+     * @var bool
+     */
+    private $showRibbonNew = false;
+
+    /**
      * {@inheritdoc}
      */
     public function getId()
@@ -128,5 +143,53 @@ class ProductGridItem implements ResourceInterface, ToggleableInterface, ImageIn
     public function setProduct(ProductInterface $product)
     {
         $this->product = $product;
+    }
+
+    /**
+     * @return bool
+     */
+    public function showRibbonHot()
+    {
+        return $this->showRibbonHot;
+    }
+
+    /**
+     * @return bool
+     */
+    public function showRibbonSale()
+    {
+        return $this->showRibbonSale;
+    }
+
+    /**
+     * @return bool
+     */
+    public function showRibbonNew()
+    {
+        return $this->showRibbonNew;
+    }
+
+    /**
+     * @param bool $value
+     */
+    public function setShowRibbonHot($value)
+    {
+        $this->showRibbonHot = $value;
+    }
+
+    /**
+     * @param bool $value
+     */
+    public function setShowRibbonSale($value)
+    {
+        $this->showRibbonSale = $value;
+    }
+
+    /**
+     * @param bool $value
+     */
+    public function setShowRibbonNew($value)
+    {
+        $this->showRibbonNew = $value;
     }
 }

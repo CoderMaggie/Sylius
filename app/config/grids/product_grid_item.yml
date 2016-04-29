@@ -19,6 +19,21 @@ sylius_grid:
                     label: sylius.ui.enabled
                     options:
                         template: SyliusAdminBundle:Grid/Field:enabled.html.twig
+                showRibbonHot:
+                    type: twig
+                    label: app.admin.show_ribbon_hot
+                    options:
+                        template: SyliusAdminBundle:Grid/Field:enabled.html.twig
+                showRibbonNew:
+                    type: twig
+                    label: app.admin.show_ribbon_new
+                    options:
+                        template: SyliusAdminBundle:Grid/Field:enabled.html.twig
+                showRibbonSale:
+                    type: twig
+                    label: app.admin.show_ribbon_sale
+                    options:
+                        template: SyliusAdminBundle:Grid/Field:enabled.html.twig
             actions:
                 main:
                     create:

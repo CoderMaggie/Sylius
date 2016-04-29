@@ -3,6 +3,10 @@ app:
         pay: Pay
         show_to_friends: Show it to your friends
         you_may_also_like: You may also like these products
+    admin:
+        show_ribbon_hot: Show ribbon "Hot"?
+        show_ribbon_new: Show ribbon "New"?
+        show_ribbon_sale: Show ribbon "Sale"?
     menu:
         admin:
             main:
