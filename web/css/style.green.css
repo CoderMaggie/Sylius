@@ -752,6 +752,7 @@ button i.fa {
   text-align: center;
 }
 #content .quick-view-main-image {
+  min-height: 100px;
   text-align: center;
 }
 #content .quick-view-main-image img {
