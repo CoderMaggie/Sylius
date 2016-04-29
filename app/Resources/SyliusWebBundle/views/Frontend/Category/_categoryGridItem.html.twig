@@ -1,0 +1,21 @@
+{% set category = categoryGridItem.category %}
+{% if categoryGridItem.path is not empty %}
+    {% set itemImagePath = categoryGridItem.path|imagine_filter('sylius_large') %}
+{% else %}
+    {% set itemImagePath = category.path ? category.path|imagine_filter('sylius_large') : 'http://placehold.it/400x400' %}
+{% endif %}
+
+<div class="col-md-3 col-sm-4">
+    <div class="grid-item gi-category">
+        <div class="image same-height">
+            <a href="#">
+                <img src="{{ itemImagePath }}" alt="" class="img-responsive image1">
+            </a>
+        </div>
+        <!-- /.image -->
+        <div class="text">
+            <h3><a href="{{ path(category) }}">{{ category.name }}</a></h3>
+        </div>
+        <!-- /.text -->
+    </div>
+</div>
