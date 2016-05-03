@@ -16,7 +16,7 @@
         <div class="text">
             <h3>
                 <a href="{{ path(category) }}">
-                    {% if categoryGridItem.title is not empty %}{{ categoryGridItem.title }}{% else %}{{ category.name }}{% endif %}
+                    {{ categoryGridItem.title ? categoryGridItem.title : category.name }}
                 </a>
             </h3>
         </div>
