@@ -63,3 +63,17 @@ app_shop_product_index:
             permission: false
             grid: sylius_shop_product
             template: SyliusWebBundle:Frontend/Product:index.html.twig
+
+app_taxon_product_index:
+    path: /t/{taxon}
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /products
+        permanent: true
+
+app_taxon_product_show:
+    path: /t/{taxon}/{value}
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /products
+        permanent: true
