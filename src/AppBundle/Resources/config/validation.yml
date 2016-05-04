@@ -4,3 +4,8 @@ AppBundle\Entity\ProductGridItem:
             -  NotBlank: ~
         product:
             -  NotBlank: ~
+AppBundle\Entity\CarouselItem:
+    properties:
+        file:
+            - NotBlank: ~
+            - Image: ~
