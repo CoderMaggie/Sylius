@@ -29,3 +29,4 @@ app:
         dimensions: Dimensions
         technical_details: Technical details
         product_details: Product details
+        address: Address
