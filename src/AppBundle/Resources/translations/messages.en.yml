@@ -3,6 +3,10 @@ app:
         pay: Pay
         show_to_friends: Show it to your friends
         you_may_also_like: You may also like these products
+        game_length: Game Length
+        number_of_players: Number Of Players
+        publisher: Publisher
+        game_system: Game System
     admin:
         show_ribbon_hot: Show ribbon "Hot"?
         show_ribbon_new: Show ribbon "New"?
