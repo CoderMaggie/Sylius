@@ -35,3 +35,4 @@ app:
         technical_details: Technical details
         product_details: Product details
         address: Address
+        tags: Tags

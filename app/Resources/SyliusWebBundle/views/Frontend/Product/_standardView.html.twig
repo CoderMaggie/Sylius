@@ -3,10 +3,10 @@
 
 {% set form = sylius_cart_form({'product': product}) %}
 
-{% set mainCategoriesNames = ['Publisher', 'Game System'] %}
+{% set majorTaxonsCodes = ['publisher', 'game_system'] %}
 
-{% set minorCategories = product.taxons.toArray|app_product_taxons_excluding(mainCategoriesNames) %}
-{% set majorCategories = product.taxons.toArray|app_product_taxons(mainCategoriesNames) %}
+{% set minorTaxons = product.taxons.toArray|app_product_taxons_excluding(majorTaxonsCodes) %}
+{% set majorTaxons = product.taxons.toArray|app_product_taxons(majorTaxonsCodes) %}
 
 {% block javascripts %}
     {{ parent() }}
@@ -39,8 +39,8 @@
 
 {% block topbar %}
     <ul class="breadcrumb">
-        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
-        {% for rootName, taxons in majorCategories %}
+        <li><a href={{ path('sylius_homepage') }}>{{ 'app.ui.home'|trans }}</a></li>
+        {% for rootName, taxons in majorTaxons %}
             {% for taxon in taxons %}
                 <li><a href={{ path('app_shop_product_index', {'criteria': {(taxon.root.code): [taxon.id]}}) }}>{{ taxon.name }}</a></li>
             {% endfor %}
@@ -96,7 +96,7 @@
             </div>
 
             <div class="box social" id="product-social">
-                <h4>Show it to your friends</h4>
+                <h4>{{ 'app.ui.show_to_friends'|trans }}</h4>
                 <p>
                     <a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
                     <a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
@@ -151,7 +151,7 @@
                         <div id="product-technical" class="box same-height-always">
                             <h4>{{ 'app.ui.technical_details'|trans }}</h4>
                             <dl>
-                                {% for rootName, taxons in majorCategories %}
+                                {% for rootName, taxons in majorTaxons %}
                                     <dt>{{ rootName }}</dt>
                                     {% for taxon in taxons %}
                                         <dd><a href={{ path('app_shop_product_index', {'criteria': {(taxon.root.code): [taxon.id]}}) }}>{{ taxon.name }}</a></dd>
@@ -170,11 +170,11 @@
                         </div>
                     </div>
                     <div class="col-xs-6">
-                        {% if minorCategories is not empty %}
+                        {% if minorTaxons is not empty %}
                         <div id="product-tags" class="box same-height-always">
-                            <h4>Tags</h4>
+                            <h4>{{ 'app.ui.tags'|trans }}</h4>
                             <dl>
-                                {% for rootName, taxons in minorCategories %}
+                                {% for rootName, taxons in minorTaxons %}
                                     <dt>{{ rootName }}</dt>
                                     {% for taxon in taxons %}
                                         <dd><a href={{ path('app_shop_product_index', {'criteria': {(taxon.root.code): [taxon.id]}}) }}>{{ taxon.name }}</a></dd>
