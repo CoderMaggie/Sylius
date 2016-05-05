@@ -1,0 +1,8 @@
+<div class="same-height-row row grid-items gi-categories">
+    {% for categoryGridItem in categoryGridItems %}
+        {{ include('@SyliusWeb/Frontend/Category/_categoryGridItem.html.twig') }}
+        {% if 3 == loop.index %}
+            {{ include('@SyliusWeb/Frontend/Category/_categoriesList.html.twig') }}
+        {% endif %}
+    {% endfor %}
+</div>

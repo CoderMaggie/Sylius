@@ -26,5 +26,9 @@ class MenuBuilderListener
         $homepageMenu->addChild('product_grid_items', ['route' => 'app_admin_product_grid_item_index'])
             ->setLabel('app.menu.admin.main.homepage.product_grid_items')
             ->setLabelAttribute('icon', 'grid layout');
+
+        $homepageMenu->addChild('category_grid_items', ['route' => 'app_admin_category_grid_item_index'])
+            ->setLabel('app.menu.admin.main.homepage.category_grid_items')
+            ->setLabelAttribute('icon', 'square outline');
     }
 }

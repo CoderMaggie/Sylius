@@ -1,0 +1,24 @@
+AppBundle\Entity\CategoryGridItem:
+    type: entity
+    table: category_grid_item
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            nullable: true
+        position:
+            type: integer
+            nullable: true
+        enabled:
+            type: boolean
+        path:
+            type: string
+            nullable: true
+    manyToOne:
+        category:
+            targetEntity: Sylius\Component\Core\Model\Taxon

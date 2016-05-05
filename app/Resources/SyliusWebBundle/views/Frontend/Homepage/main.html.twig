@@ -44,9 +44,8 @@
                                 <h4 class="text-muted"><span class="accent">Free shipping</span> on everything</h4>
                             </div>
                             {{ include('@SyliusWeb/Frontend/Product/_productGrid.html.twig') }}
-                            <div class="same-height-row row grid-items gi-categories">
-                                {{ include('@SyliusWeb/Frontend/Product/categories.html.twig') }}
-                            </div>
+
+                            {{ include('@SyliusWeb/Frontend/Category/_categoryGrid.html.twig') }}
                         </div>
                     </div>
 
@@ -151,6 +150,7 @@
             <script>
                 $(".quick-view-button").on("click", "a", function () {
                     $("#product-quick-view-modal").empty();
+                    $("#category-quick-view-modal").empty();
 
                     $.ajax({
                         url: $(this).attr("href")

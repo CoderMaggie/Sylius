@@ -10,8 +10,13 @@ app:
         product_grid_items: Product grid items
         new_product_grid_item: New product grid item
         edit_product_grid_item: Edit product grid item
+        category_grid_items: Category grid items
+        new_category_grid_item: New category grid item
+        edit_category_grid_item: Edit category grid item
         product_name: Product name
+        category_name: Category name
         product: Product
+        category: Category
         user_section: User section
         pages: Pages
         my_account: My account

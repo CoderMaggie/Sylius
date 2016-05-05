@@ -17,4 +17,5 @@ app:
                 homepage:
                     carousel_items: Carousel items
                     product_grid_items: Product grid items
+                    category_grid_items: Category grid items
                     header: Homepage
