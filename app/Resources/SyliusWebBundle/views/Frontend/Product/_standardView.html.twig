@@ -3,7 +3,7 @@
 
 {% set form = sylius_cart_form({'product': product}) %}
 
-{% set majorTaxonsCodes = ['publisher', 'game-system'] %}
+{% set majorTaxonsCodes = ['publisher', 'game_system'] %}
 
 {% set minorTaxons = product.taxons.toArray|app_product_taxons_excluding(majorTaxonsCodes) %}
 {% set majorTaxons = product.taxons.toArray|app_product_taxons(majorTaxonsCodes) %}
@@ -170,7 +170,7 @@
                         </div>
                     </div>
                     <div class="col-xs-6">
-                        {% if minorCategories is not empty %}
+                        {% if minorTaxons is not empty %}
                         <div id="product-tags" class="box same-height-always">
                             <h4>{{ 'app.ui.tags'|trans }}</h4>
                             <dl>

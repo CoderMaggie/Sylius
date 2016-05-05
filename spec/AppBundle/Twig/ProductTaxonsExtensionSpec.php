@@ -49,9 +49,11 @@ class ProductTaxonsExtensionSpec extends ObjectBehavior
     ) {
         $firstRoot->isRoot()->willReturn(true);
         $firstRoot->getCode()->willReturn('first-root');
+        $firstRoot->getName()->willReturn('First root');
 
         $secondRoot->isRoot()->willReturn(true);
         $secondRoot->getCode()->willReturn('second-root');
+        $secondRoot->getName()->willReturn('Second root');
 
         $firstTaxon->isRoot()->willReturn(false);
         $firstTaxon->getRoot()->willReturn($firstRoot);
@@ -64,8 +66,8 @@ class ProductTaxonsExtensionSpec extends ObjectBehavior
         $taxons = [$firstTaxon, $secondTaxon, $thirdTaxon];
 
         $results = [
-            'first-root' => [$firstTaxon, $secondTaxon],
-            'second-root' => [$thirdTaxon],
+            'First root' => [$firstTaxon, $secondTaxon],
+            'Second root' => [$thirdTaxon],
         ];
 
         $this->getProductTaxonsExcluding($taxons)->shouldReturn($results);
@@ -80,9 +82,11 @@ class ProductTaxonsExtensionSpec extends ObjectBehavior
     ) {
         $firstRoot->isRoot()->willReturn(true);
         $firstRoot->getCode()->willReturn('first-root');
+        $firstRoot->getName()->willReturn('First root');
 
         $secondRoot->isRoot()->willReturn(true);
         $secondRoot->getCode()->willReturn('second-root');
+        $secondRoot->getName()->willReturn('Second root');
 
         $firstTaxon->isRoot()->willReturn(false);
         $firstTaxon->getRoot()->willReturn($firstRoot);
@@ -94,7 +98,7 @@ class ProductTaxonsExtensionSpec extends ObjectBehavior
 
         $taxons = [$firstTaxon, $secondTaxon, $thirdTaxon];
 
-        $this->getProductTaxonsExcluding($taxons, ['first-root'])->shouldReturn(['second-root' => [$thirdTaxon]]);
+        $this->getProductTaxonsExcluding($taxons, ['first-root'])->shouldReturn(['Second root' => [$thirdTaxon]]);
     }
 
     function it_gets_taxons_matching_given_root_codes(
@@ -106,9 +110,11 @@ class ProductTaxonsExtensionSpec extends ObjectBehavior
     ) {
         $firstRoot->isRoot()->willReturn(true);
         $firstRoot->getCode()->willReturn('first-root');
+        $firstRoot->getName()->willReturn('First root');
 
         $secondRoot->isRoot()->willReturn(true);
         $secondRoot->getCode()->willReturn('second-root');
+        $secondRoot->getName()->willReturn('Second root');
 
         $firstTaxon->isRoot()->willReturn(false);
         $firstTaxon->getRoot()->willReturn($firstRoot);
@@ -120,7 +126,7 @@ class ProductTaxonsExtensionSpec extends ObjectBehavior
 
         $taxons = [$firstTaxon, $secondTaxon, $thirdTaxon];
 
-        $this->getProductTaxons($taxons, ['second-root'])->shouldReturn(['second-root' => [$thirdTaxon]]);
+        $this->getProductTaxons($taxons, ['second-root'])->shouldReturn(['Second root' => [$thirdTaxon]]);
     }
 
     function it_returns_empty_array_when_taxons_with_given_root_codes_were_not_found(
@@ -132,9 +138,11 @@ class ProductTaxonsExtensionSpec extends ObjectBehavior
     ) {
         $firstRoot->isRoot()->willReturn(true);
         $firstRoot->getCode()->willReturn('first-root');
+        $firstRoot->getName()->willReturn('First root');
 
         $secondRoot->isRoot()->willReturn(true);
         $secondRoot->getCode()->willReturn('second-root');
+        $secondRoot->getName()->willReturn('Second root');
 
         $firstTaxon->isRoot()->willReturn(false);
         $firstTaxon->getRoot()->willReturn($firstRoot);
@@ -149,7 +157,7 @@ class ProductTaxonsExtensionSpec extends ObjectBehavior
         $this->getProductTaxons($taxons, ['third-root'])->shouldReturn([]);
     }
 
-    function it_gets_all_taxons_when_no_root_codes_has_been_given(
+    function it_gets_all_taxons_when_no_exclude_root_codes_has_been_given(
         TaxonInterface $firstRoot,
         TaxonInterface $secondRoot,
         TaxonInterface $firstTaxon,
@@ -158,9 +166,11 @@ class ProductTaxonsExtensionSpec extends ObjectBehavior
     ) {
         $firstRoot->isRoot()->willReturn(true);
         $firstRoot->getCode()->willReturn('first-root');
+        $firstRoot->getName()->willReturn('First root');
 
         $secondRoot->isRoot()->willReturn(true);
         $secondRoot->getCode()->willReturn('second-root');
+        $secondRoot->getName()->willReturn('Second root');
 
         $firstTaxon->isRoot()->willReturn(false);
         $firstTaxon->getRoot()->willReturn($firstRoot);
@@ -173,11 +183,39 @@ class ProductTaxonsExtensionSpec extends ObjectBehavior
         $taxons = [$firstTaxon, $secondTaxon, $thirdTaxon];
 
         $results = [
-            'first-root' => [$firstTaxon, $secondTaxon],
-            'second-root' => [$thirdTaxon],
+            'First root' => [$firstTaxon, $secondTaxon],
+            'Second root' => [$thirdTaxon],
         ];
 
-        $this->getProductTaxons($taxons)->shouldReturn($results);
+        $this->getProductTaxonsExcluding($taxons)->shouldReturn($results);
+    }
+
+    function it_returns_empty_array_when_no_include_root_codes_has_been_given(
+        TaxonInterface $firstRoot,
+        TaxonInterface $secondRoot,
+        TaxonInterface $firstTaxon,
+        TaxonInterface $secondTaxon,
+        TaxonInterface $thirdTaxon
+    ) {
+        $firstRoot->isRoot()->willReturn(true);
+        $firstRoot->getCode()->willReturn('first-root');
+        $firstRoot->getName()->willReturn('First root');
+
+        $secondRoot->isRoot()->willReturn(true);
+        $secondRoot->getCode()->willReturn('second-root');
+        $secondRoot->getName()->willReturn('Second root');
+
+        $firstTaxon->isRoot()->willReturn(false);
+        $firstTaxon->getRoot()->willReturn($firstRoot);
+        $secondTaxon->isRoot()->willReturn(false);
+        $secondTaxon->getRoot()->willReturn($firstRoot);
+
+        $thirdTaxon->isRoot()->willReturn(false);
+        $thirdTaxon->getRoot()->willReturn($secondRoot);
+
+        $taxons = [$firstTaxon, $secondTaxon, $thirdTaxon];
+
+        $this->getProductTaxons($taxons)->shouldReturn([]);
     }
 
     function it_ignores_all_root_taxons(
@@ -188,6 +226,7 @@ class ProductTaxonsExtensionSpec extends ObjectBehavior
     ) {
         $singleRoot->isRoot()->willReturn(true);
         $singleRoot->getCode()->willReturn('single-root');
+        $singleRoot->getName()->willReturn('Single root');
 
         $firstTaxon->isRoot()->willReturn(true);
         $secondTaxon->isRoot()->willReturn(true);
@@ -197,7 +236,7 @@ class ProductTaxonsExtensionSpec extends ObjectBehavior
 
         $taxons = [$singleRoot, $firstTaxon, $secondTaxon, $thirdTaxon];
 
-        $this->getProductTaxons($taxons)->shouldReturn(['single-root' => [$thirdTaxon]]);
-        $this->getProductTaxonsExcluding($taxons)->shouldReturn(['single-root' => [$thirdTaxon]]);
+        $this->getProductTaxons($taxons)->shouldReturn([]);
+        $this->getProductTaxonsExcluding($taxons)->shouldReturn(['Single root' => [$thirdTaxon]]);
     }
 }

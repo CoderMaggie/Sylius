@@ -29,7 +29,14 @@ class ProductTaxonsExtension extends \Twig_Extension
      */
     public function getProductTaxonsExcluding(array $taxons, array $excludes = [])
     {
-        $taxonArray = $this->createTaxonArray($taxons);
+        $taxonArray = $this->createNonRootTaxonArray($taxons);
+
+        if (empty($excludes)) {
+            return $taxonArray;
+        }
+
+        $rootTaxons = $this->createRootTaxonArray($taxons);
+        $excludes = $this->convertRootCodesToNames($rootTaxons, $excludes);
 
         foreach ($excludes as $exclude) {
             if (isset($taxonArray[$exclude])) {
@@ -48,13 +55,15 @@ class ProductTaxonsExtension extends \Twig_Extension
      */
     public function getProductTaxons(array $taxons, array $includes = [])
     {
-        $taxonArray = $this->createTaxonArray($taxons);
+        $taxonArray = $this->createNonRootTaxonArray($taxons);
 
         if (empty($includes)) {
-            return $taxonArray;
+            return [];
         }
 
         $results = [];
+        $rootTaxons = $this->createRootTaxonArray($taxons);
+        $includes = $this->convertRootCodesToNames($rootTaxons, $includes);
 
         foreach ($includes as $include) {
             if (isset($taxonArray[$include])) {
@@ -78,7 +87,7 @@ class ProductTaxonsExtension extends \Twig_Extension
      *
      * @return array
      */
-    private function createTaxonArray(array $taxons)
+    private function createNonRootTaxonArray(array $taxons)
     {
         Assert::notEmpty($taxons, 'The "taxons" array cannot be empty.');
         Assert::allIsInstanceOf($taxons, TaxonInterface::class, sprintf('The "taxons" array doesn\'t contain only %s objects.', TaxonInterface::class));
@@ -100,5 +109,46 @@ class ProductTaxonsExtension extends \Twig_Extension
         }
 
         return $taxonArray;
+    }
+
+    /**
+     * @param TaxonInterface[] $taxons
+     *
+     * @return array
+     */
+    public function createRootTaxonArray(array $taxons)
+    {
+        Assert::notEmpty($taxons, 'The "taxons" array cannot be empty.');
+        Assert::allIsInstanceOf($taxons, TaxonInterface::class, sprintf('The "taxons" array doesn\'t contain only %s objects.', TaxonInterface::class));
+
+        $rootArray = [];
+
+        foreach ($taxons as $taxon) {
+            $root = $taxon->getRoot();
+            if (null !== $root) {
+                $rootArray[$root->getCode()] = $root->getName();
+            }
+        }
+
+        return $rootArray;
+    }
+
+    /**
+     * @param array $roots
+     * @param array $parameters
+     *
+     * @return array
+     */
+    public function convertRootCodesToNames(array $roots, array $parameters)
+    {
+        $newParameters = [];
+
+        foreach ($parameters as $parameter) {
+            if (isset($roots[$parameter])) {
+                $newParameters[] = $roots[$parameter];
+            }
+        }
+
+        return $newParameters;
     }
 }
