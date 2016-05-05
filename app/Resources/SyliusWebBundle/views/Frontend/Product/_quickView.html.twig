@@ -1,4 +1,7 @@
 {% import '@SyliusWeb/Frontend/Product/macros.html.twig' as macro %}
+
+{% set form = sylius_cart_form({'product': product}) %}
+
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-body">
@@ -51,6 +54,9 @@
                                     <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
                                 </p>
                             </div>
+                        </div>
+                        <div class="hidden">
+                            {{ form_rest(form) }}
                         </div>
                     </form>
                 </div>
