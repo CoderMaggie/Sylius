@@ -34,19 +34,19 @@ class LoadProductData extends DataFixture
         $this->createProduct('Game for 3 persons', $shortDescription, $description, 1000, '22345678', $manager,
             ['App.Taxon.3']);
         $this->createProduct('Quick Game', $shortDescription, $description, 1000, '32345678', $manager,
-            ['App.Taxon.Quick-(<15-mins)']);
+            ['App.Taxon.quick_15_mins']);
         $this->createProduct('Party Game', $shortDescription, $description, 1000, '42345678', $manager,
-            ['App.Taxon.Party-Games-(7+)']);
+            ['App.Taxon.party_games_7']);
         $this->createProduct('Catan Game', $shortDescription, $description, 1000, '52345678', $manager,
-            ['App.Taxon.Catan']);
+            ['App.Taxon.catan']);
         $this->createProduct('Multicategorized Game', $shortDescription, $description, 5000, '62345678', $manager,
-            ['App.Taxon.Quick-(<15-mins)', 'App.Taxon.2', 'App.Taxon.3', 'App.Taxon.Mayfair', 'App.Taxon.Catan']);
+            ['App.Taxon.quick_15_mins', 'App.Taxon.2', 'App.Taxon.3', 'App.Taxon.mayfair', 'App.Taxon.catan']);
         $this->createProduct('Catan Crusaders', $shortDescription, $description, 1000, '87935813', $manager,
-            ['App.Taxon.Catan', 'App.Taxon.Mayfair']);
+            ['App.Taxon.catan', 'App.Taxon.mayfair']);
         $this->createProduct('Mayfair Adventurer', $shortDescription, $description, 2000, '43517453', $manager,
-            ['App.Taxon.Mayfair']);
+            ['App.Taxon.mayfair']);
         $this->createProduct('Mayfair Quick Game', $shortDescription, $description, 1500, '80754812', $manager,
-            ['App.Taxon.Quick-(<15-mins)', 'App.Taxon.Mayfair']);
+            ['App.Taxon.quick_15_mins', 'App.Taxon.mayfair']);
 
         $manager->flush();
     }
@@ -143,15 +143,15 @@ class LoadProductData extends DataFixture
             $product->addChannel($this->getReference('App.Channel.WEB-UK'));
 
             $randomTaxon = $this->faker->randomElement([
-                'App.Taxon.Solitaire-(1)',
+                'App.Taxon.solitaire_1',
                 'App.Taxon.2',
                 'App.Taxon.3',
                 'App.Taxon.4',
                 'App.Taxon.5',
                 'App.Taxon.6',
-                'App.Taxon.Party-Games-(7+)',
-                'App.Taxon.Mayfair',
-                'App.Taxon.Catan'
+                'App.Taxon.party_games_7',
+                'App.Taxon.mayfair',
+                'App.Taxon.catan'
             ]);
 
             $product->addTaxon($this->getReference($randomTaxon));

@@ -78,6 +78,6 @@ class LoadCategoryData extends DataFixture
      */
     private function getCode($name)
     {
-        return preg_replace('/[^A-Za-z0-9\_]/', '', strtolower(str_replace(' ', '_', $name)));
+        return preg_replace('/[^A-Za-z0-9\_ -]/', '', strtolower(str_replace(' ', '_', $name)));
     }
 }

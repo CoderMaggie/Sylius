@@ -1,6 +1,6 @@
 sylius_grid:
     grids:
-        sylius_shop_product:
+        app_shop_product:
             driver:
                 name: doctrine/orm
                 options:
