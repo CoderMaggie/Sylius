@@ -5,9 +5,9 @@ imports:
     - { resource: @SyliusCoreBundle/Resources/config/app/main.yml }
     - { resource: @SyliusAdminBundle/Resources/config/grids.yml }
     - { resource: resources.yml }
-    - { resource: grids.yml }
     - { resource: permissions.yml }
-    - { resource: services/grid.xml }
+    - { resource: grids/grids.yml }
+    - { resource: services/grid.yml }
 
 framework:
     translator:      { fallback: %sylius.locale% }

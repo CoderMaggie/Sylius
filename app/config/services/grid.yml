@@ -1,0 +1,9 @@
+services:
+    app.grid_filter.taxon:
+        class: AppBundle\Grid\Filter\TaxonFilter
+        tags:
+            - { name: sylius.grid_filter, type: taxon }
+    app.form.type.grid_filter.taxon:
+        class: AppBundle\Form\Type\Grid\Filter\TaxonFilterType
+        tags:
+            - { name: form.type, alias: sylius_grid_filter_taxon }

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @author Paweł Jędrzejewski <pawel@app.org>
+ * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
 class TaxonFilterType extends AbstractType
 {
@@ -16,7 +16,7 @@ class TaxonFilterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setOptional([
+            ->setDefined([
                 'field'
             ])
             ->setAllowedTypes([

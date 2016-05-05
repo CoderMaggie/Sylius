@@ -1,0 +1,48 @@
+sylius_account_profile_show:
+    path: /account/
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: sylius_account_profile_update
+        permanent: true
+
+sylius_contact:
+    path: /contact/
+    methods: ['GET', 'POST']
+    defaults:
+        _controller: AppBundle:Contact:sendMail
+
+app_shop_product_similar:
+    path: /products/{productId}/similar/
+    defaults:
+        _controller: sylius.controller.product:indexAction
+        _sylius:
+            paginate: false
+            repository:
+                method: findSimilar
+                arguments: [$productId, $parameters, $limit]
+            template: $template
+            permission: false
+
+app_shop_product_index:
+    path: /products/
+    defaults:
+        _controller: sylius.controller.product:indexAction
+        _sylius:
+            permission: false
+            grid: app_shop_product
+            template: SyliusWebBundle:Frontend/Product:index.html.twig
+
+# Override default Sylius product index pages and redirect to our path
+sylius_shop_by_root_taxon_product_index:
+    path: /t/{rootTaxon}
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: app_shop_product_index
+        permanent: true
+
+sylius_shop_by_taxon_product_index:
+    path: /t/{rootTaxon}/{taxon}
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: app_shop_product_index
+        permanent: true

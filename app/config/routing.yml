@@ -26,54 +26,9 @@ payum_notify:
 fos_oauth_server_token:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
 
-sylius_account_profile_show:
-    path: /account/
-    defaults:
-        _controller: FrameworkBundle:Redirect:redirect
-        route: sylius_account_profile_update
-        permanent: true
-
-sylius_contact:
-    path: /contact/
-    methods: ['GET', 'POST']
-    defaults:
-        _controller: AppBundle:Contact:sendMail
-
 app_admin:
-    resource: 'routing/admin.yml'
+    resource: 'routing/admin/admin.yml'
     prefix: /admin
 
-app_product_similar:
-    path: /products/{productId}/similar/
-    defaults:
-        _controller: sylius.controller.product:indexAction
-        _sylius:
-            paginate: false
-            repository:
-                method: findSimilar
-                arguments: [$productId, $parameters, $limit]
-            template: $template
-            permission: false
-
-app_shop_product_index:
-    path: /products/
-    defaults:
-        _controller: sylius.controller.product:indexAction
-        _sylius:
-            permission: false
-            grid: sylius_shop_product
-            template: SyliusWebBundle:Frontend/Product:index.html.twig
-
-app_taxon_product_index:
-    path: /t/{taxon}
-    defaults:
-        _controller: FrameworkBundle:Redirect:urlRedirect
-        path: /products
-        permanent: true
-
-app_taxon_product_show:
-    path: /t/{taxon}/{value}
-    defaults:
-        _controller: FrameworkBundle:Redirect:urlRedirect
-        path: /products
-        permanent: true
+app_shop:
+    resource: 'routing/shop/shop.yml'
