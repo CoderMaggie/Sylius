@@ -147,13 +147,13 @@
 }
 
 .navbar .btn-primary {
-    margin-right: 0;
-    margin-left: 7px;
+    margin-right: 7px;
+    margin-left: 0;
 }
 
 .navbar #search {
     border: solid 1px #ccc;
-    margin-left: 7px;
+    margin-left: 0;
     margin-right: 0;
     width: auto;
 }
@@ -166,6 +166,16 @@
     display: block;
 }
 
+.navbar #basket-overview a {
+    margin-left: 0;
+}
+
 #content .panel.sidebar-menu .panel-body label {
    width: 100%;
+}
+
+@media (min-width: 991px) {
+    #navbar-collapse-menu {
+        display: none;
+    }
 }

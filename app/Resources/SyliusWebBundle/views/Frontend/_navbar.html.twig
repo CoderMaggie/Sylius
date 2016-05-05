@@ -1,28 +1,24 @@
 {% set cart = sylius_cart_get() %}
 
 <div id="navbar" class="navbar navbar-default navbar-fixed-top yamm" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand home" href="{{ path('sylius_homepage') }}">
-                <img src="{{ asset('img/logo.png') }}" />
-                <span class="sr-only">BoardGameMonster - go to homepage</span>
-            </a>
-        </div>
+    <div class="container-fluid row">
+        <div class="navbar-header col-sm-12">
 
-        <div class="navbar-collapse" id="menu">
-            {{ knp_menu_render('menu.partial_categories', {'template': '@SyliusWeb/Frontend/Menu/_main.html.twig'}) }}
-        </div>
+            <div class="hidden-md hidden-lg pull-right">
+                <button id="menu-trigger" class="btn btn-primary navbar-btn" data-target=".nav-collapse" data-toggle="collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
 
-        <div class="navbar-collapse right" id="basket-overview">
-            <a class="btn btn-primary navbar-btn" href={{ path('sylius_cart_summary') }}>
-                <i class="fa fa-shopping-cart"></i>
-                <span class="hidden-sm">{{ cart.countItems() }}</span> item{% if cart.countItems() != 1 %}s{% endif %}
-                <span class="hidden-md">in cart</span>
-            </a>
-        </div>
+            <div class="pull-right hidden-xs" id="basket-overview">
+                <a class="btn btn-primary navbar-btn" href={{ path('sylius_cart_summary') }}>
+                    <i class="fa fa-shopping-cart"></i>
+                    {{ cart.countItems() }} item{% if cart.countItems() != 1 %}s{% endif %}
+                    <span class="hidden-sm">in cart</span>
+                </a>
+            </div>
 
-        <div class="navbar-collapse right" id="navbar-search">
-            <form action="/search/" role="search" method="GET" class="navbar-form float-left">
+            <form action="/search/" role="search" method="GET" class="navbar-form pull-right">
                 <input type="hidden" name="search_param" value="all" id="search_param">
                 <div class="input-group">
                     <input type="text" class="form-control" id="search" placeholder="Search">
@@ -31,12 +27,26 @@
                     </button>
                 </div>
             </form>
+
+            <div class="pull-right hidden-xs">
+                <a class="btn btn-primary navbar-btn" href={{ path('sylius_account_profile_show') }}>
+                    <i class="fa fa-user"></i>
+                </a>
+            </div>
+
+            <a class="navbar-brand home pull-left" href="{{ path('sylius_homepage') }}">
+                <img src="{{ asset('img/logo.png') }}" />
+                <span class="sr-only">BoardGameMonster - go to homepage</span>
+            </a>
+
+            <div class="hidden-sm hidden-xs pull-left" id="menu">
+                {{ knp_menu_render('menu.partial_categories', {'template': '@SyliusWeb/Frontend/Menu/_main.html.twig'}) }}
+            </div>
+
         </div>
 
-        <div class="navbar-collapse right">
-            <a class="btn btn-primary navbar-btn" href={{ path('sylius_account_profile_show') }}>
-                <i class="fa fa-user"></i>
-            </a>
+        <div class="nav-collapse collapse col-sm-12" id="navbar-collapse-menu">
+            {{ knp_menu_render('menu.dropdown', {'template': '@SyliusWeb/Frontend/Menu/_dropdown.html.twig'}) }}
         </div>
     </div>
 </div>

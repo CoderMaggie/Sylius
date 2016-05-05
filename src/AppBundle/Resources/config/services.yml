@@ -4,7 +4,7 @@ parameters:
 services:
     app.menu.builder:
         class: AppBundle\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory", "@sylius.repository.taxon"]
+        arguments: ["@knp_menu.factory", "@sylius.repository.taxon", "@security.authorization_checker"]
 
     app.menu.full_categories:
         class: Knp\Menu\MenuItem
@@ -12,11 +12,17 @@ services:
         tags:
         - { name: knp_menu.menu, alias: menu.full_categories }
 
+    app.menu.dropdown:
+        class: Knp\Menu\MenuItem
+        factory: ["@app.menu.builder", createDropdownMenu]
+        tags:
+        - { name: knp_menu.menu, alias: menu.dropdown }
+
     app.menu.partial_categories:
         class: Knp\Menu\MenuItem
         factory: ["@app.menu.builder", createPartialCategoriesMenu]
         arguments:
-            categories: ['Publisher', 'Game System']
+            categories: ['publisher', 'game_system']
         tags:
         - { name: knp_menu.menu, alias: menu.partial_categories }
 
