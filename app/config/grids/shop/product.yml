@@ -1,0 +1,43 @@
+sylius_grid:
+    grids:
+        app_shop_product:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: %sylius.model.product.class%
+                    repository:
+                        method: createListQueryBuilder
+                        arguments: [$criteria]
+            filters:
+                game_length:
+                    type: taxon
+                    label: app.ui.game_length
+                    options:
+                        field: taxon.code
+                        multiple: true
+                        expanded: true
+                        root: game_length
+                number_of_players:
+                    type: taxon
+                    label: app.ui.number_of_players
+                    options:
+                        field: taxon.code
+                        multiple: true
+                        expanded: true
+                        root: number_of_players
+                publisher:
+                    type: taxon
+                    label: app.ui.publisher
+                    options:
+                        field: taxon.code
+                        multiple: true
+                        expanded: true
+                        root: publisher
+                game_system:
+                    type: taxon
+                    label: app.ui.game_system
+                    options:
+                        field: taxon.code
+                        multiple: true
+                        expanded: true
+                        root: game_system

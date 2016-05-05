@@ -1,0 +1,4 @@
+imports:
+    - { resource: 'admin/carousel_item.yml' }
+    - { resource: 'admin/product_grid_item.yml' }
+    - { resource: 'shop/product.yml' }

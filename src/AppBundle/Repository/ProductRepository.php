@@ -21,6 +21,32 @@ use Sylius\Component\Core\Model\TaxonInterface;
 class ProductRepository extends BaseProductRepository
 {
     /**
+     * @return QueryBuilder
+     */
+    public function createListQueryBuilder(array $criteria = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('o');
+
+        if (null === $criteria) {
+            return $queryBuilder;
+        }
+
+        $i = 1;
+        foreach ($criteria as $taxonIds) {
+            $alias = 'o'.$i++;
+            $subQueryBuilder = $this->_em->createQueryBuilder()->select($alias.'.id')->from($this->_entityName, $alias);
+            $subQueryBuilder
+                ->innerJoin($alias.'.taxons', $alias.'taxon')
+                ->andWhere($subQueryBuilder->expr()->in($alias.'taxon.id', $taxonIds))
+            ;
+
+            $queryBuilder->andWhere($queryBuilder->expr()->in('o.id', $subQueryBuilder->getDQL()));
+        }
+
+        return $queryBuilder;
+    }
+
+    /**
      * @param int $id
      *
      * @return ProductInterface|null

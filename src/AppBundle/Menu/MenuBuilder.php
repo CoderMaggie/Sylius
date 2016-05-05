@@ -107,14 +107,14 @@ class MenuBuilder
      */
     private function addTaxonAsChild(ItemInterface $menu, TaxonInterface $parentTaxon)
     {
-        $category = $menu->addChild($parentTaxon->getName(), ['route' => $parentTaxon])
+        $category = $menu->addChild($parentTaxon->getName(), ['route' => 'app_shop_product_index'])
             ->setAttribute('class', 'dropdown yamm-fw')
             ->setAttribute('style', 'display: block;')
             ->setLinkAttribute('class', 'dropdown-toggle')
             ->setLinkAttribute('data-toggle', 'dropdown')
             ->setChildrenAttribute('class', 'dropdown-menu')
-            ->addChild('', []);
-
+            ->addChild('', [])
+        ;
 
         $this->appendCategoryDropdown($category, $parentTaxon);
     }
@@ -128,7 +128,10 @@ class MenuBuilder
         $taxons = $parentTaxon->getChildren();
 
         foreach ($taxons as $taxon) {
-            $category->addChild($taxon->getName(), ['route' => $taxon]);
+            $category->addChild($taxon->getName(), [
+                'route' => 'app_shop_product_index',
+                'routeParameters' => ['criteria' => [$parentTaxon->getCode() => [$taxon->getId()]]],
+            ]);
         }
     }
 }

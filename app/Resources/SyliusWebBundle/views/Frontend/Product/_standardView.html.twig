@@ -42,7 +42,7 @@
         <li><a href={{ path('sylius_homepage') }}>Home</a></li>
         {% for rootName, taxons in majorCategories %}
             {% for taxon in taxons %}
-                <li><a href={{ path(taxon.permalink) }}>{{ taxon.name }}</a></li>
+                <li><a href={{ path('app_shop_product_index', {'criteria': {(taxon.root.code): [taxon.id]}}) }}>{{ taxon.name }}</a></li>
             {% endfor %}
         {% endfor %}
         <li>{{ product.name }}</li>
@@ -154,7 +154,7 @@
                                 {% for rootName, taxons in majorCategories %}
                                     <dt>{{ rootName }}</dt>
                                     {% for taxon in taxons %}
-                                        <dd><a href={{ path(taxon.permalink) }}>{{ taxon.name }}</a></dd>
+                                        <dd><a href={{ path('app_shop_product_index', {'criteria': {(taxon.root.code): [taxon.id]}}) }}>{{ taxon.name }}</a></dd>
                                     {% endfor %}
                                 {% endfor %}
 
@@ -177,7 +177,7 @@
                                 {% for rootName, taxons in minorCategories %}
                                     <dt>{{ rootName }}</dt>
                                     {% for taxon in taxons %}
-                                        <dd><a href={{ path(taxon.permalink) }}>{{ taxon.name }}</a></dd>
+                                        <dd><a href={{ path('app_shop_product_index', {'criteria': {(taxon.root.code): [taxon.id]}}) }}>{{ taxon.name }}</a></dd>
                                     {% endfor %}
                                 {% endfor %}
                             </dl>
@@ -215,7 +215,7 @@
 
     </div>
     <div>
-        {{ render(url('app_product_similar', {'productId': product.id, 'parameters': ['Game System', 'Publisher'], 'limit': 5, 'template': '@SyliusWeb/Frontend/Product/_similar.html.twig'})) }}
+        {{ render(url('app_shop_product_similar', {'productId': product.id, 'parameters': ['Game System', 'Publisher'], 'limit': 5, 'template': '@SyliusWeb/Frontend/Product/_similar.html.twig'})) }}
     </div>
 
 {% endblock %}

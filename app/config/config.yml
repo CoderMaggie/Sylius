@@ -5,8 +5,9 @@ imports:
     - { resource: @SyliusCoreBundle/Resources/config/app/main.yml }
     - { resource: @SyliusAdminBundle/Resources/config/grids.yml }
     - { resource: resources.yml }
-    - { resource: grids.yml }
     - { resource: permissions.yml }
+    - { resource: grids/grids.yml }
+    - { resource: services/grid.yml }
 
 framework:
     translator:      { fallback: %sylius.locale% }
@@ -111,3 +112,8 @@ sylius_core:
                 sylius:
                     method: findWithTaxons
                     arguments: [$id]
+
+sylius_grid:
+    templates:
+        filter:
+            taxon: :Grid/Filter:taxon.html.twig
