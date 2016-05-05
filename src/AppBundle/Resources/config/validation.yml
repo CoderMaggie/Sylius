@@ -4,3 +4,9 @@ AppBundle\Entity\ProductGridItem:
             -  NotBlank: ~
         product:
             -  NotBlank: ~
+
+AppBundle\Entity\CarouselItem:
+    properties:
+        file:
+            - NotBlank: { groups: ['carousel_item_create'] }
+            - Image: { groups: ['carousel_item_create'] }
