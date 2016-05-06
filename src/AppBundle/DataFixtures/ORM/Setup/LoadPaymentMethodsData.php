@@ -14,8 +14,9 @@ class LoadPaymentMethodsData extends DataFixture
      */
     public function load(ObjectManager $manager)
     {
-        $manager->persist($this->createPaymentMethod('Offline', 'offline'));
-        $manager->persist($this->createPaymentMethod('Paypal', 'paypal_express_checkout'));
+        $manager->persist($this->createPaymentMethod('Cash on Collection', 'offline'));
+        $manager->persist($this->createPaymentMethod('Pay by Bank Transfer', 'offline'));
+        $manager->persist($this->createPaymentMethod('Pay by PayPal', 'paypal_express_checkout'));
 
         $manager->flush();
     }
@@ -37,14 +38,21 @@ class LoadPaymentMethodsData extends DataFixture
      */
     protected function createPaymentMethod($name, $gateway, $enabled = true)
     {
+        $code = $this->getCodeFromName($name);
+
         $method = $this->getPaymentMethodFactory()->createNew();
-        $method->setCode($name);
+        $method->setCode($code);
         $method->setName($name);
         $method->setGateway($gateway);
         $method->setEnabled($enabled);
 
-        $this->setReference('App.PaymentMethod.'.$name, $method);
+        $this->setReference('App.PaymentMethod.'.$code, $method);
 
         return $method;
+    }
+
+    protected function getCodeFromName($name)
+    {
+        return strtolower(str_replace(' ', '_', $name));
     }
 }

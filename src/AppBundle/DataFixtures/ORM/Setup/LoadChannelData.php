@@ -21,8 +21,8 @@ class LoadChannelData extends DataFixture
             'http://example.com/',
             array('en_GB'),
             array('GBP'),
-            array('DHL', 'UPS'),
-            array('Offline', 'Paypal')
+            array('local_collection', 'uk_standard_shipping', 'uk_express_shipping'),
+            array('cash_on_collection', 'pay_by_bank_transfer', 'pay_by_paypal')
         );
 
         $manager->persist($channel);

@@ -159,7 +159,6 @@ class LoadProductData extends DataFixture
             $this->setVariantProperties($variant);
 
             $image = clone $this->getReference('App.Image.'.$img->getBasename('.jpg'));
-
             $variant->addImage($image);
 
             $this->setReference('App.Product.'.$this->productNumber, $product);
@@ -203,5 +202,6 @@ class LoadProductData extends DataFixture
         $variant->setHeight($this->faker->numberBetween(0, 100));
         $variant->setWidth($this->faker->numberBetween(0, 100));
         $variant->setWeight($this->faker->randomFloat(2,0,5));
+        $variant->setTaxCategory($this->getReference('App.TaxCategory.taxable'));
     }
 }
