@@ -26,9 +26,6 @@ class CustomerProfileType extends BaseCustomerProfileType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('birthday', 'text', [
-            'required' => false,
-            'label' => 'sylius.form.customer.birthday',
-        ]);
+        $builder->remove('gender');
     }
 }
