@@ -37,3 +37,5 @@ app:
         address: Address
         tags: Tags
         order_review: Order review
+        log_out: Log out
+        log_in: Log in
