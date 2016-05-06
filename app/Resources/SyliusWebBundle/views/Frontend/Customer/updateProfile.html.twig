@@ -48,8 +48,19 @@
                         {{ form_errors(form.lastName) }}
                     </div>
                     <div class="col-md-6">
-                        {{ form_label(form.birthday, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
-                        {{ form_widget(form.birthday) }}
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{ form_label(form.birthday, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker'>
+                                {{ form_widget(form.birthday) }}
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
                         {{ form_errors(form.birthday) }}
                     </div>
                     <div class="col-md-6">
@@ -72,4 +83,16 @@
 
     {% include('SyliusWebBundle:Frontend/Account:menu.html.twig') %}
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type='text/javascript'>
+        $(function () {
+            $('#datetimepicker').datetimepicker({
+                format: 'L'
+            });
+        });
+    </script>
 {% endblock %}

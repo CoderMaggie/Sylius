@@ -117,3 +117,10 @@ sylius_grid:
     templates:
         filter:
             taxon: :Grid/Filter:taxon.html.twig
+
+sylius_user:
+    resources:
+        customer:
+            classes:
+                form:
+                    profile: AppBundle\Form\Type\CustomerProfileType
