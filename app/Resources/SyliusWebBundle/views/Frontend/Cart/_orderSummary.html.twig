@@ -5,33 +5,33 @@
 
 <div class="box" id="order-summary">
     <div class="box-header">
-        <h3>Order summary</h3>
+        <h3>{{ 'sylius.ui.order_summary'|trans }}</h3>
     </div>
     <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
     <div class="table-responsive">
         <table class="table">
             <tbody>
             <tr>
-                <td>Order subtotal</td>
+                <td>{{ 'app.ui.order_subtotal'|trans }}</td>
                 {% set orderSubtotal = order.itemsTotal - order.getAdjustmentsTotalRecursively(taxAdjustment) - order.getAdjustmentsTotalRecursively(orderItemPromotionAdjustment) %}
                 <th colspan="2">{{ (orderSubtotal)|sylius_price }}</th>
             </tr>
             <tr>
-                <td>Shipping</td>
+                <td>{{ 'app.ui.shipping_fee'|trans }}</td>
                 {% set shippingTotal = order.adjustmentsTotal(taxAdjustment) + order.adjustmentsTotal(shippingAdjustment) %}
                 <th>{{ shippingTotal|sylius_price }}</th>
             </tr>
             <tr>
-                <td>Tax</td>
+                <td>{{ 'app.ui.tax'|trans }}</td>
                 <th>{{ order.getAdjustmentsTotalRecursively(taxAdjustment)|sylius_price }}</th>
             </tr>
             <tr>
-                <td>Discount</td>
+                <td>{{ 'app.ui.discount'|trans }}</td>
                 {% set discountAmount = order.adjustmentsTotalRecursively(orderItemPromotionAdjustment) + order.adjustmentsTotalRecursively(orderPromotionAdjustment) %}
                 <th>{{ (-1 * discountAmount)|sylius_price }}</th>
             </tr>
             <tr class="total">
-                <td>Grand total</td>
+                <td>{{ 'sylius.ui.grand_total'|trans }}</td>
                 <th>{{ order.total|sylius_price }}</th>
             </tr>
             </tbody>

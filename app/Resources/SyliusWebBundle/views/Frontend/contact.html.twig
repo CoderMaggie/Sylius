@@ -1,13 +1,15 @@
 {% extends '@SyliusWeb/Frontend/layout.html.twig' %}
 
+
+{% set contactLabel = 'app.ui.contact'|trans %}
 {% block title %}
-    - Contact
+    - {{ contactLabel }}
 {% endblock %}
 
 {% block topbar %}
     <ul class="breadcrumb">
-        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
-        <li>Contact</li>
+        <li><a href={{ path('sylius_homepage') }}>{{ 'app.ui.home'|trans }}</a></li>
+        <li>{{ contactLabel }}</li>
     </ul>
 {% endblock %}
 
@@ -15,7 +17,7 @@
     <div class="box text-center">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <h1>Contact</h1>
+                <h1>{{ contactLabel }}</h1>
                 <p class="lead">
                     Are you curious about something?<br>
                     Do you have some kind of problem with our products?
@@ -32,7 +34,7 @@
             <div class="col-sm-4">
                 <h3>
                     <i class="fa fa-map-marker"></i>
-                    Address
+                    {{ 'app.ui.address'|trans }}
                 </h3>
                 <p>
                     13/25 New Avenue<br>
@@ -68,7 +70,7 @@
 
         <hr>
 
-        <h2 class="text-center">Contact form</h2>
+        <h2 class="text-center">{{ 'app.ui.contact_form'|trans }}</h2>
         <form method="post" id="contact-form" novalidate="novalidate">
 
             {{ form_errors(form) }}
@@ -103,7 +105,7 @@
                     <div class="col-sm-12 text-center">
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-envelope-o"></i>
-                            Send message
+                            {{ 'app.ui.send_message'|trans }}
                         </button>
                     </div>
                 </div>

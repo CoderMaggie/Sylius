@@ -39,3 +39,14 @@ app:
         order_review: Order review
         log_out: Log out
         log_in: Log in
+        order_subtotal: Order subtotal
+        summary: Summary
+        shopping_cart: Shopping cart
+        continue_shopping: Continue shopping
+        update_cart: Update cart
+        proceed_to_checkout: Proceed to checkout
+        enter_coupon_code: If you have a coupon code, please enter it in the box below.
+        quick_view: Quick view
+        contact: Contact
+        contact_form: Contact form
+        send_message: Send message

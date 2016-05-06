@@ -1,13 +1,13 @@
 {% extends '@SyliusWeb/Frontend/layout.html.twig' %}
 
 {% block title %}
-    - Summary
+    - {{ 'app.ui.summary'|trans }}
 {% endblock %}
 
 {% block topbar %}
     <ol class="breadcrumb">
-        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
-        <li>Shopping cart</li>
+        <li><a href={{ path('sylius_homepage') }}>{{ 'app.ui.home'|trans }}</a></li>
+        <li>{{ 'app.ui.shopping_cart'|trans }}</li>
     </ol>
 {% endblock %}
 
@@ -15,7 +15,7 @@
     <div class="box text-center">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <h1>Shopping cart</h1>
+                <h1>{{ 'app.ui.shopping_cart'|trans }}</h1>
                 <p class="text-muted">You currently have {{ cart.items|length }} item{% if cart.items|length != 1 %}s{% endif %} in your cart.</p>
             </div>
         </div>
@@ -33,10 +33,10 @@
 
                 <div class="box-footer">
                     <div class="pull-left">
-                        <a href="{{ path('app_shop_product_index') }}" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                        <a href="{{ path('app_shop_product_index') }}" class="btn btn-default"><i class="fa fa-chevron-left"></i>{{ 'app.ui.continue_shopping'|trans }}</a>
                     </div>
                     <div class="pull-right">
-                        <a href="{{ path('sylius_checkout_start') }}" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></a>
+                        <a href="{{ path('sylius_checkout_start') }}" class="btn btn-primary">{{ 'app.ui.proceed_to_checkout'|trans }}<i class="fa fa-chevron-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -55,10 +55,10 @@
             {% endif %}
 
             <div class="box">
-                <div class="box-header">
-                    <h4>Coupon code</h4>
+                <div class="box-header text-center">
+                    <h4>{{ 'sylius.ui.coupon'|trans }}</h4>
                 </div>
-                <p class="text-muted">If you have a coupon code, please enter it in the box below.</p>
+                <p class="text-muted">{{ 'app.ui.enter_coupon_code'|trans }}</p>
                 <div class="input-group">
                     {{ form_row(form.promotionCoupon, {'label': false}) }}
 
