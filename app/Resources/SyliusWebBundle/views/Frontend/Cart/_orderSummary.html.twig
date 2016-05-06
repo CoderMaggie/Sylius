@@ -1,6 +1,7 @@
 {% set taxAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::TAX_ADJUSTMENT') %}
 {% set shippingAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::SHIPPING_ADJUSTMENT') %}
-{% set promotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
+{% set orderPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
+{% set orderItemPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_ITEM_PROMOTION_ADJUSTMENT') %}
 
 <div class="box" id="order-summary">
     <div class="box-header">
@@ -12,7 +13,8 @@
             <tbody>
             <tr>
                 <td>Order subtotal</td>
-                <th>{{ order.itemsTotal|sylius_price }}</th>
+                {% set orderSubtotal = order.itemsTotal - order.getAdjustmentsTotalRecursively(taxAdjustment) - order.getAdjustmentsTotalRecursively(orderItemPromotionAdjustment) %}
+                <th colspan="2">{{ (orderSubtotal)|sylius_price }}</th>
             </tr>
             <tr>
                 <td>Shipping</td>
@@ -25,7 +27,8 @@
             </tr>
             <tr>
                 <td>Discount</td>
-                <th>{{ (-1 * order.adjustmentsTotalRecursively(promotionAdjustment))|sylius_price }}</th>
+                {% set discountAmount = order.adjustmentsTotalRecursively(orderItemPromotionAdjustment) + order.adjustmentsTotalRecursively(orderPromotionAdjustment) %}
+                <th>{{ (-1 * discountAmount)|sylius_price }}</th>
             </tr>
             <tr class="total">
                 <td>Grand total</td>
