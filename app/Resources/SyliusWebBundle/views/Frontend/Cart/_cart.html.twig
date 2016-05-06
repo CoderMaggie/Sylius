@@ -18,6 +18,9 @@
                 <th colspan="5">Total</th>
                 <th colspan="2">{{ cart.itemsTotal|sylius_price }}</th>
             </tr>
+            <tr>
+                <th colspan="7"><button class="btn btn-default pull-right"><i class="fa fa-refresh"></i> Update cart</button></th>
+            </tr>
             <tr class="box">
                 <td colspan="1">{{ form_label(form.additionalInformation, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}</td>
                 <td colspan="6">
