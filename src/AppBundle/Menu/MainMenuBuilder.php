@@ -4,7 +4,6 @@ namespace AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Sylius\Component\Taxonomy\Model\TaxonInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Webmozart\Assert\Assert;
@@ -12,7 +11,7 @@ use Webmozart\Assert\Assert;
 /**
  * @author Magdalena Banasiak <magdalena.banasiak@lakion.com>
  */
-class MenuBuilder
+class MainMenuBuilder
 {
     /**
      * @var FactoryInterface
@@ -25,23 +24,13 @@ class MenuBuilder
     private $taxonRepository;
 
     /**
-     * @var AuthorizationCheckerInterface
-     */
-    private $authorizationChecker;
-
-    /**
      * @param FactoryInterface $factory
      * @param RepositoryInterface $taxonRepository
-     * @param AuthorizationCheckerInterface $authorizationChecker
      */
-    public function __construct(
-        FactoryInterface $factory,
-        RepositoryInterface $taxonRepository,
-        AuthorizationCheckerInterface $authorizationChecker
-    ) {
+    public function __construct(FactoryInterface $factory, RepositoryInterface $taxonRepository)
+    {
         $this->factory = $factory;
         $this->taxonRepository = $taxonRepository;
-        $this->authorizationChecker = $authorizationChecker;
     }
 
     /**
@@ -56,61 +45,6 @@ class MenuBuilder
         $this->addAllChildren($menu, $taxons);
 
         $menu->addChild('Contact', ['route' => 'sylius_contact']);
-
-        return $menu;
-    }
-
-    /**
-     * @return ItemInterface
-     */
-    public function createDropdownMenu()
-    {
-        $authenticated = $this->authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED');
-
-        $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'nav dropdown yamm-fw');
-
-        $menu
-            ->addChild('Cart', ['route' => 'sylius_cart_summary'])
-            ->setExtra('icon', 'shopping-cart')
-        ;
-
-        $categoryMenu = $menu
-            ->addChild('Categories', ['uri' => '#'])
-            ->setAttribute('class', 'dropdown-toggle')
-            ->setAttribute('data-toggle', 'dropdown')
-            ->setChildrenAttribute('class', 'dropdown-menu')
-            ->setExtra('icon', 'tags')
-        ;
-
-        $taxons = $this->getTaxons();
-        $this->addAllRootTaxonsAsChildren($categoryMenu, $taxons);
-
-        $menu->addChild('Contact', ['route' => 'sylius_contact'])
-            ->setExtra('icon', 'envelope')
-        ;
-
-        if ($authenticated) {
-            $menu
-                ->addChild('Account', ['route' => 'sylius_account_profile_show'])
-                ->setExtra('icon', 'user')
-            ;
-            $menu
-                ->addChild('Logout', ['route' => 'sylius_user_security_logout'])
-                ->setExtra('icon', 'sign-out')
-            ;
-        }
-
-        if (!$authenticated) {
-            $menu
-                ->addChild('Login', ['route' => 'sylius_user_security_login'])
-                ->setExtra('icon', 'sign-in')
-            ;
-            $menu
-                ->addChild('Register', ['route' => 'sylius_user_registration'])
-                ->setExtra('icon', 'user-plus')
-            ;
-        }
 
         return $menu;
     }
@@ -164,17 +98,6 @@ class MenuBuilder
             if (in_array($taxonCode, $categories, true)) {
                 $this->addTaxonAsChild($menu, $taxon);
             }
-        }
-    }
-
-    /**
-     * @param ItemInterface $menu
-     * @param TaxonInterface[] $rootTaxons
-     */
-    private function addAllRootTaxonsAsChildren(ItemInterface $menu, array $rootTaxons)
-    {
-        foreach ($rootTaxons as $taxon) {
-             $menu->addChild($taxon->getName(), ['route' => $taxon]);
         }
     }
 

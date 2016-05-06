@@ -8,7 +8,7 @@ $(function () {
     fullScreenContainer();
     productDetailGallery(4000);
     productQuickViewGallery();
-	hideDropdownOnClickOutside();
+    hideDropdownOnClickOutside();
     menuSliding();
     productDetailSizes();
     utils();
@@ -58,13 +58,13 @@ function sliderHomepage() {
 
 function hideDropdownOnClickOutside() {
 
-	$(document).click(function(){
-		var menu = $("#navbar-collapse-menu");
+    $(document).click(function() {
+        var menu = $("#navbar-collapse-menu");
 
-		if (menu.hasClass("in")) {
-			menu.removeClass("in");
-		}
-	});
+        if (menu.hasClass("in")) {
+            menu.removeClass("in");
+        }
+    });
 }
 
 /* menu sliding */
@@ -183,10 +183,10 @@ function utils() {
 	}, 1000);
     }
 
-	/* workaround for bootstrap not clickable links in nested menus issue */
-	$('.nav .dropdown-menu > li > a:not(a[href="#"])').on('click', function() {
-		self.location = $(this).attr('href');
-	});
+    /* workaround for bootstrap unclickable links in nested menus issue */
+    $('.nav .dropdown-menu > li > a:not(a[href="#"])').on('click', function() {
+        self.location = $(this).attr('href');
+    });
 }
 
 /* product detail gallery */
