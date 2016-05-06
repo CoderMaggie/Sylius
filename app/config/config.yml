@@ -124,3 +124,9 @@ sylius_user:
             classes:
                 form:
                     profile: AppBundle\Form\Type\CustomerProfileType
+sylius_cart:
+    resources:
+        cart_item:
+            classes:
+                form:
+                    default: AppBundle\Form\Type\CartItemType
