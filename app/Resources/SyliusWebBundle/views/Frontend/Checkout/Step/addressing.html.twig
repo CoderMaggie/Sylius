@@ -36,16 +36,7 @@
         <div class="box">
             <form method="post" action="{{ path(context.process.forwardRoute, {'stepName': context.currentStep.name}) }}" novalidate>
 
-                <ul class="nav nav-pills nav-justified">
-                    <li class="active"><a href="#"><i class="fa fa-map-marker"></i><br>Address</a>
-                    </li>
-                    <li class="disabled"><a href="{{ path('sylius_checkout_shipping') }}"><i class="fa fa-truck"></i><br>Shipping Method</a>
-                    </li>
-                    <li class="disabled"><a href="{{ path('sylius_checkout_payment') }}"><i class="fa fa-money"></i><br>Payment Method</a>
-                    </li>
-                    <li class="disabled"><a href="{{ path('sylius_checkout_finalize') }}"><i class="fa fa-eye"></i><br>Order Review</a>
-                    </li>
-                </ul>
+                {{ include('@SyliusWeb/Frontend/Checkout/Step/_statusBar.html.twig') }}
 
                 <div class="content">
 

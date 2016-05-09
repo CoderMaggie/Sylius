@@ -1,0 +1,29 @@
+{% block statusBar %}
+    {% set states = {
+        'insecure': 0,
+        'cart': 1,
+        'addressed': 2,
+        'shipping_selected': 3,
+        'payment_selected': 4
+    } %}
+    {% if order is defined %}
+        {% set currentState = order.checkoutState %}
+    {% else %}
+        {% set currentState = 'insecure' %}
+    {% endif %}
+
+    <ul class="nav nav-pills nav-justified">
+        <li class="{% if 1 == states[currentState] %} active {% elseif  1 > states[currentState] %} disabled {% endif %}">
+            <a href="{{ path('sylius_checkout_addressing') }}"><i class="fa fa-map-marker"></i><br>{{ 'app.ui.address'|trans }}</a>
+        </li>
+        <li class="{% if 2 == states[currentState] %} active {% elseif  2 > states[currentState] %} disabled {% endif %}">
+            <a href="{{ path('sylius_checkout_shipping') }}"><i class="fa fa-truck"></i><br>{{ 'sylius.ui.shipping_method'|trans }}</a>
+        </li>
+        <li class="{% if 3 == states[currentState] %} active {% elseif  3 > states[currentState] %} disabled {% endif %}">
+            <a href="{{ path('sylius_checkout_payment') }}"><i class="fa fa-money"></i><br>{{ 'sylius.ui.payment_method'|trans }}</a>
+        </li>
+        <li class="{% if 4 == states[currentState] %} active {% elseif  4 > states[currentState] %} disabled {% endif %}">
+            <a href="{{ path('sylius_checkout_finalize') }}"><i class="fa fa-eye"></i><br>{{ 'app.ui.order_review'|trans }}</a>
+        </li>
+    </ul>
+{% endblock %}

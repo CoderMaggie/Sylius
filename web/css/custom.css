@@ -10,8 +10,8 @@
     margin-bottom: 10px;
 }
 
- /*Reduce whitespace in box */
-.box {
+/* Reduce whitespace in box on product details */
+#productExtra .box, #productPrice .box {
     padding: 10px 0;
 }
 
@@ -29,10 +29,12 @@
     padding-left: 1em;
     text-align: left;
 }
-
 .text-instead-of-image h3 {
     margin-top: 0;
     margin-bottom: 10px;
+}
+.text-instead-of-image .box {
+    padding: 10px 0;
 }
 
 #content {
