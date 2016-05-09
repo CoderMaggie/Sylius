@@ -5,10 +5,10 @@
     <table class="table" id="cart-summary">
         <thead>
             <tr>
-                <th colspan="3">Product</th>
-                <th>Quantity</th>
-                <th>Unit Price</th>
-                <th colspan="2">Total</th>
+                <th colspan="3">{{ 'sylius.ui.product'|trans }}</th>
+                <th>{{ 'sylius.cart.summary.quantity'|trans }}</th>
+                <th>{{ 'sylius.ui.unit_price'|trans }}</th>
+                <th colspan="2">{{ 'sylius.ui.total'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -18,12 +18,12 @@
         </tbody>
         <tfoot>
             <tr>
-                <th colspan="5">Total</th>
+                <th colspan="5">{{ 'sylius.ui.total'|trans }}</th>
                 {% set cartTotal = cart.itemsTotal - cart.getAdjustmentsTotalRecursively(taxAdjustment) - cart.getAdjustmentsTotalRecursively(orderItemPromotionAdjustment) %}
                 <th colspan="2">{{ (cartTotal)|sylius_price }}</th>
             </tr>
             <tr>
-                <th colspan="7"><button class="btn btn-default pull-right"><i class="fa fa-refresh"></i> Update cart</button></th>
+                <th colspan="7"><button class="btn btn-default pull-right"><i class="fa fa-refresh"></i>{{ 'app.ui.update_cart'|trans }}</button></th>
             </tr>
             <tr class="box">
                 <td colspan="1">{{ form_label(form.additionalInformation, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}</td>

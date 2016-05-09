@@ -22,7 +22,7 @@
                         <img class="image1 img-responsive" src="{{ product.image ? product.image.path|imagine_filter('sylius_large') : 'http://placehold.it/500x500' }}" alt="{{ product.name }}" />
                     </a>
                     <div class="quick-view-button">
-                        <a href="{{ path(product) }}" data-toggle="modal" data-target="#product-quick-view-modal" class="btn btn-default btn-sm">Quick view</a>
+                        <a href="{{ path(product) }}" data-toggle="modal" data-target="#product-quick-view-modal" class="btn btn-default btn-sm">{{ 'app.ui.quick_view'|trans }}</a>
                     </div>
                 </div>
 
