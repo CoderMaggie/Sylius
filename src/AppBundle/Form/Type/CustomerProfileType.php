@@ -66,5 +66,8 @@ class CustomerProfileType extends BaseCustomerProfileType
                 'label_attr' => ['class' => 'text-muted pull-left'],
             ])
         ;
+
+        $builder->get('firstName')->setRequired(false);
+        $builder->get('lastName')->setRequired(false);
     }
 }
