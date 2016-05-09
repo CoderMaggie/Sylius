@@ -1,3 +1,6 @@
+{% set taxAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::TAX_ADJUSTMENT') %}
+{% set orderItemPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_ITEM_PROMOTION_ADJUSTMENT') %}
+
 <div class="table-responsive">
     <table class="table" id="cart-summary">
         <thead>
@@ -16,7 +19,8 @@
         <tfoot>
             <tr>
                 <th colspan="5">Total</th>
-                <th colspan="2">{{ cart.itemsTotal|sylius_price }}</th>
+                {% set cartTotal = cart.itemsTotal - cart.getAdjustmentsTotalRecursively(taxAdjustment) - cart.getAdjustmentsTotalRecursively(orderItemPromotionAdjustment) %}
+                <th colspan="2">{{ (cartTotal)|sylius_price }}</th>
             </tr>
             <tr>
                 <th colspan="7"><button class="btn btn-default pull-right"><i class="fa fa-refresh"></i> Update cart</button></th>

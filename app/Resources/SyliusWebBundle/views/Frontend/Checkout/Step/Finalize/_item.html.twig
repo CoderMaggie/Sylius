@@ -13,6 +13,6 @@
         {{ item.unitPrice|sylius_price }}
     </th>
     <th colspan="2">
-        {{ item.total|sylius_price }}
+        {{ (item.unitPrice * item.quantity)|sylius_price }}
     </th>
 </tr>

@@ -13,7 +13,7 @@
         {{ item.vars.value.unitPrice|sylius_price }}
     </td>
     <td>
-        {{ item.vars.value.total|sylius_price }}
+        {{ (item.vars.value.unitPrice * item.vars.value.quantity)|sylius_price }}
     </td>
     <td>
         <a href="{{ path('sylius_cart_item_remove', {'id': item.vars.value.id}) }}"><i class="fa fa-trash-o fa-2x"></i></a>
