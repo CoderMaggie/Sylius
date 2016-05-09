@@ -7,4 +7,7 @@
     {{ form_row(form.showRibbonNew) }}
     {{ form_row(form.showRibbonSale) }}
     {{ form_row(form.file) }}
+    {% if form.vars.data.path is not null %}
+        <img src="{{ form.vars.data.path|imagine_filter('sylius_medium') }}" alt="" class="img-responsive image1">
+    {% endif %}
 </div>

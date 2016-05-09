@@ -5,4 +5,7 @@
     {{ form_row(form.category) }}
     {{ form_row(form.enabled) }}
     {{ form_row(form.file) }}
+    {% if form.vars.data.path is not null %}
+        <img src="{{ form.vars.data.path|imagine_filter('sylius_medium') }}" alt="" class="img-responsive image1">
+    {% endif %}
 </div>
