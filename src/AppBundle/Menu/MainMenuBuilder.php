@@ -11,7 +11,7 @@ use Webmozart\Assert\Assert;
 /**
  * @author Magdalena Banasiak <magdalena.banasiak@lakion.com>
  */
-class MenuBuilder
+class MainMenuBuilder
 {
     /**
      * @var FactoryInterface
@@ -41,7 +41,7 @@ class MenuBuilder
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
 
-        $taxons = $this->getCategories();
+        $taxons = $this->getTaxons();
         $this->addAllChildren($menu, $taxons);
 
         $menu->addChild('Contact', ['route' => 'sylius_contact']);
@@ -61,7 +61,7 @@ class MenuBuilder
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
 
-        $taxons = $this->getCategories();
+        $taxons = $this->getTaxons();
         $this->addGivenChildren($menu, $taxons, $categories);
 
         return $menu;
@@ -70,7 +70,7 @@ class MenuBuilder
     /**
      * @return array
      */
-    private function getCategories()
+    private function getTaxons()
     {
         return $this->taxonRepository->findRootNodes();
     }
@@ -94,8 +94,8 @@ class MenuBuilder
     private function addGivenChildren(ItemInterface $menu, array $taxons, array $categories)
     {
         foreach ($taxons as $taxon) {
-            $taxonName = $taxon->getName();
-            if (in_array($taxonName, $categories, true)) {
+            $taxonCode = $taxon->getCode();
+            if (in_array($taxonCode, $categories, true)) {
                 $this->addTaxonAsChild($menu, $taxon);
             }
         }

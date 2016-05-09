@@ -8,6 +8,7 @@ $(function () {
     fullScreenContainer();
     productDetailGallery(4000);
     productQuickViewGallery();
+    hideDropdownOnClickOutside();
     menuSliding();
     productDetailSizes();
     utils();
@@ -53,6 +54,17 @@ function sliderHomepage() {
 	});
     }
 
+}
+
+function hideDropdownOnClickOutside() {
+
+    $(document).click(function() {
+        var menu = $("#navbar-collapse-menu");
+
+        if (menu.hasClass("in")) {
+            menu.removeClass("in");
+        }
+    });
 }
 
 /* menu sliding */
@@ -170,6 +182,11 @@ function utils() {
 	    scrollTop: target_top
 	}, 1000);
     }
+
+    /* workaround for bootstrap unclickable links in nested menus issue */
+    $('.nav .dropdown-menu > li > a:not(a[href="#"])').on('click', function() {
+        self.location = $(this).attr('href');
+    });
 }
 
 /* product detail gallery */

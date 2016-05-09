@@ -2,21 +2,31 @@ parameters:
     sylius.controller.frontend.homepage.class: AppBundle\Controller\Frontend\HomepageController
 
 services:
-    app.menu.builder:
-        class: AppBundle\Menu\MenuBuilder
+    app.menu.main_builder:
+        class: AppBundle\Menu\MainMenuBuilder
         arguments: ["@knp_menu.factory", "@sylius.repository.taxon"]
+
+    app.menu.dropdown_builder:
+        class: AppBundle\Menu\DropdownMenuBuilder
+        arguments: ["@knp_menu.factory", "@sylius.repository.taxon", "@security.authorization_checker"]
 
     app.menu.full_categories:
         class: Knp\Menu\MenuItem
-        factory: ["@app.menu.builder", createFullCategoriesMenu]
+        factory: ["@app.menu.main_builder", createFullCategoriesMenu]
         tags:
         - { name: knp_menu.menu, alias: menu.full_categories }
 
+    app.menu.dropdown:
+        class: Knp\Menu\MenuItem
+        factory: ["@app.menu.dropdown_builder", createDropdownMenu]
+        tags:
+        - { name: knp_menu.menu, alias: menu.dropdown }
+
     app.menu.partial_categories:
         class: Knp\Menu\MenuItem
-        factory: ["@app.menu.builder", createPartialCategoriesMenu]
+        factory: ["@app.menu.main_builder", createPartialCategoriesMenu]
         arguments:
-            categories: ['Publisher', 'Game System']
+            categories: ['publisher', 'game_system']
         tags:
         - { name: knp_menu.menu, alias: menu.partial_categories }
 
