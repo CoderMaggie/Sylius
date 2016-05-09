@@ -5,25 +5,31 @@
         <ul>
             {% for link in links %}
                 {% if cmf_is_linkable(link) %}
-                    <li>
-                        <a href="{{ path(link) }}">{{ link.title|striptags }}</a>
-                    </li>
+                    <li><a href="{{ path(link) }}">{{ link.title|striptags }}</a></li>
                 {% endif %}
             {% endfor %}
         </ul>
+        <hr/>
     {% endif %}
 
-    <hr>
+    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <h4>{{ 'app.ui.user_section'|trans }}</h4>
+        <ul>
+            <li><a href="{{ path('sylius_user_security_login') }}">{{ 'app.ui.log_in'|trans }}</a></li>
+            <li><a href="{{ path('sylius_user_registration') }}">{{ 'sylius.ui.register'|trans }}</a></li>
+        </ul>
+    {% else %}
+        <h4 class="hidden-md hidden-lg">{{ app.user.email }}</h4>
+        <h6 class="visible-md">{{ app.user.email }}</h6>
+        <h5 class="visible-lg">{{ app.user.email }}</h5>
+        <ul>
+            <li><a href="{{ path('sylius_account_profile_update') }}">{{ 'app.ui.personal_information'|trans }}</a></li>
+            <li><a href="{{ path('sylius_account_order_index') }}">{{ 'app.ui.view_orders'|trans }}</a></li>
+            <li><a href="{{ path('sylius_user_security_logout') }}">{{ 'app.ui.log_out'|trans }}</a></li>
+        </ul>
+    {% endif %}
 
-    <h4>{{ 'app.ui.user_section'|trans }}</h4>
-    <ul>
-        <li><a href="{{ path('sylius_user_security_login') }}" data-toggle="modal" data-target="#login-modal">{{ 'sylius.ui.login'|trans }}</a>
-        </li>
-        <li><a href="{{ path('sylius_user_registration') }}">{{ 'sylius.ui.register'|trans }}</a>
-        </li>
-    </ul>
-
-    <hr class="hidden-md hidden-lg hidden-sm">
+    <hr class="hidden-md hidden-lg">
 </div>
 
 <div class="col-md-3 col-sm-6">
