@@ -5,7 +5,7 @@ namespace AppBundle\Menu;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
@@ -19,7 +19,7 @@ class DropdownMenuBuilder
     private $factory;
 
     /**
-     * @var RepositoryInterface
+     * @var TaxonRepositoryInterface
      */
     private $taxonRepository;
 
@@ -30,12 +30,12 @@ class DropdownMenuBuilder
 
     /**
      * @param FactoryInterface $factory
-     * @param RepositoryInterface $taxonRepository
+     * @param TaxonRepositoryInterface $taxonRepository
      * @param AuthorizationCheckerInterface $authorizationChecker
      */
     public function __construct(
         FactoryInterface $factory,
-        RepositoryInterface $taxonRepository,
+        TaxonRepositoryInterface $taxonRepository,
         AuthorizationCheckerInterface $authorizationChecker
     ) {
         $this->factory = $factory;
@@ -82,9 +82,7 @@ class DropdownMenuBuilder
                 ->addChild('Logout', ['route' => 'sylius_user_security_logout'])
                 ->setExtra('icon', 'sign-out')
             ;
-        }
-
-        if (!$authenticated) {
+        } else {
             $menu
                 ->addChild('Login', ['route' => 'sylius_user_security_login'])
                 ->setExtra('icon', 'sign-in')
