@@ -117,7 +117,7 @@ class LoadHomepageData extends DataFixture
         /** @var FactoryInterface $categoryGridItemFactory */
         $categoryGridItemFactory = $this->get('app.factory.category_grid_item');
         $this->createCategoryGridItemWithImage($categoryGridItemFactory, $manager);
-        for ($i = 2; $i < 10; $i++) {
+        for ($i = 2; $i < 8; $i++) {
             /** @var CategoryGridItem $categoryGridItem */
             $categoryGridItem = $categoryGridItemFactory->createNew();
             $categoryGridItem->setPosition($i);

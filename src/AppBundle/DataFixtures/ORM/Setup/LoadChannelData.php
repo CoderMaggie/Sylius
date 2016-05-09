@@ -2,7 +2,6 @@
 
 namespace AppBundle\DataFixtures\Setup;
 
-use AppBundle\Entity\Channel;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Bundle\FixturesBundle\DataFixtures\DataFixture;
 use Sylius\Component\Core\Model\ChannelInterface;
@@ -14,7 +13,7 @@ class LoadChannelData extends DataFixture
      */
     public function load(ObjectManager $manager)
     {
-        /** @var Channel $channel */
+        /** @var ChannelInterface $channel */
         $channel = $this->createChannel(
             'WEB-UK',
             'Web-UK',
@@ -48,6 +47,7 @@ class LoadChannelData extends DataFixture
      */
     protected function createChannel($code, $name, $url, array $locales = array(), array $currencies = array(), array $shippingMethods = array(), array $paymentMethods = array())
     {
+        /** @var ChannelInterface $channel */
         $channel = $this->getChannelFactory()->createNew();
         $channel->setCode($code);
         $channel->setName($name);

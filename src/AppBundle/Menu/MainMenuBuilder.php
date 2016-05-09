@@ -5,7 +5,7 @@ namespace AppBundle\Menu;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Sylius\Component\Taxonomy\Model\TaxonInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
 use Webmozart\Assert\Assert;
 
 /**
@@ -19,15 +19,15 @@ class MainMenuBuilder
     private $factory;
 
     /**
-     * @var RepositoryInterface
+     * @var TaxonRepositoryInterface
      */
     private $taxonRepository;
 
     /**
      * @param FactoryInterface $factory
-     * @param RepositoryInterface $taxonRepository
+     * @param TaxonRepositoryInterface $taxonRepository
      */
-    public function __construct(FactoryInterface $factory, RepositoryInterface $taxonRepository)
+    public function __construct(FactoryInterface $factory, TaxonRepositoryInterface $taxonRepository)
     {
         $this->factory = $factory;
         $this->taxonRepository = $taxonRepository;
@@ -50,7 +50,7 @@ class MainMenuBuilder
     }
 
     /**
-     * @param array|null $categories
+     * @param array $categories
      *
      * @return ItemInterface
      */

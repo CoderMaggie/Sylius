@@ -36,7 +36,7 @@ class LoadProductAttributeData extends DataFixture
      */
     protected function createAttribute($name, $type)
     {
-        $code = str_replace(' ', '-', strtolower($name));
+        $code = $this->getCodeFromName($name);
 
         /** @var AttributeInterface $attribute */
         $attribute = $this->get('sylius.factory.product_attribute')->createNew();
@@ -47,5 +47,10 @@ class LoadProductAttributeData extends DataFixture
         $this->addReference('App.Attribute.'.$code, $attribute);
 
         return $attribute;
+    }
+
+    protected function getCodeFromName($name)
+    {
+        return strtolower(str_replace(' ', '_', $name));
     }
 }
