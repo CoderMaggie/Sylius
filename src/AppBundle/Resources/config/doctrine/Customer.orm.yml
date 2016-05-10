@@ -5,3 +5,14 @@ AppBundle\Entity\Customer:
         secondPhoneNumber:
             type: string
             nullable: true
+        receiveNewsletter:
+            type: boolean
+        nickname:
+            type: string
+            nullable: true
+        favouriteGames:
+            type: text
+            nullable: true
+        futurePurchases:
+            type: text
+            nullable: true

@@ -125,6 +125,7 @@ sylius_user:
                 model: AppBundle\Entity\Customer
                 form:
                     profile: AppBundle\Form\Type\CustomerProfileType
+                    registration: AppBundle\Form\Type\CustomerRegistrationType
 
 sylius_cart:
     resources:

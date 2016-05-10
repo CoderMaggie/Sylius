@@ -6,8 +6,8 @@
 
 {% block topbar %}
     <ul class="breadcrumb">
-        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
-        <li>New account / Sign in</li>
+        <li><a href={{ path('sylius_homepage') }}>{{ 'app.ui.home'|trans }}</a></li>
+        <li>{{ 'app.ui.new_account'|trans }} / {{ 'sylius.ui.sign_in'|trans }}</li>
     </ul>
 {% endblock %}
 
@@ -25,7 +25,7 @@
                     <div class="col-sm-6">
                         <div class="box">
                             <div class="col-sm-12 text-center">
-                                <h1>New account</h1>
+                                <h1>{{ 'app.ui.new_account'|trans }}</h1>
                             </div>
                             <form action="{{ path(context.process.forwardRoute, {'stepName': context.currentStep.name}) }}" method="post" novalidate>
                                 {{ form_errors(registration_form) }}
@@ -55,9 +55,14 @@
                                     {{ form_widget(registration_form.lastName) }}
                                     {{ form_errors(registration_form.lastName) }}
                                 </div>
+                                <div class="form-group">
+                                    {{ form_label(registration_form.receiveNewsletter, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                                    {{ form_widget(registration_form.receiveNewsletter) }}
+                                    {{ form_errors(registration_form.receiveNewsletter) }}
+                                </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Register</button>
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>{{ 'sylius.ui.register'|trans }}</button>
                                 </div>
 
                                 <div class="hidden">
@@ -70,19 +75,19 @@
                     <div class="col-sm-6">
                         <div class="box">
                             <div class="col-sm-12 text-center">
-                                <h1>Login</h1>
+                                <h1>{{ 'sylius.ui.login'|trans }}</h1>
                             </div>
                             <form action="{{ path('sylius_user_security_check') }}" method="post">
                                 <div class="form-group">
-                                    <label for="username" class="text-muted required pull-left">Email</label>
+                                    <label for="username" class="text-muted required pull-left">{{ 'sylius.ui.email'|trans }}</label>
                                     <input type="text" id="username" name="_username" class="form-control" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="text-muted required pull-left">Password</label>
+                                    <label for="password" class="text-muted required pull-left">{{ 'sylius.ui.password'|trans }}</label>
                                     <input type="password" id="password" name="_password" class="form-control" />
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i>Login</button>
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i>{{ 'app.ui.log_in'|trans }}</button>
                                 </div>
                             </form>
                         </div>
