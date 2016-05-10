@@ -28,6 +28,13 @@ class CustomerProfileType extends BaseCustomerProfileType
 
         $builder
             ->remove('gender')
+            ->remove('birthday')
+            ->add('birthday', 'birthday', [
+                'label' => 'sylius.form.customer.birthday',
+                'format' => 'dd/MM/yyyy',
+                'widget' => 'single_text',
+                'required' => false,
+            ])
             ->add('secondPhoneNumber', 'text', [
                 'required' => false,
                 'label' => 'app.ui.phone_number_evening',
