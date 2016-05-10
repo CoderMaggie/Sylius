@@ -15,3 +15,47 @@ AppBundle\Entity\Customer:
     properties:
         birthday:
             - Date: { message: 'app.customer.birthday.date' }
+
+Sylius\Component\User\Model\User:
+    properties:
+        plainPassword:
+            - NotBlank: { groups: ['app_user_registration'] }
+            - Length:
+                min: 6
+                max: 40
+                minMessage: sylius.user.password.min
+                maxMessage: sylius.user.password.max
+                groups: ['app_user_registration']
+
+Sylius\Bundle\UserBundle\Form\Model\ChangePassword:
+    properties:
+        currentPassword:
+            - Symfony\Component\Security\Core\Validator\Constraints\UserPassword:
+                message: sylius.user.plainPassword.wrong_current
+                groups: ['app_user_update']
+            - NotBlank: { groups: ['app_user_update'] }
+            - Length:
+                min: 6
+                max: 40
+                minMessage: sylius.user.password.min
+                maxMessage: sylius.user.password.max
+                groups: ['app_user_update']
+        newPassword:
+            - NotBlank: { groups: ['app_user_update'] }
+            - Length:
+                min: 6
+                max: 40
+                minMessage: sylius.user.password.min
+                maxMessage: sylius.user.password.max
+                groups: ['app_user_update']
+
+Sylius\Bundle\UserBundle\Form\Model\PasswordReset:
+    properties:
+        password:
+            - NotBlank: { groups: ['app_user_update'] }
+            - Length:
+                min: 6
+                max: 40
+                minMessage: sylius.user.password.min
+                maxMessage: sylius.user.password.max
+                groups: ['app_user_update']

@@ -134,7 +134,10 @@ sylius_user:
                     registration: AppBundle\Form\Type\CustomerRegistrationType
             validation_groups:
                 profile: ['sylius']
-                registration: ['sylius', 'sylius_user_registration']
+                registration: ['sylius', 'app_user_registration']
+        user:
+            validation_groups:
+                registration: ['sylius', 'app_user_registration']
 
 sylius_cart:
     resources:
