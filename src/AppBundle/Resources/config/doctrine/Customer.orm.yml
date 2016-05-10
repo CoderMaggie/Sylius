@@ -1,0 +1,7 @@
+AppBundle\Entity\Customer:
+    type: entity
+    table: sylius_customer
+    fields:
+        secondPhoneNumber:
+            type: string
+            nullable: true

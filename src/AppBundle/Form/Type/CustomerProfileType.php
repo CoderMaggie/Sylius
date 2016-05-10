@@ -26,6 +26,12 @@ class CustomerProfileType extends BaseCustomerProfileType
     {
         parent::buildForm($builder, $options);
 
-        $builder->remove('gender');
+        $builder
+            ->remove('gender')
+            ->add('secondPhoneNumber', 'text', [
+                'required' => false,
+                'label' => 'app.ui.phone_number_evening',
+            ])
+        ;
     }
 }

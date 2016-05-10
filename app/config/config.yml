@@ -122,8 +122,10 @@ sylius_user:
     resources:
         customer:
             classes:
+                model: AppBundle\Entity\Customer
                 form:
                     profile: AppBundle\Form\Type\CustomerProfileType
+
 sylius_cart:
     resources:
         cart_item:

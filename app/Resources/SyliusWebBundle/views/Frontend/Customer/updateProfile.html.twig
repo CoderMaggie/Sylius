@@ -64,9 +64,14 @@
                         {{ form_errors(form.birthday) }}
                     </div>
                     <div class="col-md-6">
-                        {{ form_label(form.phoneNumber, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_label(form.phoneNumber, 'app.ui.phone_number_day', {'label_attr': {'class': 'text-muted pull-left'}}) }}
                         {{ form_widget(form.phoneNumber, {'attr': {'placeholder': '(123) 456-7890'} }) }}
                         {{ form_errors(form.phoneNumber) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_label(form.secondPhoneNumber, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                        {{ form_widget(form.secondPhoneNumber, {'attr': {'placeholder': '(123) 456-7890'} }) }}
+                        {{ form_errors(form.secondPhoneNumber) }}
                     </div>
                 </div>
 
