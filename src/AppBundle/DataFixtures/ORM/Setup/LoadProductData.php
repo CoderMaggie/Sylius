@@ -91,6 +91,7 @@ class LoadProductData extends DataFixture
         $this->setVariantProperties($variant);
 
         $product->addAttribute($this->getAttribute('contents'));
+        $product->addAttribute($this->getAttribute('resources', $this->getResourcesAttributeValue()));
 
         $this->setReference('App.Product.'.$this->productNumber, $product);
 
@@ -158,6 +159,9 @@ class LoadProductData extends DataFixture
             $variant = $product->getMasterVariant();
             $this->setVariantProperties($variant);
 
+            $product->addAttribute($this->getAttribute('contents'));
+            $product->addAttribute($this->getAttribute('resources', $this->getResourcesAttributeValue()));
+
             $image = clone $this->getReference('App.Image.'.$img->getBasename('.jpg'));
             $variant->addImage($image);
 
@@ -170,15 +174,20 @@ class LoadProductData extends DataFixture
 
     /**
      * @param string $code
+     * @param string $value
      *
      * @return AttributeValueInterface
      */
-    protected function getAttribute($code)
+    protected function getAttribute($code, $value = null)
     {
         /* @var AttributeValueInterface $attributeValue */
         $attributeValue = $this->get('sylius.factory.product_attribute_value')->createNew();
         $attributeValue->setAttribute($this->getReference('App.Attribute.'.$code));
-        $attributeValue->setValue($this->faker->sentence(20));
+
+        if (null === $value) {
+            $value = $this->faker->sentence(20);
+        }
+        $attributeValue->setValue($value);
 
         return $attributeValue;
     }
@@ -203,5 +212,20 @@ class LoadProductData extends DataFixture
         $variant->setWidth($this->faker->numberBetween(0, 100));
         $variant->setWeight($this->faker->randomFloat(2,0,5));
         $variant->setTaxCategory($this->getReference('App.TaxCategory.taxable'));
+    }
+
+    /**
+     * @return string
+     */
+    protected function getResourcesAttributeValue()
+    {
+        return
+            '<ul>
+                <li><a href="">Manual (PDF)</a></li>
+                <li><a href="">Errata (PDF)</a></li>
+                <li><a href="">Publisher Page</a></li>
+                <li><a href="">Boardgamegeek</a></li>
+            </ul>'
+        ;
     }
 }
