@@ -51,3 +51,4 @@ app:
         contact_form: Contact form
         send_message: Send message
         go_to_homepage: go to homepage
+        costs_are_calculated_based_on_entered_values: Shipping and additional costs are calculated based on the values you have entered.

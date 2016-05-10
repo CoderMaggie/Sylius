@@ -10,9 +10,14 @@
     margin-bottom: 10px;
 }
 
-/* Reduce whitespace in box on product details */
-#productExtra .box, #productPrice .box {
+/* Reduce whitespace in box on product details and checkout sidebar */
+#productExtra .box,
+#productPrice .box {
     padding: 10px 0;
+}
+#orderSummary {
+    padding: 10px 0;
+    margin-top: 9px;
 }
 
 .box h3, .box h4 {
