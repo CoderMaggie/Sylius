@@ -3,11 +3,11 @@
 {% set orderPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
 {% set orderItemPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_ITEM_PROMOTION_ADJUSTMENT') %}
 
-<div class="box" id="order-summary">
+<div class="box" id="orderSummary">
     <div class="box-header">
         <h3>{{ 'sylius.ui.order_summary'|trans }}</h3>
     </div>
-    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+    <p class="text-muted">{{ 'app.ui.costs_are_calculated_based_on_entered_values'|trans }}</p>
     <div class="table-responsive">
         <table class="table">
             <tbody>
