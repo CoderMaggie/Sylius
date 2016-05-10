@@ -1,5 +1,6 @@
 parameters:
     sylius.controller.frontend.homepage.class: AppBundle\Controller\Frontend\HomepageController
+    app.generator.order_number.class: AppBundle\Generator\OrderNumberGenerator
 
 services:
     app.menu.main_builder:
@@ -50,3 +51,7 @@ services:
         class: AppBundle\Twig\ProductTaxonsExtension
         tags:
             - { name: 'twig.extension'}
+
+    app.generator.order_number:
+        class: %app.generator.order_number.class%
+        arguments: ['BGM', 1]

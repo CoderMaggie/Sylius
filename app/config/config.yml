@@ -130,3 +130,7 @@ sylius_cart:
             classes:
                 form:
                     default: AppBundle\Form\Type\CartItemType
+
+sylius_sequence:
+    generators:
+        %sylius.model.order.class%: app.generator.order_number
