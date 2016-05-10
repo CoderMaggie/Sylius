@@ -14,9 +14,11 @@ class LoadProductAttributeData extends DataFixture
      */
     public function load(ObjectManager $manager)
     {
-        $contentAttribute = $this->createAttribute('Contents', TextAreaAttributeType::TYPE);
+        $contentsAttribute = $this->createAttribute('Contents', TextAreaAttributeType::TYPE);
+        $resourcesAttribute = $this->createAttribute('Resources', TextareaAttributeType::TYPE);
 
-        $manager->persist($contentAttribute);
+        $manager->persist($contentsAttribute);
+        $manager->persist($resourcesAttribute);
         $manager->flush();
     }
 

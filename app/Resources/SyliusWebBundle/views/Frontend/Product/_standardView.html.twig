@@ -136,14 +136,13 @@
                 </blockquote>
 
                 <div class="row">
-                    {% for attribute in product.attributes %}
-                        <div class="col-xs-6">
-                            <div class="box">
-                                <h4>{{ attribute.name }}</h4>
-                                <p>{{ attribute.value }}</p>
-                            </div>
+                    {% set contents = attribute(product, 'getAttributeByCode', ['contents']) %}
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <h4>{{ contents.name }}</h4>
+                            <p>{{ contents.value }}</p>
                         </div>
-                    {% endfor %}
+                    </div>
                 </div>
 
                 <div class="same-height-row row">
@@ -202,13 +201,9 @@
 
         <div class="col-sm-3 col-lg-2" id="productExtra">
             <div class="box" id="product-resources">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="">Manual (PDF)</a></li>
-                    <li><a href="">Errata (PDF)</a></li>
-                    <li><a href="">Publisher Page</a></li>
-                    <li><a href="">Boardgamegeek</a></li>
-                </ul>
+                {% set resources = attribute(product, 'getAttributeByCode', ['resources']) %}
+                <h4>{{ resources.name }}</h4>
+                {{ resources.value|raw }}
             </div>
         </div>
         </form>
