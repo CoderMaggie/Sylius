@@ -1,13 +1,16 @@
 {% extends '@SyliusWeb/Frontend/layout.html.twig' %}
+{% from '@SyliusWeb/Frontend/Macros/buttons.html.twig' import show %}
+{% from '@SyliusWeb/Frontend/Macros/misc.html.twig' import shipment_state_label %}
+
 
 {% block title %}
-    - Checkout
+    - {{ 'sylius.ui.checkout'|trans }}
 {% endblock %}
 
 {% block topbar %}
     <ul class="breadcrumb">
-        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
-        <li>Checkout - Thank you</li>
+        <li><a href={{ path('sylius_homepage') }}>{{ 'app.ui.home'|trans }}</a></li>
+        <li>{{ 'sylius.ui.checkout'|trans }} - {{ 'app.ui.thank_you'|trans }}</li>
     </ul>
 {% endblock %}
 
@@ -16,6 +19,39 @@
 {{ parent() }}
 
     <div class="box col-sm-12 text-center">
-        <h1>Thank You {{ order.customer.fullname }}</h1>
+        <h1>{{ 'app.ui.thank_you'|trans|title }} {{ order.customer.fullname }}</h1>
+    </div>
+    <div class='spacer-50'>&nbsp</div>
+
+    <div class="box col-sm-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>{{ 'sylius.ui.created_at'|trans }}</td>
+                    <td>{{ 'sylius.ui.number'|trans }}</td>
+                    <td>{{ 'sylius.ui.state'|trans }}</td>
+                    <td>{{ 'sylius.ui.total'|trans }}</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </thead>
+            <tbody class="text-muted">
+                <tr class="order" id="order-{{ order.number }}">
+                    <td>{{ order.createdAt|date }}</td>
+                    <td>{{ order.number }}</td>
+                    <td>
+                        {{ shipment_state_label(order.shipments.last.state) }}
+                    </td>
+                    <td>{{ order.total|sylius_money(order.currency) }}</td>
+                    <td>
+                        {{ show(path('sylius_account_order_show', {'number': order.number}), 'order-' ~ order.number ~ '-details') }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class='spacer-50'>&nbsp</div>
+
+    <div class="box col-sm-12">
+        {{ render(url('app_shop_product_similar', {'productId': order.items.first.product.id , 'parameters': ['Game System', 'Publisher'], 'limit': 5, 'template': '@SyliusWeb/Frontend/Product/_similar.html.twig'})) }}
     </div>
 {% endblock %}
