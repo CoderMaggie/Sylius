@@ -136,3 +136,10 @@ sylius_cart:
 sylius_sequence:
     generators:
         %sylius.model.order.class%: app.generator.order_number
+
+sylius_addressing:
+    resources:
+        address:
+            classes:
+                form:
+                    default: AppBundle\Form\Type\AddressType
