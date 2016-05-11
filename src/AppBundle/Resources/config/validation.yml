@@ -10,3 +10,8 @@ AppBundle\Entity\CarouselItem:
         file:
             - NotBlank: { groups: ['carousel_item_create'] }
             - Image: { groups: ['carousel_item_create'] }
+
+AppBundle\Entity\Customer:
+    properties:
+        birthday:
+            - Date: { message: 'app.customer.birthday.date' }

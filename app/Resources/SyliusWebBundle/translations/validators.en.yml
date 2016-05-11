@@ -11,3 +11,6 @@ app:
             not_blank: Please enter the subject.
         message:
             not_blank: Please enter the message.
+    customer:
+        birthday:
+            date: Provided date is invalid.
