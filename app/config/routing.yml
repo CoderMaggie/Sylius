@@ -5,27 +5,6 @@ sylius_admin:
     resource: "@SyliusAdminBundle/Resources/config/routing.yml"
     prefix: /admin
 
-create:
-    resource: "@CmfCreateBundle/Resources/config/routing/rest.xml"
-
-create_image:
-    resource: "@CmfCreateBundle/Resources/config/routing/image.xml"
-
-cmf_media_file:
-    resource: "@CmfMediaBundle/Resources/config/routing/file.xml"
-
-cmf_media_image:
-    resource: "@CmfMediaBundle/Resources/config/routing/image.xml"
-
-payum_capture:
-    resource: "@PayumBundle/Resources/config/routing/capture.xml"
-
-payum_notify:
-    resource: "@PayumBundle/Resources/config/routing/notify.xml"
-
-fos_oauth_server_token:
-    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
-
 app_admin:
     resource: 'routing/admin/admin.yml'
     prefix: /admin
