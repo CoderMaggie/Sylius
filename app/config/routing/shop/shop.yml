@@ -5,6 +5,29 @@ sylius_account_profile_show:
         route: sylius_account_profile_update
         permanent: true
 
+sylius_user_registration:
+    path: /register
+    methods: [GET, POST]
+    defaults:
+        _controller: sylius.controller.customer:createAction
+        _sylius:
+            form: sylius_customer_registration
+            event: register
+            template: SyliusWebBundle:Frontend/User:register.html.twig
+            permission: false
+            redirect:
+                route: sylius_account_profile_update
+
+sylius_user_security_login:
+    path: /login
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.user_security:loginAction
+        _sylius:
+            template: SyliusWebBundle:Frontend/User:login.html.twig
+            redirect:
+                route: sylius_account_profile_update
+
 sylius_contact:
     path: /contact/
     methods: ['GET', 'POST']
