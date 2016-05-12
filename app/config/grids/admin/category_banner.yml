@@ -1,0 +1,25 @@
+sylius_grid:
+    grids:
+        app_admin_category_banner:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: %app.model.category_banner.class%
+            fields:
+                url:
+                    type: string
+                    label: app.ui.url
+                enabled:
+                    type: twig
+                    label: sylius.ui.enabled
+                    options:
+                        template: SyliusAdminBundle:Grid/Field:enabled.html.twig
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

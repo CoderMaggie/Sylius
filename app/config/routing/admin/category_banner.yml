@@ -1,0 +1,16 @@
+app_admin_carousel_item:
+    resource: |
+        alias: app.category_banner
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        except: ['show']
+        redirect: update
+        grid: app_admin_category_banner
+        vars:
+            all:
+                subheader: app.ui.category_banners
+                templates:
+                    form: :CategoryBanner:_form.html.twig
+            index:
+                icon: 'file image outline'
+    type: sylius.resource

@@ -7,6 +7,9 @@ app:
         url: Url
         position: Position
         file: File
+        category_banners: Category banners
+        new_category_banner: New category banner
+        edit_category_banner: Edit category banner
         product_grid_items: Product grid items
         new_product_grid_item: New product grid item
         edit_product_grid_item: Edit product grid item
@@ -60,3 +63,4 @@ app:
         favourite_games: Favourite games you own
         future_games_purchases: Next games you plan to buy
         new_account: New account
+        add_category: Add category

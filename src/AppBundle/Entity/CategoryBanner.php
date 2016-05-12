@@ -6,14 +6,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableInterface;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 
 /**
- * @author
+ * @author Magdalena Banasiak <magdalena.banasiak@lakion.com>
  */
-class CategoryBanner implements ImageInterface, ToggleableInterface
+class CategoryBanner implements ImageInterface, ToggleableInterface, ResourceInterface
 {
     use TimestampableTrait, ToggleableTrait;
 
@@ -130,7 +131,7 @@ class CategoryBanner implements ImageInterface, ToggleableInterface
     /**
      * TaxonInterface $taxon
      */
-    public function addCategory(TaxonInterface $taxon)
+    public function addShowOnCategory(TaxonInterface $taxon)
     {
         $this->showOnCategories->add($taxon);
     }
@@ -138,7 +139,7 @@ class CategoryBanner implements ImageInterface, ToggleableInterface
     /**
      * @param TaxonInterface $taxon
      */
-    public function removeCategory(TaxonInterface $taxon)
+    public function removeShowOnCategory(TaxonInterface $taxon)
     {
         $this->showOnCategories->remove($taxon);
     }

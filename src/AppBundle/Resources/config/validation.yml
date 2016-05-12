@@ -5,6 +5,12 @@ AppBundle\Entity\ProductGridItem:
         product:
             -  NotBlank: ~
 
+AppBundle\Entity\CategoryBanner:
+    properties:
+        file:
+            - NotBlank: { groups: ['category_banner_create'] }
+            - Image: { groups: ['category_banner_create'] }
+
 AppBundle\Entity\CarouselItem:
     properties:
         file:

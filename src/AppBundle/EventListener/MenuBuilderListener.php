@@ -30,5 +30,9 @@ class MenuBuilderListener
         $homepageMenu->addChild('category_grid_items', ['route' => 'app_admin_category_grid_item_index'])
             ->setLabel('app.menu.admin.main.homepage.category_grid_items')
             ->setLabelAttribute('icon', 'square outline');
+
+        $homepageMenu->addChild('category_banners', ['route' => 'app_admin_category_banner_index'])
+            ->setLabel('app.menu.admin.main.homepage.category_banners')
+            ->setLabelAttribute('icon', 'square');
     }
 }
