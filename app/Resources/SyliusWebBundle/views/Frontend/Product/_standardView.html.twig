@@ -210,7 +210,7 @@
 
     </div>
     <div>
-        {{ render(url('app_shop_product_similar', {'productId': product.id, 'parameters': ['Game System', 'Publisher'], 'limit': 5, 'template': '@SyliusWeb/Frontend/Product/_similar.html.twig'})) }}
+        {{ render(url('app_shop_product_similar', {'productId': product.id, 'parameters': ['game_system', 'publisher'], 'limit': 5, 'template': '@SyliusWeb/Frontend/Product/_similar.html.twig'})) }}
     </div>
 
 {% endblock %}
