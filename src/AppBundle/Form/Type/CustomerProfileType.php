@@ -45,8 +45,8 @@ class CustomerProfileType extends BaseCustomerProfileType
             ])
             ->add('receiveNewsletter', 'choice', [
                 'choices' => [true => 'sylius.ui.yes', false => 'sylius.ui.no'],
-                'empty_data' => true,
                 'required' => false,
+                'placeholder' => false,
                 'label' => 'app.ui.receive_newsletter',
                 'label_attr' => ['class' => 'text-muted pull-left'],
             ])
