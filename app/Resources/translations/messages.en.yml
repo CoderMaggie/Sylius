@@ -54,3 +54,4 @@ app:
         costs_are_calculated_based_on_entered_values: Shipping and additional costs are calculated based on the values you have entered.
         phone_number_day: Phone number (day)
         phone_number_evening: Phone number (evening)
+        thank_you: Thank you
