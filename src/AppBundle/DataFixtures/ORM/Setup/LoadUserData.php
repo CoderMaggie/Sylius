@@ -2,6 +2,7 @@
 
 namespace AppBundle\DataFixtures\Setup;
 
+use AppBundle\Entity\Customer;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Bundle\FixturesBundle\DataFixtures\DataFixture;
 use Sylius\Component\Core\Model\UserInterface;
@@ -47,6 +48,7 @@ class LoadUserData extends DataFixture
 
         /* @var $user UserInterface */
         $user = $this->getUserFactory()->createNew();
+        /** @var Customer $customer */
         $customer = $this->getCustomerFactory()->createNew();
         $customer->setFirstname($firstName);
         $customer->setLastname($lastName);

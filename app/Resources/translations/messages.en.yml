@@ -55,3 +55,8 @@ app:
         phone_number_day: Phone number (day)
         phone_number_evening: Phone number (evening)
         thank_you: Thank you
+        receive_newsletter: Receive our email newsletter
+        nickname: BoardGameGeek.com name
+        favourite_games: Favourite games you own
+        future_games_purchases: Next games you plan to buy
+        new_account: New account

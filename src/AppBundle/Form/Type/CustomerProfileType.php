@@ -31,13 +31,39 @@ class CustomerProfileType extends BaseCustomerProfileType
             ->remove('birthday')
             ->add('birthday', 'birthday', [
                 'label' => 'sylius.form.customer.birthday',
+                'label_attr' => ['class' => 'text-muted pull-left'],
                 'format' => 'dd/MM/yyyy',
                 'widget' => 'single_text',
+                'attr' => ['placeholder' => 'DD/MM/YYYY'],
                 'required' => false,
             ])
             ->add('secondPhoneNumber', 'text', [
                 'required' => false,
                 'label' => 'app.ui.phone_number_evening',
+                'label_attr' => ['class' => 'text-muted pull-left'],
+                'attr' => ['placeholder' => '(123) 456-7890'],
+            ])
+            ->add('receiveNewsletter', 'choice', [
+                'choices' => [true => 'sylius.ui.yes', false => 'sylius.ui.no'],
+                'empty_data' => true,
+                'required' => false,
+                'label' => 'app.ui.receive_newsletter',
+                'label_attr' => ['class' => 'text-muted pull-left'],
+            ])
+            ->add('nickname', 'text', [
+                'required' => false,
+                'label' => 'app.ui.nickname',
+                'label_attr' => ['class' => 'text-muted pull-left'],
+            ])
+            ->add('favouriteGames', 'textarea', [
+                'required' => false,
+                'label' => 'app.ui.favourite_games',
+                'label_attr' => ['class' => 'text-muted pull-left'],
+            ])
+            ->add('futurePurchases', 'textarea', [
+                'required' => false,
+                'label' => 'app.ui.future_games_purchases',
+                'label_attr' => ['class' => 'text-muted pull-left'],
             ])
         ;
     }
