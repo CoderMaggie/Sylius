@@ -128,13 +128,13 @@ class ProductRepository extends BaseProductRepository
 
     /**
      * @param ProductInterface $product
-     * @param string $rootName
+     * @param string $rootCode
      *
      * @return TaxonInterface|null
      *
      * @throws \InvalidArgumentException
      */
-    private function getTaxonWithRoot(ProductInterface $product, $rootName)
+    private function getTaxonWithRoot(ProductInterface $product, $rootCode)
     {
         foreach ($product->getTaxons() as $taxon) {
             if ($taxon->isRoot()) {
@@ -142,7 +142,7 @@ class ProductRepository extends BaseProductRepository
             }
 
             $rootTaxon = $taxon->getRoot();
-            if ($rootName === $rootTaxon->getName()) {
+            if ($rootCode === $rootTaxon->getCode()) {
                 return $taxon;
             }
         }

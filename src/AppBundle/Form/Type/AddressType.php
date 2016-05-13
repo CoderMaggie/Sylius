@@ -21,6 +21,7 @@ class AddressType extends BaseAddressType
             ->add('countryCode', 'sylius_country_code_choice', [
                 'label' => 'sylius.form.address.country',
                 'enabled' => true,
+                'placeholder' => false,
                 'data' => 'GB'
             ])
         ;

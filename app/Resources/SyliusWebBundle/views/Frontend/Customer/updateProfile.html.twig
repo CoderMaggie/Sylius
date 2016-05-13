@@ -38,7 +38,9 @@
                         {{ form_errors(form.email) }}
                     </div>
                     <div class="col-md-12">
-                        {{ form_row(form.nickname) }}
+                        {{ form_label(form.nickname) }}
+                        {{ form_widget(form.nickname) }}
+                        {{ form_errors(form.nickname) }}
                     </div>
                     <div class="col-md-6">
                         {{ form_label(form.firstName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
@@ -50,7 +52,7 @@
                         {{ form_widget(form.lastName) }}
                         {{ form_errors(form.lastName) }}
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-md-offset-6 col-md-pull-6">
                         <div class="row">
                             <div class="col-md-12">
                                 {{ form_label(form.birthday) }}
@@ -72,16 +74,24 @@
                         {{ form_errors(form.phoneNumber) }}
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(form.secondPhoneNumber) }}
+                        {{ form_label(form.secondPhoneNumber) }}
+                        {{ form_widget(form.secondPhoneNumber) }}
+                        {{ form_errors(form.secondPhoneNumber) }}
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(form.favouriteGames) }}
+                        {{ form_label(form.favouriteGames) }}
+                        {{ form_widget(form.favouriteGames) }}
+                        {{ form_errors(form.favouriteGames) }}
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(form.futurePurchases) }}
+                        {{ form_label(form.futurePurchases) }}
+                        {{ form_widget(form.futurePurchases) }}
+                        {{ form_errors(form.futurePurchases) }}
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(form.receiveNewsletter) }}
+                        {{ form_label(form.receiveNewsletter) }}
+                        {{ form_widget(form.receiveNewsletter) }}
+                        {{ form_errors(form.receiveNewsletter) }}
                     </div>
                 </div>
 
