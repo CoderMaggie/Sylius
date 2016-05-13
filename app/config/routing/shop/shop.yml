@@ -63,6 +63,13 @@ app_shop_product_index:
             grid: app_shop_product
             template: SyliusWebBundle:Frontend/Product:index.html.twig
 
+app_shop_category_banner:
+    path: /{taxonCode}/banner/
+    defaults:
+        _controller: app.controller.category_banner:getCategoryBannerAction
+        _sylius:
+            template: AppBundle:CategoryBanner:banner.html.twig
+
 # Override default Sylius product index pages and redirect to our path
 sylius_shop_by_root_taxon_product_index:
     path: /t/{rootTaxon}

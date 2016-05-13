@@ -10,6 +10,8 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: AppBundle\Entity\CategoryBanner
+                controller: AppBundle\Controller\CategoryBannerController
+                repository: AppBundle\Repository\CategoryBannerRepository
                 form:
                     default: AppBundle\Form\Type\CategoryBannerType
         app.category_grid_item:

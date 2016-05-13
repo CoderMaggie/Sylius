@@ -1,0 +1,9 @@
+{% if banner is not null %}
+    {% if banner.path is not empty %}
+        {% set bannerImagePath = banner.path|imagine_filter('sylius_large') %}
+    {% else %}
+        {% set bannerImagePath = banner.path ? banner.path|imagine_filter('sylius_large') : 'http://placehold.it/800x200' %}
+    {% endif %}
+
+    <img src="{{ bannerImagePath }}" alt="" class="img-responsive image1">
+{% endif %}

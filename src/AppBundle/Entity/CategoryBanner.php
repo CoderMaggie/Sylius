@@ -14,7 +14,7 @@ use Sylius\Component\Resource\Model\ToggleableTrait;
 /**
  * @author Magdalena Banasiak <magdalena.banasiak@lakion.com>
  */
-class CategoryBanner implements ImageInterface, ToggleableInterface, ResourceInterface
+class CategoryBanner implements CategoryBannerInterface, ImageInterface, ToggleableInterface
 {
     use TimestampableTrait, ToggleableTrait;
 
@@ -26,12 +26,12 @@ class CategoryBanner implements ImageInterface, ToggleableInterface, ResourceInt
     /**
      * @var \SplFileInfo
      */
-    protected $file;
+    private $file;
 
     /**
      * @var string
      */
-    protected $path;
+    private $path;
 
     /**
      * @var string
@@ -121,7 +121,7 @@ class CategoryBanner implements ImageInterface, ToggleableInterface, ResourceInt
     }
 
     /**
-     * @return ArrayCollection
+     * {@inheritdoc}
      */
     public function getShowOnCategories()
     {
@@ -129,7 +129,7 @@ class CategoryBanner implements ImageInterface, ToggleableInterface, ResourceInt
     }
 
     /**
-     * TaxonInterface $taxon
+     * {@inheritdoc}
      */
     public function addShowOnCategory(TaxonInterface $taxon)
     {
@@ -137,7 +137,7 @@ class CategoryBanner implements ImageInterface, ToggleableInterface, ResourceInt
     }
 
     /**
-     * @param TaxonInterface $taxon
+     * {@inheritdoc}
      */
     public function removeShowOnCategory(TaxonInterface $taxon)
     {
