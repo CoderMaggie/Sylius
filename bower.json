@@ -1,5 +1,5 @@
 {
-  "name": "lakion/cjmax",
+  "name": "cjmax",
   "ignore": [
     "**/.*",
     "node_modules",
