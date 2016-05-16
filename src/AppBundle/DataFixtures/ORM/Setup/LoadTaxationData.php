@@ -18,7 +18,7 @@ class LoadTaxationData extends DataFixture
         $manager->persist($taxableGoods);
         $manager->flush();
 
-        $taxRate = $this->createTaxRate('VAT', 'UK', 0.10);
+        $taxRate = $this->createTaxRate('UK VAT', 'UK', 0.20, true);
         $taxRate->setCategory($taxableGoods);
 
         $manager->persist($taxRate);
