@@ -1,6 +1,7 @@
 parameters:
     sylius.controller.frontend.homepage.class: AppBundle\Controller\Frontend\HomepageController
     app.generator.order_number.class: AppBundle\Generator\OrderNumberGenerator
+    sylius.checkout_form.payment.class: AppBundle\Form\Type\PaymentStepType
 
 services:
     app.menu.main_builder:

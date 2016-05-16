@@ -7,6 +7,7 @@ app:
         number_of_players: Number Of Players
         publisher: Publisher
         game_system: Game System
+        available_for_shipping_methods: Available for shipping methods
     admin:
         show_ribbon_hot: Show ribbon "Hot"?
         show_ribbon_new: Show ribbon "New"?
