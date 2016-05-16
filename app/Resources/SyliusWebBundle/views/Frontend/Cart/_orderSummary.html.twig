@@ -1,7 +1,6 @@
 {% set taxAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::TAX_ADJUSTMENT') %}
 {% set shippingAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::SHIPPING_ADJUSTMENT') %}
 {% set orderPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
-{% set orderItemPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_ITEM_PROMOTION_ADJUSTMENT') %}
 
 <div class="box" id="orderSummary">
     <div class="box-header">
@@ -13,8 +12,12 @@
             <tbody>
             <tr>
                 <td>{{ 'app.ui.order_subtotal'|trans }}</td>
-                {% set orderSubtotal = order.itemsTotal - order.getAdjustmentsTotalRecursively(taxAdjustment) - order.getAdjustmentsTotalRecursively(orderItemPromotionAdjustment) %}
-                <th colspan="2">{{ (orderSubtotal)|sylius_price }}</th>
+                {% set orderSubtotal = order.itemsTotal - (order.getAdjustmentsTotalRecursively(taxAdjustment) - order.adjustmentsTotal(taxAdjustment)) %}
+                <th colspan="2">{{ orderSubtotal|sylius_price }}</th>
+            </tr>
+            <tr>
+                <td>{{ 'app.ui.tax'|trans }}</td>
+                <th>{{ order.getAdjustmentsTotalRecursively(taxAdjustment)|sylius_price }}</th>
             </tr>
             <tr>
                 <td>{{ 'app.ui.shipping_fee'|trans }}</td>
@@ -22,13 +25,8 @@
                 <th>{{ shippingTotal|sylius_price }}</th>
             </tr>
             <tr>
-                <td>{{ 'app.ui.tax'|trans }}</td>
-                <th>{{ order.getAdjustmentsTotalRecursively(taxAdjustment)|sylius_price }}</th>
-            </tr>
-            <tr>
                 <td>{{ 'app.ui.discount'|trans }}</td>
-                {% set discountAmount = order.adjustmentsTotalRecursively(orderItemPromotionAdjustment) + order.adjustmentsTotalRecursively(orderPromotionAdjustment) %}
-                <th>{{ (-1 * discountAmount)|sylius_price }}</th>
+                <th>{{ (-1 * order.adjustmentsTotalRecursively(orderPromotionAdjustment))|sylius_price }}</th>
             </tr>
             <tr class="total">
                 <td>{{ 'sylius.ui.grand_total'|trans }}</td>
