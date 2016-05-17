@@ -84,3 +84,21 @@ sylius_shop_by_taxon_product_index:
         _controller: FrameworkBundle:Redirect:redirect
         route: app_shop_product_index
         permanent: true
+
+app_customer_newsletter_subscribe_guest:
+    path: /subscribe/
+    methods: [POST]
+    defaults:
+        _controller: AppBundle:Frontend/Subscription:subscribeGuest
+
+app_customer_newsletter_subscribe_logged:
+    path: /subscribe/me
+    methods: [POST]
+    defaults:
+        _controller: AppBundle:Frontend/Subscription:subscribeLogged
+
+app_customer_newsletter_unsubscribe:
+    path: /unsubscribe/{unsubscribeToken}
+    methods: [GET]
+    defaults:
+        _controller: AppBundle:Frontend/Subscription:unsubscribe

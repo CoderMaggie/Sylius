@@ -71,3 +71,15 @@ services:
         class: AppBundle\Form\Type\UserResetPasswordType
         tags:
             - { name: form.type, alias: app_user_reset_password }
+
+    sylius.form.type.customer_profile:
+        class: AppBundle\Form\Type\CustomerProfileType
+        arguments: [%sylius.model.customer.class%, %sylius.validation_groups.customer%, '@sylius.user.token_generator']
+        tags:
+            - { name: form.type, alias: sylius_customer_profile }
+
+    sylius.form.type.customer_registration:
+        class: AppBundle\Form\Type\CustomerRegistrationType
+        arguments: [%sylius.model.customer.class%, %sylius.validation_groups.customer%, '@sylius.repository.customer', '@sylius.user.token_generator']
+        tags:
+            - { name: form.type, alias: sylius_customer_registration }

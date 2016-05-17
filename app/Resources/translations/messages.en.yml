@@ -71,3 +71,12 @@ app:
         free: Free
         cost: Cost
         confirm: Confirm
+        subscribe: Subscribe
+        unsubscribe: Unsubscribe
+        newsletter_subscribe_success: You have successfully subscribed to the newsletter
+        newsletter_subscribe_notice: You are already subscribed to the newsletter
+        newsletter_unsubscribe_success: You have successfully unsubscribed from the newsletter
+        newsletter_unsubscribe_error: The link is invalid, please contact bob@caponica.com
+        if_you_did_not_subscribe_contact: If you didn't subscribe please contact bob@caponica.com.
+        if_you_would_like_to_unsubscribe: If you would like to unsubscribe, follow the link bellow.
+        for_subscribing: for subscribing to our newsletter

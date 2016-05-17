@@ -72,6 +72,7 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: "/account.*", role: ROLE_USER }
+        - { path: ^/subscribe/me, role: ROLE_USER }
 
         - { path: ^/administration/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administration/login-check, role: IS_AUTHENTICATED_ANONYMOUSLY }

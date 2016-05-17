@@ -35,6 +35,11 @@ class Customer extends BaseCustomer
     private $futurePurchases;
 
     /**
+     * @var string
+     */
+    private $unsubscribeToken;
+
+    /**
      * @return string
      */
     public function getSecondPhoneNumber()
@@ -85,6 +90,22 @@ class Customer extends BaseCustomer
     /**
      * @return string
      */
+    public function getFavouriteGames()
+    {
+        return $this->favouriteGames;
+    }
+
+    /**
+     * @param string $favouriteGames
+     */
+    public function setFavouriteGames($favouriteGames)
+    {
+        $this->favouriteGames = $favouriteGames;
+    }
+
+    /**
+     * @return string
+     */
     public function getFuturePurchases()
     {
         return $this->futurePurchases;
@@ -101,16 +122,16 @@ class Customer extends BaseCustomer
     /**
      * @return string
      */
-    public function getFavouriteGames()
+    public function getUnsubscribeToken()
     {
-        return $this->favouriteGames;
+        return $this->unsubscribeToken;
     }
 
     /**
-     * @param string $favouriteGames
+     * @param string $unsubscribeToken
      */
-    public function setFavouriteGames($favouriteGames)
+    public function setUnsubscribeToken($unsubscribeToken)
     {
-        $this->favouriteGames = $favouriteGames;
+        $this->unsubscribeToken = $unsubscribeToken;
     }
 }

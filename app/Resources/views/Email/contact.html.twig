@@ -1,0 +1,15 @@
+{% extends 'Email/layout.html.twig' %}
+
+{% block subject %}
+    {{ email.subject.data }}
+{% endblock %}
+
+{% block body %}
+    {% block content %}
+        <h1>{{ email.firstName.data }} {{ email.lastName.data }}</h1>
+
+        <p class="text-center">
+            {{ email.message.data }}
+        </p>
+    {% endblock %}
+{% endblock %}

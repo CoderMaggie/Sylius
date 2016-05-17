@@ -11,14 +11,36 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Customer;
+use AppBundle\Form\EventListener\NewsletterChangeSubscriber;
 use Sylius\Bundle\UserBundle\Form\Type\CustomerProfileType as BaseCustomerProfileType;
+use Sylius\Component\Mailer\Sender\SenderInterface;
+use Sylius\Component\User\Security\Generator\GeneratorInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @author Magdalena Banasiak <magdalena.banasiak@lakion.com>
  */
 class CustomerProfileType extends BaseCustomerProfileType
 {
+    /**
+     * @var GeneratorInterface
+     */
+    private $tokenGenerator;
+
+    /**
+     * @param string $dataClass
+     * @param array $verificationGroups
+     * @param GeneratorInterface $tokenGenerator
+     */
+    public function __construct($dataClass, array $verificationGroups, GeneratorInterface $tokenGenerator)
+    {
+        parent::__construct($this->dataClass, $this->validationGroups);
+
+        $this->tokenGenerator = $tokenGenerator;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -65,9 +87,21 @@ class CustomerProfileType extends BaseCustomerProfileType
                 'label' => 'app.ui.future_games_purchases',
                 'label_attr' => ['class' => 'text-muted pull-left'],
             ])
+            ->add('unsubscribeToken', 'hidden')
+            ->addEventSubscriber(new NewsletterChangeSubscriber($this->tokenGenerator))
         ;
 
         $builder->get('firstName')->setRequired(false);
         $builder->get('lastName')->setRequired(false);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        parent::configureOptions($resolver);
+
+        $resolver->setDefault('data_class', Customer::class);
     }
 }

@@ -186,3 +186,7 @@
         display: none;
     }
 }
+
+.checkbox-inline + .checkbox-inline {
+    margin-left: 0;
+}
