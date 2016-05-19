@@ -96,6 +96,14 @@ payum:
 sylius_payment:
     gateways:
         paypal_express_checkout: Paypal Express Checkout
+    resources:
+        payment_method:
+            classes:
+                model: AppBundle\Entity\PaymentMethod
+                repository: AppBundle\Repository\PaymentMethodRepository
+                form:
+                    default: AppBundle\Form\Type\PaymentMethodType
+                    choice: AppBundle\Form\Type\PaymentMethodChoiceType
 
 sylius_product:
     resources:

@@ -1,0 +1,14 @@
+AppBundle\Entity\PaymentMethod:
+    type: entity
+    table: sylius_payment_method
+    manyToMany:
+        availableForShippingMethods:
+            targetEntity: Sylius\Component\Core\Model\ShippingMethod
+            joinTable:
+                name: app_payment_methods_for_shipping_methods
+                joinColumns:
+                    sylius_payment_method:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    sylius_shipping_method:
+                        referencedColumnName: id

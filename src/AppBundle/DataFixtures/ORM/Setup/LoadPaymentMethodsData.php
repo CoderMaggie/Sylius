@@ -4,7 +4,6 @@ namespace AppBundle\DataFixtures\Setup;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Bundle\FixturesBundle\DataFixtures\DataFixture;
-use Sylius\Component\Payment\Calculator\DefaultFeeCalculators;
 use Sylius\Component\Payment\Model\PaymentMethodInterface;
 
 class LoadPaymentMethodsData extends DataFixture
@@ -14,7 +13,7 @@ class LoadPaymentMethodsData extends DataFixture
      */
     public function load(ObjectManager $manager)
     {
-        $manager->persist($this->createPaymentMethod('Cash on Collection', 'offline'));
+        $manager->persist($this->createPaymentMethod('Cash on Collection', 'offline', ['local_collection']));
         $manager->persist($this->createPaymentMethod('Pay by Bank Transfer', 'offline'));
         $manager->persist($this->createPaymentMethod('Pay by PayPal', 'paypal_express_checkout'));
 
@@ -26,18 +25,23 @@ class LoadPaymentMethodsData extends DataFixture
      */
     public function getOrder()
     {
-        return 10;
+        return 40;
     }
 
     /**
      * @param string  $name
      * @param string  $gateway
+     * @param array   $availableForShippingMethods
      * @param boolean $enabled
      *
      * @return PaymentMethodInterface
      */
-    protected function createPaymentMethod($name, $gateway, $enabled = true)
-    {
+    protected function createPaymentMethod(
+        $name,
+        $gateway,
+        array $availableForShippingMethods = ['uk_standard_shipping', 'uk_express_shipping'],
+        $enabled = true
+    ) {
         $code = $this->getCodeFromName($name);
 
         $method = $this->getPaymentMethodFactory()->createNew();
@@ -45,6 +49,11 @@ class LoadPaymentMethodsData extends DataFixture
         $method->setName($name);
         $method->setGateway($gateway);
         $method->setEnabled($enabled);
+
+        foreach($availableForShippingMethods as $shippingMethodCode) {
+            $shippingMethod = $this->getReference('App.ShippingMethod.'. $shippingMethodCode);
+            $method->addAvailableForShippingMethod($shippingMethod);
+        }
 
         $this->setReference('App.PaymentMethod.'.$code, $method);
 
