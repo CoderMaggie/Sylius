@@ -78,6 +78,12 @@ doctrine_phpcr:
         auto_mapping: true
         auto_generate_proxy_classes: %kernel.debug%
 
+liip_imagine:
+    filter_sets:
+        category_banner:
+            filters:
+                thumbnail: { size: [800, 200], mode: outbound }
+
 swiftmailer:
     transport: %mailer_transport%
     host:      %mailer_host%

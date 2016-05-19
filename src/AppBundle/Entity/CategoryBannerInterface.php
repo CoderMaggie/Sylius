@@ -12,11 +12,6 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 interface CategoryBannerInterface extends ResourceInterface
 {
     /**
-     * @return int
-     */
-    public function getId();
-
-    /**
      * @return string
      */
     public function getUrl();

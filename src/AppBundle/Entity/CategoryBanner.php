@@ -133,7 +133,9 @@ class CategoryBanner implements CategoryBannerInterface, ImageInterface, Togglea
      */
     public function addShowOnCategory(TaxonInterface $taxon)
     {
-        $this->showOnCategories->add($taxon);
+        if (!$this->showOnCategories->contains($taxon)) {
+            $this->showOnCategories->add($taxon);
+        }
     }
 
     /**
