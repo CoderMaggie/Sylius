@@ -20,21 +20,21 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 class CategoryBannerRepository extends EntityRepository
 {
     /**
-     * @param int $taxonId
+     * @param array $taxonsIds
      *
      * @return CategoryBannerInterface[]
      */
-    public function findByTaxonId($taxonId)
+    public function findByTaxonsIds($taxonsIds)
     {
         $queryBuilder = $this->createQueryBuilder('o');
 
         return
             $queryBuilder
                 ->innerJoin('o.showOnCategories', 'taxons')
-                ->andWhere('taxons.id = :taxonId')
-                ->setParameter('taxonId', $taxonId)
+                ->andWhere($queryBuilder->expr()->in('taxons.id', ':taxonsIds'))
+                ->setParameter('taxonsIds', $taxonsIds)
                 ->getQuery()
                 ->getResult()
-        ;
+            ;
     }
 }

@@ -64,7 +64,7 @@ app_shop_product_index:
             template: SyliusWebBundle:Frontend/Product:index.html.twig
 
 app_shop_category_banner:
-    path: /{taxonCode}/banner/
+    path: /banner/
     defaults:
         _controller: app.controller.category_banner:getCategoryBannerAction
         _sylius:

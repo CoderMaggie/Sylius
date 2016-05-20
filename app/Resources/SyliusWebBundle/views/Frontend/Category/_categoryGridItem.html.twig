@@ -8,14 +8,14 @@
 <div class="col-md-3 col-sm-4">
     <div class="grid-item gi-category">
         <div class="image same-height">
-            <a href="{{ path(category) }}">
+            <a href="{{ path('app_shop_product_index', {'criteria': {(category.root.code): [category.id]}}) }}">
                 <img src="{{ itemImagePath }}" alt="" class="img-responsive image1">
             </a>
         </div>
         <!-- /.image -->
         <div class="text">
             <h3>
-                <a href="{{ path(category) }}">
+                <a href="{{ path('app_shop_product_index', {'criteria': {(category.root.code): [category.id]}}) }}">
                     {{ categoryGridItem.title ? categoryGridItem.title : category.name }}
                 </a>
             </h3>

@@ -2,13 +2,19 @@
 
 namespace spec\AppBundle\Entity;
 
+use AppBundle\Entity\CategoryBanner;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Resource\Model\ToggleableInterface;
+use Sylius\Component\Taxonomy\Model\Taxon;
 
+/**
+ * @mixin CategoryBanner
+ */
 class CategoryBannerSpec extends ObjectBehavior
 {
     function it_is_initializable()
@@ -76,6 +82,18 @@ class CategoryBannerSpec extends ObjectBehavior
 
     function it_initializes_categories_collection_by_default()
     {
-        $this->getShowOnCategories()->shouldHaveType('Doctrine\Common\Collections\Collection');
+        $this->getShowOnCategories()->shouldHaveType(Collection::class);
+    }
+
+    function it_adds_new_show_on_category(TaxonInterface $taxon)
+    {
+        $this->addShowOnCategory($taxon);
+        $this->getShowOnCategories()->contains($taxon)->shouldReturn(true);
+    }
+
+    function it_removes_show_on_category(TaxonInterface $taxon)
+    {
+        $this->removeShowOnCategory($taxon);
+        $this->getShowOnCategories()->contains($taxon)->shouldReturn(false);
     }
 }

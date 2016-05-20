@@ -1,9 +1,5 @@
 {% if banner is not null %}
-    {% if banner.path is not empty %}
-        {% set bannerImagePath = banner.path|imagine_filter('category_banner') %}
-    {% else %}
-        {% set bannerImagePath = banner.path ? banner.path|imagine_filter('category_banner') : 'http://placehold.it/800x200' %}
-    {% endif %}
+    {% set bannerImagePath = banner.path ? banner.path|imagine_filter('category_banner') : 'http://placehold.it/800x200' %}
     <div class="box text-center">
         <img src="{{ bannerImagePath }}" alt="" class="img-responsive">
     </div>

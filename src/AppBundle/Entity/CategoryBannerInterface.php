@@ -27,7 +27,7 @@ interface CategoryBannerInterface extends ResourceInterface
     public function getShowOnCategories();
 
     /**
-     * TaxonInterface $taxon
+     * @param TaxonInterface $taxon
      */
     public function addShowOnCategory(TaxonInterface $taxon);
 

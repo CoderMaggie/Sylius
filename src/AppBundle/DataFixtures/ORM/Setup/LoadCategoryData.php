@@ -27,9 +27,9 @@ class LoadCategoryData extends DataFixture
 
     protected $gameLengthTaxons = [
         'App.Taxon.quick_15_mins',
-        'App.Taxon.short_15_30_mins',
-        'App.Taxon.basic_30_60_mins',
-        'App.Taxon.long_1_2_hours',
+        'App.Taxon.short_15-30_mins',
+        'App.Taxon.basic_30-60_mins',
+        'App.Taxon.long_1-2_hours',
         'App.Taxon.epic_3_hours',
 
     ];
@@ -131,6 +131,6 @@ class LoadCategoryData extends DataFixture
      */
     private function getCode($name)
     {
-        return preg_replace('/[^A-Za-z0-9\_ -]/', '', strtolower(str_replace(' ', '_', str_replace('-', '_', $name))));
+        return preg_replace('/[^A-Za-z0-9\_ -]/', '', strtolower(str_replace(' ', '_', $name)));
     }
 }

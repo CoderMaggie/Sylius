@@ -32,9 +32,9 @@ class LoadHomepageData extends DataFixture
 
     protected $gameLengthTaxons = [
         'App.Taxon.quick_15_mins',
-        'App.Taxon.short_15_30_mins',
-        'App.Taxon.basic_30_60_mins',
-        'App.Taxon.long_1_2_hours',
+        'App.Taxon.short_15-30_mins',
+        'App.Taxon.basic_30-60_mins',
+        'App.Taxon.long_1-2_hours',
         'App.Taxon.epic_3_hours',
 
     ];

@@ -13,6 +13,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\CategoryBannerInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -21,34 +23,27 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class CategoryBannerController extends ResourceController
 {
     /**
-     * @param string $taxonCode
+     * @param Request $request
      *
      * @return CategoryBannerInterface
      */
-    public function getCategoryBannerAction($taxonCode)
+    public function getCategoryBannerAction(Request $request)
     {
-        /** @var @RepositoryInterface $taxonRepository */
-        $taxonRepository = $this->container->get('sylius.repository.taxon');
+        $criteria = $request->query->get('criteria');
 
-        /** @var @RepositoryInterface $bannerRepository */
+        /** @var RepositoryInterface $bannerRepository */
         $bannerRepository = $this->container->get('app.repository.category_banner');
 
-        $taxon = $taxonRepository->findOneBy(['code' => $this->getCode($taxonCode)]);
+        $taxonsIds = [];
+        foreach ($criteria as $taxons) {
+            $taxonsIds = array_merge($taxonsIds, $taxons);
+        }
 
-        $banners = $bannerRepository->findByTaxonId($taxon->getId());
+        $banners = $bannerRepository->findByTaxonsIds($taxonsIds);
 
-        $banner = array_pop($banners);
+        /** @var CategoryBannerInterface $banner */
+        $banner = $banners[array_rand($banners)];
 
         return $this->render('CategoryBanner/_banner.html.twig', ['banner' => $banner]);
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return string
-     */
-    private function getCode($name)
-    {
-        return str_replace('-', '_', $name);
     }
 }

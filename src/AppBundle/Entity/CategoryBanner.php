@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
-use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableInterface;
 use Sylius\Component\Resource\Model\ToggleableTrait;
@@ -143,6 +142,6 @@ class CategoryBanner implements CategoryBannerInterface, ImageInterface, Togglea
      */
     public function removeShowOnCategory(TaxonInterface $taxon)
     {
-        $this->showOnCategories->remove($taxon);
+        $this->showOnCategories->removeElement($taxon);
     }
 }
