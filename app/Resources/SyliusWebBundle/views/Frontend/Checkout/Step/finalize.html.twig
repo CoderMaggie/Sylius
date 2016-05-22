@@ -1,13 +1,13 @@
 {% extends '@SyliusWeb/Frontend/layout.html.twig' %}
 
 {% block title %}
-    - Summary
+    - {{ 'app.ui.summary'|trans }}
 {% endblock %}
 
 {% block topbar %}
     <ol class="breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li>Checkout - Order review</li>
+        <li><a href="{{ path('sylius_homepage') }}">{{ 'app.ui.home'|trans }}</a></li>
+        <li>{{ 'sylius.ui.checkout'|trans }} - {{ 'app.ui.order_review'|trans }}</li>
     </ol>
 {% endblock %}
 
