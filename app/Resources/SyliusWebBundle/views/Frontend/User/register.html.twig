@@ -1,86 +1,81 @@
-{% extends 'SyliusWebBundle:Frontend:layout.html.twig' %}
+{% extends '@SyliusWeb/Frontend/User/loginLayout.html.twig' %}
 
-{% set registerLabel = 'sylius.ui.register'|trans %}
-
-{% block title %}
-    - {{ registerLabel }}
-{% endblock %}
-
-{% block topbar %}
-    <ul class="breadcrumb">
-        <li><a href={{ path('sylius_homepage') }}>{{ 'app.ui.home'|trans }}</a></li>
-        <li>{{ registerLabel }}</li>
-    </ul>
-{% endblock %}
-
-{% block content %}
-    <div class="box text-center">
+{% block registerForm %}
+    <form action="{{ path('sylius_user_registration') }}" method="post">
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-                <h1>{{ registerLabel }}</h1>
+            {{ form_errors(form) }}
+
+            <div class="form-group col-md-12">
+                <div class="col-md-12">
+                    {{ form_label(form.email, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-12">
+                    {{ form_label(form.user.plainPassword) }}
+                    {{ form_widget(form.user.plainPassword) }}
+                    {{ form_errors(form.user.plainPassword) }}
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-12">
+                    {{ form_label(form.receiveNewsletter) }}
+                    {{ form_widget(form.receiveNewsletter) }}
+                    {{ form_errors(form.receiveNewsletter) }}
+                </div>
+            </div>
+
+            {{ form_row(form._token) }}
+        </div>
+
+        <div class="form-actions clearfix text-center">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-user-plus"></i>
+                {{ 'sylius.ui.register'|trans }}
+            </button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block loginForm %}
+    <form action="{{ path('sylius_user_security_check') }}" method="post" name="login-form">
+        <div class="row">
+            <div class="form-group col-md-12">
+                <div class="col-md-12">
+                    <label for="username" class="text-muted required pull-left">{{ 'sylius.ui.email'|trans }}</label>
+                    <input required="required" type="text" id="username" name="_username" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-12">
+                    <label for="password" class="text-muted required pull-left">{{ 'sylius.ui.password'|trans }}</label>
+                    <input required="required" type="password" id="password" name="_password" class="form-control"/>
+                </div>
             </div>
         </div>
-    </div>
-
-    {{ parent() }}
-
-    <div class="col-md-6 col-md-offset-3">
         <div class="box">
-            <form action="{{ path('sylius_user_registration') }}" method="post">
-                <div class="row">
-                    {{ form_errors(form) }}
-
-                    <div class="form-group col-md-12">
-                        <div class="col-md-12">
-                            {{ form_label(form.email, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
-                            {{ form_widget(form.email) }}
-                            {{ form_errors(form.email) }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ form_label(form.firstName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
-                            {{ form_widget(form.firstName) }}
-                            {{ form_errors(form.firstName) }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ form_label(form.lastName, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
-                            {{ form_widget(form.lastName) }}
-                            {{ form_errors(form.lastName) }}
-                        </div>
-                        <div class=col-md-12>
-                            {{ form_label(form.phoneNumber, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
-                            {{ form_widget(form.phoneNumber) }}
-                            {{ form_errors(form.phoneNumber) }}
-                        </div>
+            <div class="row">
+                <div class="remember-me pull-left col-md-12">
+                    <div class="col-md-12">
+                        <label for="remember_me"><h4 class="text-muted">{{ 'sylius.ui.remember_me'|trans }}</h4></label>
+                        <input type="checkbox" id="remember_me" name="_remember_me"/>
                     </div>
-                    <div class="form-group col-md-12">
-                        <div class="col-md-12">
-                            {{ form_label(form.user.plainPassword.first, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
-                            {{ form_widget(form.user.plainPassword.first) }}
-                            {{ form_errors(form.user.plainPassword.first) }}
-                        </div>
-                        <div class="col-md-12">
-                            {{ form_label(form.user.plainPassword.second, null, {'label_attr': {'class': 'text-muted pull-left'}}) }}
-                            {{ form_widget(form.user.plainPassword.second) }}
-                            {{ form_errors(form.user.plainPassword.second) }}
-                        </div>
-                    </div>
-                    <hr />
-                    <div class="form-group col-md-12">
-                        <div class="col-md-12">
-                            {{ form_row(form.receiveNewsletter) }}
-                        </div>
-                    </div>
-
-                    {{ form_rest(form) }}
+                    &nbsp;
                 </div>
-
-                <div class="box form-actions clearfix text-center">
-                    <button class="btn btn-primary btn-lg" type="submit">
-                        <i class="fa fa-user-plus"></i>
-                        {{ registerLabel }}
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary pull-right">
+                        <i class="fa fa-sign-in"></i>
+                        {{ 'app.ui.log_in'|trans }}
                     </button>
+                    <a href="{{ path('sylius_user_request_password_reset_token') }}" class="btn btn-default pull-left">{{ 'sylius.ui.forgot_password'|trans ~ '?' }}</a>
                 </div>
-            </form>
+                <div class="col-md-12">
+                </div>
+            </div>
         </div>
-    </div>
+        {% set _token = csrf_token('login-form') %}
+        <input class="form-control" type="hidden" name="_token" value="{{ _token }}"/>
+    </form>
 {% endblock %}
