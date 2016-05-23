@@ -2,6 +2,7 @@ parameters:
     sylius.controller.frontend.homepage.class: AppBundle\Controller\Frontend\HomepageController
     app.generator.order_number.class: AppBundle\Generator\OrderNumberGenerator
     sylius.checkout_form.payment.class: AppBundle\Form\Type\PaymentStepType
+    sylius.form.type.user_reset_password.class: AppBundle\Form\type\UserResetPasswordType
 
 services:
     app.menu.main_builder:
@@ -56,3 +57,13 @@ services:
     app.generator.order_number:
         class: %app.generator.order_number.class%
         arguments: ['BGM', 1]
+
+    app.form.type.user_change_password:
+        class: AppBundle\Form\Type\UserChangePasswordType
+        tags:
+            - { name: form.type, alias: app_user_change_password }
+
+    app.form.type.user_reset_password:
+        class: AppBundle\Form\Type\UserResetPasswordType
+        tags:
+            - { name: form.type, alias: app_user_reset_password }

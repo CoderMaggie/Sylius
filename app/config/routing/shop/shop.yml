@@ -28,6 +28,14 @@ sylius_user_security_login:
             redirect:
                 route: sylius_account_profile_update
 
+sylius_account_change_password:
+    path: /account/change-password
+    methods: [GET, POST]
+    defaults:
+        _controller: sylius.controller.user:changePasswordAction
+        _sylius:
+            form: app_user_change_password
+
 sylius_contact:
     path: /contact/
     methods: ['GET', 'POST']
