@@ -38,7 +38,7 @@ sylius_account_change_password:
 
 sylius_contact:
     path: /contact/
-    methods: ['GET', 'POST']
+    methods: [GET, POST]
     defaults:
         _controller: AppBundle:Contact:sendMail
 

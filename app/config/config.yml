@@ -142,6 +142,9 @@ sylius_user:
                 profile: ['sylius']
                 registration: ['sylius', 'app_user_registration']
         user:
+            classes:
+                form:
+                    registration: AppBundle\Form\Type\UserRegistrationType
             validation_groups:
                 registration: ['sylius', 'app_user_registration']
 

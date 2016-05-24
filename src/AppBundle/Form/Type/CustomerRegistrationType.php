@@ -21,6 +21,7 @@ class CustomerRegistrationType extends BaseCustomerRegistrationType
         $builder
             ->add('receiveNewsletter', 'choice', [
                 'choices' => [true => 'sylius.ui.yes', false => 'sylius.ui.no'],
+                'data' => true,
                 'label' => 'app.ui.receive_newsletter',
                 'label_attr' => ['class' => 'text-muted pull-left'],
             ])
