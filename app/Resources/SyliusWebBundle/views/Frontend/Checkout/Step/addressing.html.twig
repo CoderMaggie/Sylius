@@ -11,13 +11,13 @@
 {% endblock %}
 
 {% block title %}
-    - Checkout
+    - {{ 'sylius.ui.checkout'|trans }}
 {% endblock %}
 
 {% block topbar %}
     <ul class="breadcrumb">
-        <li><a href={{ path('sylius_homepage') }}>Home</a></li>
-        <li>Checkout - Address</li>
+        <li><a href={{ path('sylius_homepage') }}>{{ 'app.ui.home'|trans }}</a></li>
+        <li>{{ 'sylius.ui.checkout'|trans }} - {{ 'app.ui.address'|trans }}</li>
     </ul>
 {% endblock %}
 
@@ -25,7 +25,7 @@
     <div class="box text-center">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <h1>Checkout - Address</h1>
+                <h1>{{ 'sylius.ui.checkout'|trans }} - {{ 'app.ui.address'|trans }}</h1>
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@
 
                     <div class="address-container">
                         <div class="col-sm-12 text-center">
-                            <h3>Shipping address</h3>
+                            <h3>{{ 'sylius.ui.shipping_address'|trans }}</h3>
                         </div>
                         {{ include(
                             '@SyliusWeb/Frontend/Address/_form.html.twig',
@@ -62,7 +62,7 @@
 
                     <div class="address-container" id="sylius-billing-address-container">
                         <div class="col-sm-12 text-center">
-                            <h3>Billing address</h3>
+                            <h3>{{ 'sylius.ui.billing_address'|trans }}</h3>
                         </div>
                         {{ include(
                             '@SyliusWeb/Frontend/Address/_form.html.twig',
@@ -72,11 +72,11 @@
 
                     <div class="box-footer">
                         <div class="pull-left">
-                            <a href="{{ path('sylius_cart_summary') }}" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to cart</a>
+                            <a href="{{ path('sylius_cart_summary') }}" class="btn btn-default"><i class="fa fa-chevron-left"></i>{{ 'app.ui.back_to_cart'|trans }}</a>
                         </div>
                         <div class="pull-right">
                             <button type="submit" class="btn btn-primary">
-                                Continue to Shipping Method<i class="fa fa-chevron-right"></i>
+                                {{ 'app.ui.continue_to_shipping_method'|trans }}<i class="fa fa-chevron-right"></i>
                             </button>
                         </div>
                     </div>

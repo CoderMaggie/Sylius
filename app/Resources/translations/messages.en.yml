@@ -64,3 +64,10 @@ app:
         future_games_purchases: Next games you plan to buy
         new_account: New account
         add_category: Add category
+        back_to_cart: Back to cart
+        continue_to_shipping_method: Continue to shipping method
+        continue_to_payment_method: Continue to payment method
+        continue_to_order_review: Continue to order review
+        free: Free
+        cost: Cost
+        confirm: Confirm
