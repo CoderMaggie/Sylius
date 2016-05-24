@@ -1,0 +1,29 @@
+AppBundle\Entity\CategoryBanner:
+    type: entity
+    table: category_banner
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        path:
+            type: string
+            nullable: true
+        url:
+            type: string
+            nullable: true
+        enabled:
+            type: boolean
+    manyToMany:
+        showOnCategories:
+            targetEntity: Sylius\Component\Core\Model\Taxon
+            joinTable:
+                name: category_banners_taxons
+                joinColumns:
+                    category_banner_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    sylius_taxon_id:
+                        referencedColumnName: id

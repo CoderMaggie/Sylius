@@ -1,5 +1,7 @@
 parameters:
     sylius.controller.frontend.homepage.class: AppBundle\Controller\Frontend\HomepageController
+    app.controller.category_banner.class: AppBundle\Controller\CategoryBannerController
+    app.repository.category_banner.class: AppBundle\Repository\CategoryBannerRepository
     app.generator.order_number.class: AppBundle\Generator\OrderNumberGenerator
     sylius.checkout_form.payment.class: AppBundle\Form\Type\PaymentStepType
     sylius.form.type.user_reset_password.class: AppBundle\Form\type\UserResetPasswordType
@@ -41,6 +43,8 @@ services:
           - { name: kernel.event_listener, event: app.carousel_item.pre_update, method: uploadImage }
           - { name: kernel.event_listener, event: app.product_grid_item.pre_create, method: uploadImage }
           - { name: kernel.event_listener, event: app.product_grid_item.pre_update, method: uploadImage }
+          - { name: kernel.event_listener, event: app.category_banner.pre_create, method: uploadImage }
+          - { name: kernel.event_listener, event: app.category_banner.pre_update, method: uploadImage }
           - { name: kernel.event_listener, event: app.category_grid_item.pre_create, method: uploadImage }
           - { name: kernel.event_listener, event: app.category_grid_item.pre_update, method: uploadImage }
 

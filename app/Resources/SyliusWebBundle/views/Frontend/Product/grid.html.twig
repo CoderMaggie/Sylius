@@ -25,5 +25,6 @@
 </div>
 
 <div class="col-sm-9">
+    {% render(url('app_shop_category_banner', {'criteria': app.request.query.get('criteria')})) %}
     {{ grid(data) }}
 </div>

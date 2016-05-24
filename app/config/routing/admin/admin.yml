@@ -1,6 +1,9 @@
 sylius_admin_carousel_item:
     resource: 'carousel_item.yml'
 
+sylius_admin_category_banner:
+    resource: 'category_banner.yml'
+
 sylius_admin_category_grid_item:
     resource: 'category_grid_item.yml'
 

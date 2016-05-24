@@ -6,6 +6,14 @@ sylius_resource:
                 model: AppBundle\Entity\CarouselItem
                 form:
                     default: AppBundle\Form\Type\CarouselItemType
+        app.category_banner:
+            driver: doctrine/orm
+            classes:
+                model: AppBundle\Entity\CategoryBanner
+                controller: AppBundle\Controller\CategoryBannerController
+                repository: AppBundle\Repository\CategoryBannerRepository
+                form:
+                    default: AppBundle\Form\Type\CategoryBannerType
         app.category_grid_item:
             driver: doctrine/orm
             classes:
