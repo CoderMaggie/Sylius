@@ -23,6 +23,11 @@ class PaymentMethodType extends BasePaymentMethodType
             'multiple' => true,
             'label' => 'app.ui.available_for_shipping_methods',
         ]);
+
+        $builder->add('paymentInstructions', 'textarea', [
+            'required' => false,
+            'label' => 'app.ui.payment_instructions',
+        ]);
     }
 
     /**

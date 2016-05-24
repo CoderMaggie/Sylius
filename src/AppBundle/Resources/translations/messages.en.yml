@@ -8,6 +8,7 @@ app:
         publisher: Publisher
         game_system: Game System
         available_for_shipping_methods: Available for shipping methods
+        payment_instructions: Payment instructions
     admin:
         show_ribbon_hot: Show ribbon "Hot"?
         show_ribbon_new: Show ribbon "New"?

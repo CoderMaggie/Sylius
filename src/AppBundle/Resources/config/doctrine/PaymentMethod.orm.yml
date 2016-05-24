@@ -1,6 +1,10 @@
 AppBundle\Entity\PaymentMethod:
     type: entity
     table: sylius_payment_method
+    fields:
+        paymentInstructions:
+            type: string
+            nullable: true
     manyToMany:
         availableForShippingMethods:
             targetEntity: Sylius\Component\Core\Model\ShippingMethod
