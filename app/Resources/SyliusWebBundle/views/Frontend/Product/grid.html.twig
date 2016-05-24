@@ -5,26 +5,64 @@
 
 <div class="col-sm-3">
     {% if definition.filters|length > 0 %}
-        <form method="get" action="{{ path('app_shop_product_index') }}">
+        <form method="GET" id="filterForm" action="{{ path('app_shop_product_index') }}">
             {% for filter in definition.filters %}
-                <div class="panel panel-default sidebar-menu">
+                <div class="panel panel-default sidebar-menu filter-panel">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ filter.label|trans }}</h3>
                     </div>
 
-                    <div class="panel-body">
+                    <div class="panel-body hidden">
                         <div class="form-group">
                             {{ sylius_grid_render_filter(grid, filter) }}
                         </div>
+                        <div class="btn-group-vertical">
+                            <button type="submit" class="btn btn-default btn-sm btn-primary apply">
+                                <i class="fa fa-pencil"></i> Apply
+                            </button>
+                            <button class="btn btn-default btn-sm btn-danger clear">
+                                <i class="fa fa-times-circle"></i> Clear
+                            </button>
+                        </div>
+                    </div>
+                    <div class="panel-footer filter-toggle">
+                        <h3 class="panel-title clearfix"><a href="#">Show <i class="fa fa-arrow-circle-down"></i></a></h3>
                     </div>
                 </div>
             {% endfor %}
-            <button type="submit" class="btn btn-primary">Filter</button>
         </form>
     {% endif %}
 </div>
 
-<div class="col-sm-9">
+<div class="col-sm-9" id="banner">
     {% render(url('app_shop_category_banner', {'criteria': app.request.query.get('criteria')})) %}
+</div>
+
+<div class="col-sm-9" id="products">
     {{ grid(data) }}
 </div>
+
+{% block javascripts %}
+    {{ include('@SyliusWeb/_javascripts.html.twig') }}
+    <script>
+        $('#filterForm').submit(function (e) {
+            e.preventDefault();
+
+            $('#products').empty();
+
+            $.ajax({
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize()
+            }).done( function(data) {
+                $('#products').append(data);
+            });
+        });
+    </script>
+
+    <script>
+        $('#filterForm').on('click', '.clear', function () {
+            $('input').filter(':checkbox').removeAttr('checked');
+        });
+    </script>
+{% endblock %}
