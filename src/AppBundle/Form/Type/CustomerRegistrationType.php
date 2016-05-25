@@ -2,7 +2,10 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Form\EventListener\NewsletterChangeSubscriber;
 use Sylius\Bundle\UserBundle\Form\Type\CustomerRegistrationType as BaseCustomerRegistrationType;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\User\Security\Generator\GeneratorInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -11,6 +14,28 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class CustomerRegistrationType extends BaseCustomerRegistrationType
 {
+    /**
+     * @var GeneratorInterface
+     */
+    private $tokenGenerator;
+
+    /**
+     * @param string $dataClass
+     * @param array $validationGroups
+     * @param RepositoryInterface $customerRepository
+     * @param GeneratorInterface $tokenGenerator
+     */
+    public function __construct(
+        $dataClass,
+        array $validationGroups,
+        RepositoryInterface $customerRepository,
+        GeneratorInterface $tokenGenerator
+    ) {
+        parent::__construct($dataClass, $validationGroups, $customerRepository);
+
+        $this->tokenGenerator = $tokenGenerator;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -25,6 +50,8 @@ class CustomerRegistrationType extends BaseCustomerRegistrationType
                 'label' => 'app.ui.receive_newsletter',
                 'label_attr' => ['class' => 'text-muted pull-left'],
             ])
+            ->add('unsubscribeToken', 'hidden')
+            ->addEventSubscriber(new NewsletterChangeSubscriber($this->tokenGenerator))
         ;
 
         $builder->get('firstName')->setRequired(false);

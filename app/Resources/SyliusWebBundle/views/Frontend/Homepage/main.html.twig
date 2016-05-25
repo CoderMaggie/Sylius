@@ -25,12 +25,6 @@
             </div>
         </div>
 
-        <div id="flashes" class="col-md-12">
-            {{ include('@SyliusWeb/Frontend/_flashes.html.twig') }}
-
-            {% block flashes %}
-            {% endblock %}
-        </div>
         <div id="all">
             {% block content %}
                 {% block carousel %}
@@ -38,6 +32,12 @@
                 {% endblock %}
                 <div id="content">
                     <div class="container">
+                        <div id="flashes" class="col-md-12">
+                            {{ include('@SyliusWeb/Frontend/_flashes.html.twig') }}
+
+                            {% block flashes %}
+                            {% endblock %}
+                        </div>
                         <div class="col-sm-12">
                             <div class="box text-center">
                                 <h3 class="text-uppercase">New and popular products</h3>

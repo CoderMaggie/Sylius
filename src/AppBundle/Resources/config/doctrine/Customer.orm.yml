@@ -16,3 +16,6 @@ AppBundle\Entity\Customer:
         futurePurchases:
             type: text
             nullable: true
+        unsubscribeToken:
+            type: text
+            nullable: true

@@ -35,9 +35,10 @@ class ContactController extends Controller
             $email = \Swift_Message::newInstance()
                 ->setSubject($form->get('subject')->getData())
                 ->setFrom($form->get('email')->getData())
+                ->setTo('bob@caponica.com')
                 ->setBody(
                     $this->renderView(
-                        '@SyliusWeb/Email/contact.html.twig',
+                        'Email/contact.html.twig',
                         ['email' => $form]
                     ),
                     'text/html')

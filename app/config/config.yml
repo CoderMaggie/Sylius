@@ -165,3 +165,18 @@ sylius_addressing:
             classes:
                 form:
                     default: AppBundle\Form\Type\AddressType
+
+sylius_mailer:
+    sender:
+        name: BoardGameMonster
+        address: bob@caponica.com
+    templates:
+        app.email.newsletter_subscription: :Email:newsletterSubscription.html.twig
+        app.email.contact: :Email:contact.html.twig
+    emails:
+        app_newsletter_subscription:
+            subject: app.email.newsletter_subscription.subject
+            template: :Email:newsletterSubscription.html.twig
+        app_contact:
+            subject: app.email.contact.subject
+            template: :Email:contact.html.twig

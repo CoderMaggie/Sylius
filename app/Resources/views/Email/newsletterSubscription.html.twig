@@ -1,0 +1,16 @@
+{%- block subject -%}
+    {{ subject|trans }}
+{%- endblock -%}
+
+{% block body %}
+    <h1>{{ 'app.ui.thank_you'|trans }}</h1>
+    <h3>{{ 'app.ui.for_subscribing'|trans }}</h3>
+
+    <p class="text-center">
+        {{ 'app.ui.if_you_did_not_subscribe_contact'|trans }}
+    </p>
+    <p class="text-center">
+        {{ 'app.ui.if_you_would_like_to_unsubscribe'|trans }}
+        <a href="{{ url('app_customer_newsletter_unsubscribe', {'unsubscribeToken': customer.unsubscribeToken}) }}">{{ 'app.ui.unsubscribe'|trans }}</a>
+    </p>
+{% endblock %}

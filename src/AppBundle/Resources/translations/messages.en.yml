@@ -22,3 +22,10 @@ app:
                     product_grid_items: Product grid items
                     category_grid_items: Category grid items
                     header: Homepage
+    email:
+        newsletter_subscription:
+            name: Customer newsletter subscription
+            subject: BoardGameMonster newsletter subscription
+        contact:
+            name: Customer feedback request
+            subject: Contact request
