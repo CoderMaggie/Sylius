@@ -49,6 +49,7 @@
             e.preventDefault();
 
             $('#products').empty();
+            $('#banner').empty();
 
             $.ajax({
                 type: $(this).attr('method'),
@@ -57,13 +58,22 @@
             }).done( function(data) {
                 $('#products').append(data);
             });
+
+            var path = "{{ path('app_shop_category_banner') }}";
+
+            $.ajax({
+                url: path,
+                data: $(this).serialize('criteria')
+            }).done( function(data) {
+                $('#banner').append(data);
+            });
         });
     </script>
 
     <script>
         $('#filterForm').on('click', '.clear', function () {
             $('#products').empty();
-
+            
             $('#' + $(this).attr('id') + ' :checkbox').removeAttr('checked');
         });
     </script>
