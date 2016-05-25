@@ -50,12 +50,14 @@
         </table>
     </div>
     <div class='spacer-50'>&nbsp;</div>
-    <div class="col-md-12">
-        <div class="box">
-            <h5>{{ 'app.ui.payment_instructions'|trans }}</h5>
-            {{ order.payments.last.method.paymentInstructions }}
+    {% if order.payments.last.method.paymentInstructions is not empty %}
+        <div class="col-md-12">
+            <div class="box">
+                <h5>{{ 'app.ui.payment_instructions'|trans }}</h5>
+                {{ order.payments.last.method.paymentInstructions }}
+            </div>
         </div>
-    </div>
+    {% endif %}
 
     <div class="box col-sm-12">
         {{ render(url('app_shop_product_similar', {'productId': order.items.first.product.id , 'parameters': ['game_system', 'publisher'], 'limit': 5, 'template': '@SyliusWeb/Frontend/Product/_similar.html.twig'})) }}

@@ -29,7 +29,7 @@ class CategoryBannerController extends ResourceController
      */
     public function getCategoryBannerAction(Request $request)
     {
-        $criteria = $request->query->get('criteria');
+        $criteria = $request->query->get('criteria', []);
 
         /** @var RepositoryInterface $bannerRepository */
         $bannerRepository = $this->container->get('app.repository.category_banner');
@@ -39,11 +39,25 @@ class CategoryBannerController extends ResourceController
             $taxonsIds = array_merge($taxonsIds, $taxons);
         }
 
-        $banners = $bannerRepository->findByTaxonsIds($taxonsIds);
-
-        /** @var CategoryBannerInterface $banner */
-        $banner = $banners[array_rand($banners)];
+        $banner = $this->getBanner($bannerRepository, $taxonsIds);
 
         return $this->render('CategoryBanner/_banner.html.twig', ['banner' => $banner]);
+    }
+
+    /**
+     * @param $bannerRepository
+     * @param $taxonsIds
+     *
+     * @return CategoryBannerInterface
+     */
+    private function getBanner($bannerRepository, $taxonsIds)
+    {
+        $banners = $bannerRepository->findByTaxonsIds($taxonsIds);
+
+        if (empty($banners)) {
+            return null;
+        }
+
+        return $banners[array_rand($banners)];
     }
 }

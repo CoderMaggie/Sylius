@@ -2,12 +2,9 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: ~
-    database_name: sylius
+    database_name: cjmax
     database_user: root
     database_password: ~
-
-    phpcr_user: root
-    phpcr_password: ~
 
     mailer_transport: smtp
     mailer_host: 127.0.0.1

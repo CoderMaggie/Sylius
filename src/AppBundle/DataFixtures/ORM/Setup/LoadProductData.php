@@ -64,13 +64,13 @@ class LoadProductData extends DataFixture
      * @param string $shortDescription
      * @param string $description
      * @param int $price
-     * @param string $sku
+     * @param string $code
      * @param ObjectManager $manager
      * @param array $taxons
      *
      * @return ProductInterface
      */
-    private function createProduct($name, $shortDescription, $description, $price, $sku, ObjectManager $manager, array $taxons)
+    private function createProduct($name, $shortDescription, $description, $price, $code, ObjectManager $manager, array $taxons)
     {
         /** @var ProductInterface $product */
         $product = $this->get('sylius.factory.product')->createNew();
@@ -79,7 +79,7 @@ class LoadProductData extends DataFixture
         $product->setShortDescription($shortDescription);
         $product->setDescription($description);
         $product->setPrice($price);
-        $product->setSku($sku);
+        $product->setCode($code);
         $product->addChannel($this->getReference('App.Channel.WEB-UK'));
 
         foreach ($taxons as $taxon) {
@@ -88,6 +88,7 @@ class LoadProductData extends DataFixture
 
         /** @var ProductVariantInterface $variant */
         $variant = $product->getMasterVariant();
+        $variant->setCode($product->getCode());
         $this->setVariantProperties($variant);
 
         $product->addAttribute($this->getAttribute('contents'));
@@ -138,7 +139,7 @@ class LoadProductData extends DataFixture
             $product->setDescription($this->faker->paragraph);
             $product->setShortDescription($this->faker->sentence);
             $product->setPrice($this->faker->numberBetween(10, 300));
-            $product->setSku($this->getUniqueSku());
+            $product->setCode($this->getUniqueSku());
             $product->addChannel($this->getReference('App.Channel.WEB-UK'));
 
             $randomTaxon = $this->faker->randomElement([
@@ -157,6 +158,7 @@ class LoadProductData extends DataFixture
 
             /** @var ProductVariantInterface $variant */
             $variant = $product->getMasterVariant();
+            $variant->setCode($product->getCode());
             $this->setVariantProperties($variant);
 
             $product->addAttribute($this->getAttribute('contents'));
