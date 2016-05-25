@@ -13,6 +13,11 @@ use Sylius\Component\Payment\Model\PaymentMethod as BasePaymentMethod;
 class PaymentMethod extends BasePaymentMethod
 {
     /**
+     * @var string
+     */
+    private $paymentInstructions;
+
+    /**
      * @var Collection|ShippingMethodInterface[]
      */
     private $availableForShippingMethods;
@@ -22,6 +27,22 @@ class PaymentMethod extends BasePaymentMethod
         parent::__construct();
 
         $this->availableForShippingMethods = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentInstructions()
+    {
+        return $this->paymentInstructions;
+    }
+
+    /**
+     * @param string $paymentInstructions
+     */
+    public function setPaymentInstructions($paymentInstructions)
+    {
+        $this->paymentInstructions = $paymentInstructions;
     }
 
     /**

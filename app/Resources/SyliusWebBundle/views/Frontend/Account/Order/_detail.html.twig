@@ -102,8 +102,17 @@
                     'btn btn-primary'
                     ) }}
                 {% endif %}
+
             </div>
         </div>
+        {% if 'new' == order.payments.last.state %}
+            <div class="col-md-12">
+                <div class="box">
+                    <h5>{{ 'app.ui.payment_instructions'|trans }}</h5>
+                    {{ order.payments.last.method.paymentInstructions }}
+                </div>
+            </div>
+        {% endif %}
     {% endif %}
 </div>
 
