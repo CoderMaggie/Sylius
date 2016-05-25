@@ -13,14 +13,14 @@
                     </div>
 
                     <div class="panel-body hidden">
-                        <div class="form-group">
+                        <div class="form-group" id="{{ filter.name }}">
                             {{ sylius_grid_render_filter(grid, filter) }}
                         </div>
                         <div class="btn-group-vertical">
                             <button type="submit" class="btn btn-default btn-sm btn-primary apply">
                                 <i class="fa fa-pencil"></i> Apply
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger clear">
+                            <button class="btn btn-default btn-sm btn-danger clear" id="{{ filter.name }}">
                                 <i class="fa fa-times-circle"></i> Clear
                             </button>
                         </div>
@@ -62,7 +62,9 @@
 
     <script>
         $('#filterForm').on('click', '.clear', function () {
-            $('input').filter(':checkbox').removeAttr('checked');
+            $('#products').empty();
+
+            $('#' + $(this).attr('id') + ' :checkbox').removeAttr('checked');
         });
     </script>
 {% endblock %}
