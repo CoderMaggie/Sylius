@@ -11,7 +11,8 @@
 
 namespace AppBundle\Repository;
 
-use \Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository as BaseProductRepository;
+use Doctrine\ORM\QueryBuilder;
+use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository as BaseProductRepository;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
 
@@ -21,6 +22,8 @@ use Sylius\Component\Core\Model\TaxonInterface;
 class ProductRepository extends BaseProductRepository
 {
     /**
+     * @param array|null $criteria
+     *
      * @return QueryBuilder
      */
     public function createListQueryBuilder(array $criteria = null)

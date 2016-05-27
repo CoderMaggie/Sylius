@@ -1,0 +1,52 @@
+{% macro link(number, label) %}
+    <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({'page': number})) }}">
+        {% autoescape false %}{{ label }}{% endautoescape %}
+    </a>
+{% endmacro %}
+
+{% macro number(paginator, number) %}
+    {% from _self import link %}
+    <li {% if number == paginator.currentPage %}class="active"{% endif %}>
+        {{ link(number, number) }}
+    </li>
+{% endmacro %}
+
+{% macro left(paginator) %}
+    {% from _self import link %}
+    {% set active = paginator.currentPage > 1 %}
+    <li {% if not active %}class="disabled"{% endif %}>
+        {% if active %}
+            {{ link((paginator.currentPage - 1), '&laquo;') }}
+        {% else %}
+            <a>&laquo;</a>
+        {% endif %}
+    </li>
+{% endmacro %}
+
+{% macro right(paginator) %}
+    {% from _self import link %}
+    {% set active = paginator.nbPages > paginator.currentPage %}
+    <li {% if not active %}class="disabled"{% endif %}>
+        {% if active %}
+            {{ link((paginator.currentPage + 1), '&raquo;') }}
+        {% else %}
+            <a>&raquo;</a>
+        {% endif %}
+    </li>
+{% endmacro %}
+
+{% macro render(paginator, type = '')  %}
+    {% import _self as pagination %}
+
+    {% if paginator.haveToPaginate() %}
+        <ul class="pagination {{ type }}">
+            {{ pagination.left(paginator) }}
+
+            {% for number in 1..paginator.nbPages %}
+                {{ pagination.number(paginator, number) }}
+            {% endfor %}
+
+            {{ pagination.right(paginator) }}
+        </ul>
+    {% endif %}
+{% endmacro %}

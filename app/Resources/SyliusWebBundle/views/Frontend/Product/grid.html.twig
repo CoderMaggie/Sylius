@@ -1,4 +1,5 @@
 {% from '@SyliusWeb/Frontend/Product/macros.html.twig' import grid %}
+{% import '@SyliusWeb/Frontend/Macros/pagination.html.twig' as pagination %}
 
 {% set definition = grid.definition %}
 {% set data = grid.data %}
@@ -39,7 +40,9 @@
 </div>
 
 <div class="col-sm-9" id="products">
+    {{ pagination.render(data, 'top') }}
     {{ grid(data) }}
+    {{ pagination.render(data, 'bottom') }}
 </div>
 
 {% block javascripts %}
@@ -73,7 +76,7 @@
     <script>
         $('#filterForm').on('click', '.clear', function () {
             $('#products').empty();
-            
+
             $('#' + $(this).attr('id') + ' :checkbox').removeAttr('checked');
         });
     </script>

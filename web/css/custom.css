@@ -190,3 +190,10 @@
 .checkbox-inline+.checkbox-inline {
     margin-left: 0;
 }
+
+.pagination.top {
+    margin-top: 0;
+}
+.pagination.bottom {
+    margin-bottom: 0;
+}
