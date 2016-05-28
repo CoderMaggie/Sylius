@@ -1,5 +1,4 @@
 {% from '@SyliusWeb/Frontend/Product/macros.html.twig' import grid %}
-{% import '@SyliusWeb/Frontend/Macros/pagination.html.twig' as pagination %}
 
 {% set definition = grid.definition %}
 {% set data = grid.data %}
@@ -12,7 +11,6 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ filter.label|trans }}</h3>
                     </div>
-
                     <div class="panel-body hidden">
                         <div class="form-group" id="{{ filter.name }}">
                             {{ sylius_grid_render_filter(grid, filter) }}
@@ -40,13 +38,40 @@
 </div>
 
 <div class="col-sm-9" id="products">
-    {{ pagination.render(data, 'top') }}
-    {{ grid(data) }}
-    {{ pagination.render(data, 'bottom') }}
+    {{ include('@SyliusWeb/Frontend/Product/_partialIndex.html.twig') }}
 </div>
 
 {% block javascripts %}
     {{ include('@SyliusWeb/_javascripts.html.twig') }}
+
+    <script type="text/javascript">
+        $('#products').on('change', '#sortSelect' , function () {
+            var filter = $('#filterForm');
+            var chosenOption = $(this).val();
+            var queryArray = chosenOption.split(' ');
+            var sorting = {};
+            var queryParameters = {};
+
+            queryParameters[queryArray[0]] = queryArray[1];
+            sorting['sorting'] = queryParameters;
+
+            var serializedFilter = filter.serialize();
+            var filterData = serializedFilter != null ? serializedFilter + '&' : null;
+            var queryData = filterData + $.param(sorting);
+
+            $('#products').empty();
+
+            $.ajax({
+                type: filter.attr('method'),
+                url: filter.attr('action'),
+                data: queryData
+            }).done(function (data) {
+                $('#products').append(data);
+                $('#sortSelect').val(chosenOption).change();
+            });
+        });
+    </script>
+
     <script>
         $('#filterForm').submit(function (e) {
             e.preventDefault();

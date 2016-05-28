@@ -1,6 +1,32 @@
 {% from '@SyliusWeb/Frontend/Product/macros.html.twig' import grid %}
+{% from '@SyliusWeb/Frontend/Macros/pagination.html.twig' import paginate %}
 
-{% set definition = grid.definition %}
 {% set data = grid.data %}
 
+<div class="box info-bar no-border">
+    <div class="row">
+        <div class="col-xs-6 col-md-8">
+            <div class="col-md-6 col-md-offset-5 hidden-xs hidden-sm text-center">
+                {{ paginate(data, 'top') }}
+            </div>
+            <div class="col-xs-12 hidden-md hidden-lg text-center">
+                {{ paginate(data, 'top') }}
+            </div>
+        </div>
+        {% if not data.haveToPaginate() %}
+            <div class="col-xs-6 products-number-sort text-right" style="margin-bottom: 10px;">
+                {{ include('@SyliusWeb/Frontend/Product/_productSort.html.twig') }}
+            </div>
+        {% else %}
+            <div class="col-xs-6 col-md-4 products-number-sort">
+                {{ include('@SyliusWeb/Frontend/Product/_productSort.html.twig') }}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
 {{ grid(data) }}
+
+<div class="col-xs-12 text-center">
+    {{ paginate(data) }}
+</div>

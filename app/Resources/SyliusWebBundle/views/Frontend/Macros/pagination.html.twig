@@ -1,3 +1,19 @@
+{% macro paginate(paginator, class = '')  %}
+    {% import _self as pagination %}
+
+    {% if paginator.haveToPaginate() %}
+        <ul class="pagination {{ class }}">
+            {{ pagination.left(paginator) }}
+
+            {% for number in 1..paginator.nbPages %}
+                {{ pagination.number(paginator, number) }}
+            {% endfor %}
+
+            {{ pagination.right(paginator) }}
+        </ul>
+    {% endif %}
+{% endmacro %}
+
 {% macro link(number, label) %}
     <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({'page': number})) }}">
         {% autoescape false %}{{ label }}{% endautoescape %}
@@ -33,20 +49,4 @@
             <a>&raquo;</a>
         {% endif %}
     </li>
-{% endmacro %}
-
-{% macro render(paginator, type = '')  %}
-    {% import _self as pagination %}
-
-    {% if paginator.haveToPaginate() %}
-        <ul class="pagination {{ type }}">
-            {{ pagination.left(paginator) }}
-
-            {% for number in 1..paginator.nbPages %}
-                {{ pagination.number(paginator, number) }}
-            {% endfor %}
-
-            {{ pagination.right(paginator) }}
-        </ul>
-    {% endif %}
 {% endmacro %}

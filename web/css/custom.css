@@ -193,7 +193,19 @@
 
 .pagination.top {
     margin-top: 0;
+    margin-bottom: 0;
 }
-.pagination.bottom {
+#content .info-bar .products-sort-by {
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+#content .info-bar .products-number-sort {
+    margin-top: 0;
+}
+.box.info-bar {
+    margin-bottom: -20px;
+    padding-top: 0;
+}
+.info-bar .form-group {
     margin-bottom: 0;
 }
