@@ -3,6 +3,10 @@
 
 {% set data = grid.data %}
 
+<div class="col-sm-12" id="banner">
+    {% render(url('app_shop_category_banner', {'criteria': app.request.query.get('criteria')})) %}
+</div>
+
 <div class="box info-bar no-border">
     <div class="row">
         <div class="col-xs-6 col-md-8">
@@ -14,7 +18,7 @@
             </div>
         </div>
         {% if not data.haveToPaginate() %}
-            <div class="col-xs-6 products-number-sort text-right" style="margin-bottom: 10px;">
+            <div class="col-xs-6 col-xs-offset-6 products-number-sort text-right" style="margin-bottom: 10px;">
                 {{ include('@SyliusWeb/Frontend/Product/_productSort.html.twig') }}
             </div>
         {% else %}

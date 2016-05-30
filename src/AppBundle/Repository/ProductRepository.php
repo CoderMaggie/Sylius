@@ -30,35 +30,27 @@ class ProductRepository extends BaseProductRepository
     public function createListQueryBuilder(array $criteria = null, array $sorting = null)
     {
         $queryBuilder = $this->createQueryBuilder('o');
-
-        if (null !== $criteria) {
-
-            $i = 1;
-            foreach ($criteria as $taxonIds) {
-                $alias = 'o'.$i++;
-                $subQueryBuilder = $this->_em->createQueryBuilder()->select($alias.'.id')->from($this->_entityName,
-                    $alias
-                )
-                ;
-                $subQueryBuilder
-                    ->innerJoin($alias.'.taxons', $alias.'taxon')
-                    ->andWhere($subQueryBuilder->expr()->in($alias.'taxon.id', $taxonIds))
-                ;
-
-                $queryBuilder->andWhere($queryBuilder->expr()->in('o.id', $subQueryBuilder->getDQL()));
-            }
-        }
+        $queryBuilder->leftJoin('o.translations', 'translation');
+        $queryBuilder->leftJoin('o.variants', 'variant');
 
         if (null !== $sorting) {
-            foreach ($sorting as $field => $direction) {
-                if (strpos($field, '.')) {
-                    $queryBuilder->leftJoin('o.translations', 'translation');
-                    $queryBuilder->leftJoin('o.variants', 'variant');
-                    $queryBuilder->orderBy($field, $direction);
-                } else {
-                    $queryBuilder->orderBy(sprintf('o.%s', $field), $direction);
-                }
-            }
+            $this->applySorting($queryBuilder, $sorting);
+        }
+
+        if (null === $criteria) {
+            return $queryBuilder;
+        }
+
+        $i = 1;
+        foreach ($criteria as $taxonIds) {
+            $alias = 'o'.$i++;
+            $subQueryBuilder = $this->_em->createQueryBuilder()->select($alias.'.id')->from($this->_entityName, $alias);
+            $subQueryBuilder
+                ->innerJoin($alias.'.taxons', $alias.'taxon')
+                ->andWhere($subQueryBuilder->expr()->in($alias.'taxon.id', $taxonIds))
+            ;
+
+            $queryBuilder->andWhere($queryBuilder->expr()->in('o.id', $subQueryBuilder->getDQL()));
         }
 
         return $queryBuilder;
@@ -137,7 +129,8 @@ class ProductRepository extends BaseProductRepository
                 ->andWhere(
                     $queryBuilder->expr()->not(
                         $queryBuilder->expr()->eq('o.id', $productId)
-                ))
+                    )
+                )
                 ->setMaxResults($limit)
                 ->getQuery()
                 ->getResult()

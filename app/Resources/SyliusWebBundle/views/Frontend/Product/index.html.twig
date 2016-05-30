@@ -1,6 +1,6 @@
 {% if app.request.isXmlHttpRequest %}
     {{ sylius_grid_render(products, '@SyliusWeb/Frontend/Product/_partialIndex.html.twig') }}
 {% else %}
-    {{ include('@SyliusWeb/Frontend/Product/_fullIndex.html.twig') }}
+    {{ include('@SyliusWeb/Frontend/Product/fullIndex.html.twig') }}
 {% endif %}
 

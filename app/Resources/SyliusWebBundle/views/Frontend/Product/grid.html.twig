@@ -16,25 +16,21 @@
                             {{ sylius_grid_render_filter(grid, filter) }}
                         </div>
                         <div class="btn-group-vertical">
-                            <button type="submit" class="btn btn-default btn-sm btn-primary apply">
-                                <i class="fa fa-pencil"></i> Apply
+                            <button type="submit" onclick="showClear($(this))" class="btn btn-default btn-sm btn-primary apply">
+                                <i class="fa fa-pencil"></i>{{ 'app.ui.apply'|trans }}
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger clear" id="{{ filter.name }}">
-                                <i class="fa fa-times-circle"></i> Clear
+                            <button class="btn btn-default btn-sm btn-danger clear hidden" onclick="hideClear($(this))" id="{{ filter.name }}">
+                                <i class="fa fa-times-circle"></i>{{ 'app.ui.clear'|trans }}
                             </button>
                         </div>
                     </div>
                     <div class="panel-footer filter-toggle">
-                        <h3 class="panel-title clearfix"><a href="#">Show <i class="fa fa-arrow-circle-down"></i></a></h3>
+                        <h3 class="panel-title clearfix"><a href="#">{{ 'sylius.ui.show'|trans }}<i class="fa fa-arrow-circle-down"></i></a></h3>
                     </div>
                 </div>
             {% endfor %}
         </form>
     {% endif %}
-</div>
-
-<div class="col-sm-9" id="banner">
-    {% render(url('app_shop_category_banner', {'criteria': app.request.query.get('criteria')})) %}
 </div>
 
 <div class="col-sm-9" id="products">
@@ -59,46 +55,44 @@
             var filterData = serializedFilter != null ? serializedFilter + '&' : null;
             var queryData = filterData + $.param(sorting);
 
-            $('#products').empty();
-
             $.ajax({
                 type: filter.attr('method'),
                 url: filter.attr('action'),
                 data: queryData
             }).done(function (data) {
-                $('#products').append(data);
+                $('#products').empty().append(data);
                 $('#sortSelect').val(chosenOption).change();
             });
         });
     </script>
 
-    <script>
+    <script type="text/javascript">
+        function hideClear(element) {
+            $(element).addClass('hidden');
+        }
+
+        function showClear(element) {
+            var buttonGroup = $(element).closest('.btn-group-vertical');
+            buttonGroup.find('.clear').removeClass('hidden');
+        }
+    </script>
+
+    <script type="text/javascript">
         $('#filterForm').submit(function (e) {
             e.preventDefault();
-
-            $('#products').empty();
-            $('#banner').empty();
 
             $.ajax({
                 type: $(this).attr('method'),
                 url: $(this).attr('action'),
                 data: $(this).serialize()
             }).done( function(data) {
-                $('#products').append(data);
+                $('#products').empty().append(data);
             });
 
-            var path = "{{ path('app_shop_category_banner') }}";
-
-            $.ajax({
-                url: path,
-                data: $(this).serialize('criteria')
-            }).done( function(data) {
-                $('#banner').append(data);
-            });
         });
     </script>
 
-    <script>
+    <script type="text/javascript">
         $('#filterForm').on('click', '.clear', function () {
             $('#products').empty();
 

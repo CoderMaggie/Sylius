@@ -82,3 +82,5 @@ app:
         for_subscribing: for subscribing to our newsletter
         sort_by: Sort by
         newest: Newest
+        clear: Clear
+        apply: Apply
