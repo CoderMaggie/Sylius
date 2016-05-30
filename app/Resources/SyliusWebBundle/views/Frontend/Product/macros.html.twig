@@ -63,13 +63,15 @@
 {% endmacro %}
 
 {% macro all_ribbons(method, product) %}
-    {% if product.masterVariant.isPriceReduced %}
-        {{ attribute(_self, method, {'type': 'sale', 'url': product}) }}
+    {% if product.firstVariant is not null %}
+        {% if product.firstVariant.isPriceReduced %}
+            {{ attribute(_self, method, {'type': 'sale', 'url': product}) }}
+        {% endif %}
+        {% if date('now')|date_modify('-7 day') < date(product.firstVariant.availableOn) %}
+            {{ attribute(_self, method, {'type': 'new', 'url': product}) }}
+        {% endif %}
     {% endif %}
-    {% if date('now')|date_modify('-7 day') < date(product.masterVariant.availableOn) %}
-        {{ attribute(_self, method, {'type': 'new', 'url': product}) }}
-    {% endif %}
-    {% if not product.hasVariants and not sylius_inventory_is_available(product.masterVariant) %}
+    {% if not product.hasVariants and not sylius_inventory_is_available(product.firstVariant) %}
         {{ attribute(_self, method, {'type': 'out-of-stock', 'url': product}) }}
     {% endif %}
 {% endmacro %}

@@ -8,7 +8,9 @@
                  alt="{{ product.name }}">
             <div class="text">
                 <h4>{{ product.name }}</h4>
-                {{ macro.sylius_display_price(product.masterVariant) }}
+                {% if product.firstVariant is not null %}
+                    {{ macro.sylius_display_price(product.firstVariant) }}
+                {% endif %}
             </div>
         </a>
     </div>

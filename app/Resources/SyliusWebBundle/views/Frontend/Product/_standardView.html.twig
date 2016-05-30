@@ -1,7 +1,7 @@
 {% extends '@SyliusWeb/Frontend/layout.html.twig' %}
 {% import '@SyliusWeb/Frontend/Product/macros.html.twig' as macro %}
 
-{% set form = sylius_cart_form({'product': product}) %}
+{% set form = sylius_cart_form() %}
 
 {% set majorTaxonsCodes = ['publisher', 'game_system'] %}
 
@@ -157,11 +157,13 @@
                                     {% endfor %}
                                 {% endfor %}
 
-                                <dt>{{ 'app.ui.weight'|trans }}</dt>
-                                <dd>{{ product.masterVariant.weight }}kg</dd>
+                                {% if product.firstVariant is not null %}
+                                    <dt>{{ 'app.ui.weight'|trans }}</dt>
+                                    <dd>{{ product.firstVariant.weight }}kg</dd>
 
-                                <dt>{{ 'app.ui.dimensions'|trans }}</dt>
-                                <dd>{{ product.masterVariant.width }}x{{ product.masterVariant.height }}x{{ product.masterVariant.depth }}cm</dd>
+                                    <dt>{{ 'app.ui.dimensions'|trans }}</dt>
+                                    <dd>{{ product.firstVariant.width }}x{{ product.firstVariant.height }}x{{ product.firstVariant.depth }}cm</dd>
+                                {% endif %}
 
                                 <dt>{{ 'sylius.ui.sku'|trans }}</dt>
                                 <dd>{{ product.code }}</dd>

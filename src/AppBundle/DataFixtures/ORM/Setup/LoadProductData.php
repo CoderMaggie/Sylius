@@ -73,12 +73,11 @@ class LoadProductData extends DataFixture
     private function createProduct($name, $shortDescription, $description, $price, $code, ObjectManager $manager, array $taxons)
     {
         /** @var ProductInterface $product */
-        $product = $this->get('sylius.factory.product')->createNew();
+        $product = $this->get('sylius.factory.product')->createWithVariant();
 
         $product->setName($name);
         $product->setShortDescription($shortDescription);
         $product->setDescription($description);
-        $product->setPrice($price);
         $product->setCode($code);
         $product->addChannel($this->getReference('App.Channel.WEB-UK'));
 
@@ -87,7 +86,8 @@ class LoadProductData extends DataFixture
         }
 
         /** @var ProductVariantInterface $variant */
-        $variant = $product->getMasterVariant();
+        $variant = $product->getFirstVariant();
+        $variant->setPrice($price);
         $variant->setCode($product->getCode());
         $this->setVariantProperties($variant);
 
@@ -133,12 +133,11 @@ class LoadProductData extends DataFixture
 
         foreach ($finder->files()->in($this->path . 'ProductImages/') as $img) {
             /** @var ProductInterface $product */
-            $product = $this->get('sylius.factory.product')->createNew();
+            $product = $this->get('sylius.factory.product')->createWithVariant();
 
             $product->setName($this->faker->word);
             $product->setDescription($this->faker->paragraph);
             $product->setShortDescription($this->faker->sentence);
-            $product->setPrice($this->faker->numberBetween(10, 300));
             $product->setCode($this->getUniqueSku());
             $product->addChannel($this->getReference('App.Channel.WEB-UK'));
 
@@ -157,8 +156,9 @@ class LoadProductData extends DataFixture
             $product->addTaxon($this->getReference($randomTaxon));
 
             /** @var ProductVariantInterface $variant */
-            $variant = $product->getMasterVariant();
+            $variant = $product->getFirstVariant();
             $variant->setCode($product->getCode());
+            $variant->setPrice($this->faker->numberBetween(10, 300));
             $this->setVariantProperties($variant);
 
             $product->addAttribute($this->getAttribute('contents'));
