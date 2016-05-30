@@ -1,42 +1,34 @@
 {
-    "name":        "sylius/sylius-standard",
-    "description": "Starting point for projects powered by Sylius eCommerce.",
-    "keywords":    ["symfony", "symfony2", "sylius", "distribution", "ecommerce", "cart", "shopping"],
+    "name":        "lakion/cjmax",
     "type":        "project",
-    "license":     "MIT",
-    "homepage":    "http://sylius.org",
+    "license":     "proprietary",
     "authors": [
         {
-            "name":     "Paweł Jędrzejewski",
-            "homepage": "http://pjedrzejewski.com"
-        },
-        {
-            "name":     "Sylius project",
-            "homepage": "http://sylius.org"
-        },
-        {
-            "name":     "Community contributions",
-            "homepage": "http://github.com/Sylius/Sylius/contributors"
+            "name":     "Lakion",
+            "homepage": "http://lakion.com"
         }
     ],
     "require": {
-        "php": "^5.6",
+        "php": "^5.6|^7.0",
 
         "sylius/sylius": "0.19.*@dev",
-        "sensio/generator-bundle": "^2.3",
+
         "sensio/distribution-bundle": "^3.0"
     },
     "require-dev": {
         "behat/behat": "^3.0",
-        "behat/symfony2-extension": "^2.0",
-        "behat/mink-extension": "^2.0",
+        "behat/mink": "^1.6",
         "behat/mink-browserkit-driver": "^1.2",
+        "behat/mink-extension": "^2.0",
         "behat/mink-selenium2-driver": "^1.2",
-        "behat/mink":  "^1.6",
+        "behat/symfony2-extension": "^2.0",
+        "bossa/phpspec2-expect": "^1.0",
         "coduo/php-matcher": "^2.1@dev",
+        "lakion/api-test-case": "^1.0@dev",
+        "lakion/mink-debug-extension": "^1.1",
         "phpspec/phpspec": "^2.4",
-        "phpunit/phpunit": "^4.1",
-        "lakion/api-test-case": "^1.0@dev"
+        "phpunit/phpunit": "^4.8",
+        "se/selenium-server-standalone": "^2.52"
     },
     "minimum-stability": "RC",
     "prefer-stable": true,
@@ -60,17 +52,13 @@
     },
     "autoload": {
         "psr-4": {
-            "": "src/",
-            "Context\\": "features/Context/"
+            "AppBundle\\": "src/AppBundle/"
         }
     },
     "config": {
         "bin-dir": "bin"
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "0.17-dev"
-        },
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
         "incenteev-parameters": {

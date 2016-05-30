@@ -1,21 +1,23 @@
 <?php
 
-use Sylius\Bundle\CoreBundle\Kernel\Kernel;
+use Sylius\Bundle\CoreBundle\Application\Kernel;
 
+/**
+ * @author Paweł Jędrzejewski <pawel@sylius.org>
+ * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
+ */
 class AppKernel extends Kernel
 {
+    /**
+     * {@inheritdoc}
+     */
     public function registerBundles()
     {
-        $bundles = array(
-            new \Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
+        $bundles = [
             new \AppBundle\AppBundle()
-        );
-
-        if (in_array($this->environment, array('dev', 'test'))) {
-            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
-        }
+        ];
 
         return array_merge(parent::registerBundles(), $bundles);
     }
 }
+

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a0b85ff7fa8f13cef95e692130ae27ee",
-    "content-hash": "b5885a7267bf502fcd0d2985173a47bb",
+    "hash": "b98d0bc9f0e7382ea30244776333a131",
+    "content-hash": "deae31f6ead3f472b7fa7b7ed4e9e476",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -6530,54 +6530,6 @@
             "time": "2016-04-25 20:46:43"
         },
         {
-            "name": "sensio/generator-bundle",
-            "version": "v2.5.3",
-            "target-dir": "Sensio/Bundle/GeneratorBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "e50108c2133ee5c9c484555faed50c17a61221d3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/e50108c2133ee5c9c484555faed50c17a61221d3",
-                "reference": "e50108c2133ee5c9c484555faed50c17a61221d3",
-                "shasum": ""
-            },
-            "require": {
-                "symfony/console": "~2.5",
-                "symfony/framework-bundle": "~2.2"
-            },
-            "require-dev": {
-                "doctrine/orm": "~2.2,>=2.2.3",
-                "symfony/doctrine-bridge": "~2.2",
-                "twig/twig": "~1.11"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.5.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Sensio\\Bundle\\GeneratorBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "This bundle generates code for you",
-            "time": "2015-03-17 06:36:52"
-        },
-        {
             "name": "sensiolabs/security-checker",
             "version": "v3.0.2",
             "source": {
@@ -6941,12 +6893,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Sylius/Sylius.git",
-                "reference": "0729b93340d8174403d04147858f703cb94bb1a0"
+                "reference": "bbd241fc123c554f447b4b7daa175e902306ec94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Sylius/Sylius/zipball/0729b93340d8174403d04147858f703cb94bb1a0",
-                "reference": "0729b93340d8174403d04147858f703cb94bb1a0",
+                "url": "https://api.github.com/repos/Sylius/Sylius/zipball/bbd241fc123c554f447b4b7daa175e902306ec94",
+                "reference": "bbd241fc123c554f447b4b7daa175e902306ec94",
                 "shasum": ""
             },
             "require": {
@@ -7110,8 +7062,10 @@
                 "symfony-web-dir": "web"
             },
             "autoload": {
-                "psr-0": {
-                    "Sylius\\": "src/"
+                "psr-4": {
+                    "Sylius\\Behat\\": "src/Sylius/Behat/",
+                    "Sylius\\Bundle\\": "src/Sylius/Bundle/",
+                    "Sylius\\Component\\": "src/Sylius/Component/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -7134,7 +7088,7 @@
             ],
             "description": "E-Commerce platform for PHP, based on Symfony framework.",
             "homepage": "http://sylius.org",
-            "time": "2016-05-25 15:17:18"
+            "time": "2016-05-30 14:02:01"
         },
         {
             "name": "symfony-cmf/block-bundle",
@@ -8634,16 +8588,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.24.0",
+            "version": "v1.24.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8"
+                "reference": "3566d311a92aae4deec6e48682dc5a4528c4a512"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8",
-                "reference": "3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3566d311a92aae4deec6e48682dc5a4528c4a512",
+                "reference": "3566d311a92aae4deec6e48682dc5a4528c4a512",
                 "shasum": ""
             },
             "require": {
@@ -8691,7 +8645,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-01-25 21:22:18"
+            "time": "2016-05-30 09:11:59"
         },
         {
             "name": "webmozart/assert",
@@ -9748,6 +9702,52 @@
             "time": "2016-01-13 17:06:48"
         },
         {
+            "name": "bossa/phpspec2-expect",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BossaConsulting/phpspec2-expect.git",
+                "reference": "f3a80b7fa743b8a1078a7e320bd3e8b8b6283780"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BossaConsulting/phpspec2-expect/zipball/f3a80b7fa743b8a1078a7e320bd3e8b8b6283780",
+                "reference": "f3a80b7fa743b8a1078a7e320bd3e8b8b6283780",
+                "shasum": ""
+            },
+            "require": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "expect.php"
+                ],
+                "psr-0": {
+                    "Bossa\\PhpSpec\\Expect\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcello Duarte",
+                    "homepage": "http://marcelloduarte.net/"
+                }
+            ],
+            "description": "Helper that decorates any SUS with a phpspec lazy object wrapper",
+            "keywords": [
+                "BDD",
+                "SpecBDD",
+                "TDD",
+                "spec",
+                "specification"
+            ],
+            "time": "2014-09-12 09:25:51"
+        },
+        {
             "name": "coduo/php-matcher",
             "version": "dev-master",
             "source": {
@@ -9996,6 +9996,67 @@
                 "xml"
             ],
             "time": "2016-03-26 13:06:40"
+        },
+        {
+            "name": "lakion/mink-debug-extension",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Lakion/MinkDebugExtension.git",
+                "reference": "a67285969a512434738e17a118d574f3fe227241"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Lakion/MinkDebugExtension/zipball/a67285969a512434738e17a118d574f3fe227241",
+                "reference": "a67285969a512434738e17a118d574f3fe227241",
+                "shasum": ""
+            },
+            "require": {
+                "behat/behat": "^3.0.5",
+                "behat/mink-extension": "^2.0.1",
+                "php": "^5.5.9|^7.0",
+                "symfony/config": "^2.2"
+            },
+            "require-dev": {
+                "behat/mink-goutte-driver": "^1.1",
+                "behat/mink-selenium2-driver": "^1.2",
+                "phpspec/phpspec": "^2.0"
+            },
+            "suggest": {
+                "behat/mink-browserkit-driver": "To get request debug information included in log file",
+                "behat/mink-selenium2-driver": "To get screenshots"
+            },
+            "bin": [
+                "travis/tools/upload-screenshots",
+                "travis/tools/upload-textfiles",
+                "travis/tools/wait-for-port"
+            ],
+            "type": "behat-extension",
+            "autoload": {
+                "psr-4": {
+                    "Lakion\\Behat\\MinkDebugExtension\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kamil Kokot",
+                    "email": "kamil@kokot.me",
+                    "homepage": "http://kamil.kokot.me"
+                }
+            ],
+            "description": "Debug extension for Behat",
+            "homepage": "https://github.com/Lakion/MinkDebugExtension",
+            "keywords": [
+                "Behat",
+                "Mink",
+                "debug",
+                "logging"
+            ],
+            "time": "2016-03-02 15:03:36"
         },
         {
             "name": "nelmio/alice",
@@ -10699,6 +10760,45 @@
             "time": "2015-10-02 06:51:40"
         },
         {
+            "name": "se/selenium-server-standalone",
+            "version": "v2.53.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sveneisenschmidt/selenium-server-standalone.git",
+                "reference": "b67b6b933edce2ffa26f075247a05c464a335cea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sveneisenschmidt/selenium-server-standalone/zipball/b67b6b933edce2ffa26f075247a05c464a335cea",
+                "reference": "b67b6b933edce2ffa26f075247a05c464a335cea",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "bin": [
+                "bin/selenium-server-standalone"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache 2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Sven Eisenschmidt",
+                    "email": "sven.eisenschmidt@gmail.com"
+                }
+            ],
+            "description": "Composer distribution of Selenium Server Standalone, the browser automation framework. Adds a executable to your composer bin directory.",
+            "homepage": "https://github.com/sveneisenschmidt/selenium-server-standalone",
+            "keywords": [
+                "selenium",
+                "testing"
+            ],
+            "time": "2016-03-21 15:02:15"
+        },
+        {
             "name": "sebastian/comparator",
             "version": "1.2.0",
             "source": {
@@ -11080,7 +11180,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.5.9"
+        "php": "^5.6|^7.0"
     },
     "platform-dev": []
 }
