@@ -5,6 +5,7 @@ parameters:
     app.generator.order_number.class: AppBundle\Generator\OrderNumberGenerator
     sylius.checkout_form.payment.class: AppBundle\Form\Type\PaymentStepType
     sylius.form.type.user_reset_password.class: AppBundle\Form\type\UserResetPasswordType
+    sylius.controller.frontend.account.order.class: AppBundle\Controller\Frontend\OrderController
 
 services:
     app.menu.main_builder:
@@ -83,3 +84,8 @@ services:
         arguments: [%sylius.model.customer.class%, %sylius.validation_groups.customer%, '@sylius.repository.customer', '@sylius.user.token_generator']
         tags:
             - { name: form.type, alias: sylius_customer_registration }
+
+    sylius.payum.offline.action.convert_payment:
+        class: AppBundle\Action\ConvertPaymentToOfflineAction
+        tags:
+            - { name: payum.action, factory: offline, alias: sylius.convert_payment }
