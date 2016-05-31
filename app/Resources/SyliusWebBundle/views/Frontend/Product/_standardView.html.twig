@@ -1,7 +1,7 @@
 {% extends '@SyliusWeb/Frontend/layout.html.twig' %}
 {% import '@SyliusWeb/Frontend/Product/macros.html.twig' as macro %}
 
-{% set form = sylius_cart_form() %}
+{% set form = sylius_cart_form({'product': product}) %}
 
 {% set majorTaxonsCodes = ['publisher', 'game_system'] %}
 
@@ -81,6 +81,7 @@
         </div>
 
         <form action="{{ path('sylius_cart_item_add', {'id': product.id}) }}" method="post" class="clearfix">
+            {#{{ form_widget(form.variant) }}#}
 
         <div class="col-sm-3 col-sm-push-3 col-lg-2 col-lg-push-4" id="productPrice">
             <div class="box">
@@ -115,13 +116,15 @@
             {{ macro.all_ribbons('plain_ribbon', product) }}
 
             <div class="row" id="thumbs">
-                {% for image in product.images %}
-                    <div class="col-xs-4">
-                        <a href="{{ image.path|imagine_filter('sylius_large') }}" title="{{ product.name }}" class="thumb">
-                            <img class="img-responsive" src="{{ image.path|imagine_filter('sylius_small') }}" alt="{{ product.name }}">
-                        </a>
-                    </div>
-                {% endfor %}
+                {% if product.firstVariant is not null %}
+                    {% for image in product.firstVariant.images %}
+                        <div class="col-xs-4">
+                            <a href="{{ image.path|imagine_filter('sylius_large') }}" title="{{ product.name }}" class="thumb">
+                                <img class="img-responsive" src="{{ image.path|imagine_filter('sylius_small') }}" alt="{{ product.name }}">
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
 
@@ -197,7 +200,8 @@
             </div>
 
             <div class="hidden">
-                {{ form_rest(form) }}
+                {{ form_widget(form.quantity, {'empty_value': '1'}) }}
+                {{ form_widget(form._token) }}
             </div>
         </div>
 
