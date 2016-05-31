@@ -71,7 +71,7 @@
             {{ attribute(_self, method, {'type': 'new', 'url': product}) }}
         {% endif %}
     {% endif %}
-    {% if not product.hasVariants and not sylius_inventory_is_available(product.firstVariant) %}
+    {% if product.hasVariants and not sylius_inventory_is_available(product.firstVariant) %}
         {{ attribute(_self, method, {'type': 'out-of-stock', 'url': product}) }}
     {% endif %}
 {% endmacro %}
