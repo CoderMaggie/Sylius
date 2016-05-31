@@ -89,3 +89,13 @@ services:
         class: AppBundle\Action\ConvertPaymentToOfflineAction
         tags:
             - { name: payum.action, factory: offline, alias: sylius.convert_payment }
+
+    app.promotion_rule_checker.shipping_method:
+        class: AppBundle\Checker\ShippingMethodPromotionRuleChecker
+        tags:
+            - { name: sylius.promotion_rule_checker, type: shipping_method, label: Shipping method }
+
+    app.form.type.promotion_rule.shipping_method_configuration:
+        class: AppBundle\Form\Type\ShippingMethodConfigurationType
+        tags:
+            - { name: form.type, alias: app_promotion_rule_shipping_method_configuration }
