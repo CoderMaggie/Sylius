@@ -3,6 +3,8 @@ imports:
 
 parameters:
     sylius.order.allow_guest_order: true
+    locale: en_US
+    currency: EUR
 
 framework:
     test: ~

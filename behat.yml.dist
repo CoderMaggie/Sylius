@@ -1,8 +1,37 @@
 imports:
-    - vendor/sylius/sylius/behat.yml.dist
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/profiles/default.yml
+
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/domain/managing_orders.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/domain/product/managing_products.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/domain/product/managing_product_variants.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/domain/promotion/managing_promotions.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/domain/promotion/managing_promotion_coupons.yml
+
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/addressing/managing_countries.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/addressing/managing_zones.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/currency/managing_currencies.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/locale/managing_locales.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/order/managing_orders.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/product/managing_product_attributes.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/product/managing_product_options.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/product/managing_product_variants.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/product/managing_products.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/promotion/managing_promotion_coupons.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/promotion/managing_promotions.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/shipping/managing_shipping_methods.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/taxation/managing_tax_categories.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/taxation/managing_tax_rates.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/taxonomy/managing_taxons.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/user/managing_customers.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites/ui/user/managing_users.yml
 
 default:
     extensions:
+        Lakion\Behat\MinkDebugExtension:
+            directory: .
+            clean_start: false
+            screenshot: true
+
         Sylius\Behat\Extension\MultiContainerExtension:
             imports:
                 - "vendor/sylius/sylius/src/Sylius/Behat/Resources/config/services.xml"
@@ -11,6 +40,10 @@ default:
             paths:
                 - "vendor/sylius/sylius/features"
                 - "features"
+
+    gherkin:
+        filters:
+            tags: "~@todo && ~@javascript"
 
 cached:
     extensions:
