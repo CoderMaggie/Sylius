@@ -1,9 +1,9 @@
-sylius_web:
-    resource: "@SyliusWebBundle/Resources/config/routing/main.yml"
-
 sylius_admin:
     resource: "@SyliusAdminBundle/Resources/config/routing.yml"
     prefix: /admin
+
+sylius_web:
+    resource: "@SyliusWebBundle/Resources/config/routing/main.yml"
 
 app_admin:
     resource: 'routing/admin/admin.yml'

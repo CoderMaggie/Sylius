@@ -16,7 +16,7 @@
         <tfoot>
             <tr>
                 <th colspan="5">{{ 'sylius.ui.items_total'|trans }}</th>
-                <th colspan="2">{{ cart.itemsTotal|sylius_price }}</th>
+                <th colspan="2">{{ cart.subtotal|sylius_price }}</th>
             </tr>
             <tr>
                 <th colspan="7"><button class="btn btn-default pull-right"><i class="fa fa-refresh"></i>{{ 'app.ui.update_cart'|trans }}</button></th>

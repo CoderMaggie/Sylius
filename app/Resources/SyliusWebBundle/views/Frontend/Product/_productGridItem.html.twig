@@ -19,7 +19,9 @@
         <!-- /.image -->
         <div class="text">
             <h3><a href="{{ path(product) }}">{{ product.name }}</a></h3>
-            <p class="price">{{ sylius_calculate_price(product.masterVariant)|sylius_price }}</p>
+            {% if product.firstVariant is not null %}
+                <p class="price">{{ sylius_calculate_price(product.firstVariant)|sylius_price }}</p>
+            {% endif %}
         </div>
         <!-- /.text -->
 

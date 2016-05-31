@@ -21,36 +21,34 @@
                         {{ include('@SyliusWeb/Frontend/Product/_variant.html.twig', {'variant': item.variant}) }}
                     </th>
                     <th>{{ item.quantity }}</th>
-                    <th>{{ item.unitPrice|sylius_money(order.currency) }}</th>
-                    <th colspan="2">{{ (item.unitPrice * item.quantity)|sylius_money(order.currency) }}</th>
+                    <th>
+                        {% if item.unitPrice != item.discountedUnitPrice %}
+                            <s>{{ item.unitPrice|sylius_price }}</s>
+                            {{ item.discountedUnitPrice|sylius_price }}
+                        {% else %}
+                            {{ item.unitPrice|sylius_price(order.currency) }}
+                        {% endif %}
+                    </th>
+                    <th colspan="2">{{ item.subtotal|sylius_price(order.currency) }}</th>
                 </tr>
             {% endfor %}
         </tbody>
         <tfoot>
             <tr>
-                <th colspan="5">{{ 'sylius.ui.total'|trans }}</th>
-                {% set orderSubtotal = order.itemsTotal - order.getAdjustmentsTotalRecursively(taxAdjustment) - order.getAdjustmentsTotalRecursively(orderItemPromotionAdjustment) %}
-                <th colspan="2">{{ orderSubtotal|sylius_money(order.currency) }}</th>
+                <th colspan="5">{{ 'app.ui.order_subtotal'|trans }}</th>
+                <th colspan="2">{{ order.subtotal|sylius_price(order.currency) }}</th>
             </tr>
             <tr>
                 <th colspan="5">{{ 'app.ui.shipping_fee'|trans }}</th>
-                <th colspan="2">
-                    {% set shippingTotal = order.adjustmentsTotal(taxAdjustment) + order.adjustmentsTotal(shippingAdjustment) %}
-                    {{ shippingTotal|sylius_money(order.currency) }}
-                </th>
+                <th colspan="2">{{ order.shippingTotal|sylius_price(order.currency) }}</th>
             </tr>
             <tr>
                 <th colspan="5">{{ 'app.ui.tax'|trans }}</th>
-                <th colspan="2">
-                    {{ order.getAdjustmentsTotalRecursively(taxAdjustment)|sylius_money(order.currency) }}
-                </th>
+                <th colspan="2">{{ order.taxTotal|sylius_price(order.currency) }}</th>
             </tr>
             <tr>
                 <th colspan="5">{{ 'app.ui.discount'|trans }}</th>
-                {% set discountAmount = order.adjustmentsTotalRecursively(orderItemPromotionAdjustment) + order.adjustmentsTotalRecursively(orderPromotionAdjustment) %}
-                <th colspan="2">
-                    {{ (-1 * discountAmount)|sylius_money(order.currency) }}
-                </th>
+                <th colspan="2">{{ (-1 * order.orderPromotionTotal)|sylius_price(order.currency) }}</th>
             </tr>
             {% if order.promotionCoupon is not null %}
                 <tr>
@@ -63,7 +61,7 @@
             </tr>
             <tr>
                 <th colspan="5">{{ 'sylius.ui.grand_total'|trans }}</th>
-                <th colspan="2">{{ order.total|sylius_money(order.currency) }}</th>
+                <th colspan="2">{{ order.total|sylius_price(order.currency) }}</th>
             </tr>
         </tfoot>
     </table>

@@ -17,13 +17,15 @@
                         {{ macro.all_ribbons('quick_view_ribbon', product) }}
 
                     <div class="row thumbs">
-                        {% for image in product.images|slice(0, 3) %}
+                        {% if product.firstVariant is not null %}
+                            {% for image in product.firstVariant.images|slice(0, 3) %}
                             <div class="col-xs-4">
                                 <a href="{{ image.path|imagine_filter('sylius_large') }}" title="{{ product.name }}" class="thumb">
                                     <img class="img-responsive" src="{{ image.path|imagine_filter('sylius_small') }}" alt="{{ product.name }}">
                                 </a>
                             </div>
-                        {% endfor %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -31,10 +33,11 @@
                     <h2>{{ product.name }}</h2>
                     <p class="text-muted text-small text-center">{{ product.description }}</p>
 
+                    {% if product.firstVariant is not null %}
                     <form action="{{ path('sylius_cart_item_add', {'id': product.id}) }}" method="post" class="clearfix">
                         <div class="col-sm-12 col-lg-12" id="productPrice">
                             <div class="box">
-                                <p class="price">{{ sylius_calculate_price(product.masterVariant)|sylius_price }}</p>
+                                <p class="price">{{ sylius_calculate_price(product.firstVariant)|sylius_price }}</p>
                                 <div class="add-cart-block-vertical">
                                     <p class="text-center">
                                         <button type="submit" class="btn btn-primary btn-cart">
@@ -56,9 +59,11 @@
                             </div>
                         </div>
                         <div class="hidden">
-                            {{ form_rest(form) }}
+                            {{ form_widget(form.quantity, {'empty_value': '1'}) }}
+                            {{ form_widget(form._token) }}
                         </div>
                     </form>
+                    {% endif %}
                 </div>
             </div>
         </div>

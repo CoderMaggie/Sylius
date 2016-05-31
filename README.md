@@ -47,8 +47,6 @@ Testing
 ```bash
 $ app/console do:da:cr --env test
 $ app/console do:sc:cr --env test
-$ bin/behat features/
-$ bin/behat features/ -p javascript
-$ bin/phpspec run
-$ bin/phpunit src/
+$ bin/behat
+$ bin/phpspec run --fpretty
 ```
