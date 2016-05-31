@@ -12,21 +12,19 @@
             <tbody>
             <tr>
                 <td>{{ 'app.ui.order_subtotal'|trans }}</td>
-                {% set orderSubtotal = order.itemsTotal - (order.getAdjustmentsTotalRecursively(taxAdjustment) - order.adjustmentsTotal(taxAdjustment)) %}
-                <th colspan="2">{{ orderSubtotal|sylius_price }}</th>
-            </tr>
-            <tr>
-                <td>{{ 'app.ui.tax'|trans }}</td>
-                <th>{{ order.getAdjustmentsTotalRecursively(taxAdjustment)|sylius_price }}</th>
+                <th colspan="2">{{ order.subtotal|sylius_price }}</th>
             </tr>
             <tr>
                 <td>{{ 'app.ui.shipping_fee'|trans }}</td>
-                {% set shippingTotal = order.adjustmentsTotal(taxAdjustment) + order.adjustmentsTotal(shippingAdjustment) %}
-                <th>{{ shippingTotal|sylius_price }}</th>
+                <th>{{ order.shippingTotal|sylius_price }}</th>
+            </tr>
+            <tr>
+                <td>{{ 'app.ui.tax'|trans }}</td>
+                <th>{{ order.taxTotal|sylius_price }}</th>
             </tr>
             <tr>
                 <td>{{ 'app.ui.discount'|trans }}</td>
-                <th>{{ (-1 * order.adjustmentsTotalRecursively(orderPromotionAdjustment))|sylius_price }}</th>
+                <th>{{ (-1 * order.orderPromotionTotal)|sylius_price }}</th>
             </tr>
             <tr class="total">
                 <td>{{ 'sylius.ui.grand_total'|trans }}</td>

@@ -10,14 +10,14 @@
         {{ item.quantity }}
     </th>
     <th>
-        {% if item.total != (item.unitPrice * item.quantity) %}
+        {% if item.unitPrice != item.discountedUnitPrice %}
             <s>{{ item.unitPrice|sylius_price }}</s>
-            {{ (item.total / item.quantity)|sylius_price }}
+            {{ item.discountedUnitPrice|sylius_price }}
         {% else %}
             {{ item.unitPrice|sylius_price }}
         {% endif %}
     </th>
     <th colspan="2">
-        {{ item.total|sylius_price }}
+        {{ item.subtotal|sylius_price }}
     </th>
 </tr>

@@ -20,23 +20,19 @@
         <tfoot>
             <tr>
                 <th colspan="5">{{ 'app.ui.order_subtotal'|trans }}</th>
-                {% set orderSubtotal = order.itemsTotal - (order.getAdjustmentsTotalRecursively(taxAdjustment) - order.adjustmentsTotal(taxAdjustment)) %}
-                <th colspan="2">{{ orderSubtotal|sylius_price }}</th>
-            </tr>
-            <tr>
-                <th colspan="5">{{ 'app.ui.tax'|trans }}</th>
-                <th colspan="2">{{ order.getAdjustmentsTotalRecursively(taxAdjustment)|sylius_price }}</th>
+                <th colspan="2">{{ order.subtotal|sylius_price }}</th>
             </tr>
             <tr>
                 <th colspan="5">{{ 'app.ui.shipping_fee'|trans }}</th>
-                <th colspan="2">
-                    {% set shippingTotal = order.adjustmentsTotal(taxAdjustment) + order.adjustmentsTotal(shippingAdjustment) %}
-                    {{ shippingTotal|sylius_price }}
-                </th>
+                <th colspan="2">{{ order.shippingTotal|sylius_price }}</th>
+            </tr>
+            <tr>
+                <th colspan="5">{{ 'app.ui.tax'|trans }}</th>
+                <th colspan="2">{{ order.taxTotal|sylius_price }}</th>
             </tr>
             <tr>
                 <th colspan="5">{{ 'app.ui.discount'|trans }}</th>
-                <th colspan="2">{{ (-1 * order.adjustmentsTotalRecursively(orderPromotionAdjustment))|sylius_price }}</th>
+                <th colspan="2">{{ (-1 * order.orderPromotionTotal)|sylius_price }}</th>
             </tr>
             {% if order.promotionCoupon is not null %}
                 <tr>

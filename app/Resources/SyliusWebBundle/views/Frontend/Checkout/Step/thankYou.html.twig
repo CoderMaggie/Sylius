@@ -41,7 +41,7 @@
                     <td>
                         {{ shipment_state_label(order.shipments.last.state) }}
                     </td>
-                    <td>{{ order.total|sylius_money(order.currency) }}</td>
+                    <td>{{ order.total|sylius_price(order.currency) }}</td>
                     <td>
                         {{ show(path('sylius_account_order_show', {'number': order.number}), 'order-' ~ order.number ~ '-details') }}
                     </td>

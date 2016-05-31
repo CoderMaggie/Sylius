@@ -9,15 +9,15 @@
         {{ form_row(item.quantity, {'label': false}) }}
     </td>
     <td>
-        {% if item.vars.value.total != (item.vars.value.unitPrice * item.vars.value.quantity) %}
+        {% if item.vars.value.unitPrice != item.vars.value.discountedUnitPrice %}
             <s>{{ item.vars.value.unitPrice|sylius_price }}</s>
-            {{ (item.vars.value.total / item.vars.value.quantity)|sylius_price }}
+            {{ item.vars.value.discountedUnitPrice|sylius_price }}
         {% else %}
             {{ item.vars.value.unitPrice|sylius_price }}
         {% endif %}
     </td>
     <td>
-        {{ (item.vars.value.total)|sylius_price }}
+        {{ (item.vars.value.subtotal)|sylius_price }}
     </td>
     <td>
         <a href="{{ path('sylius_cart_item_remove', {'id': item.vars.value.id}) }}"><i class="fa fa-trash-o fa-2x"></i></a>
