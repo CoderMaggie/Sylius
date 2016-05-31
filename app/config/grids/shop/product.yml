@@ -7,7 +7,9 @@ sylius_grid:
                     class: %sylius.model.product.class%
                     repository:
                         method: createListQueryBuilder
-                        arguments: [$criteria]
+                        arguments: [$criteria, $sorting]
+            sorting:
+                createdAt: desc
             filters:
                 game_length:
                     type: taxon

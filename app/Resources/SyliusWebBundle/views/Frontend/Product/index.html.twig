@@ -1,12 +1,6 @@
-{% extends '@SyliusWeb/Frontend/layout.html.twig' %}
+{% if app.request.isXmlHttpRequest %}
+    {{ sylius_grid_render(products, '@SyliusWeb/Frontend/Product/_partialIndex.html.twig') }}
+{% else %}
+    {{ include('@SyliusWeb/Frontend/Product/fullIndex.html.twig') }}
+{% endif %}
 
-{% block topbar %}
-    <ul class="breadcrumb">
-        <li><a href={{ path('sylius_homepage') }}>{{ 'app.ui.home'|trans }}</a></li>
-        <li><a href={{ path('app_shop_product_index') }}>{{ 'sylius.ui.products'|trans }}</a></li>
-    </ul>
-{% endblock %}
-
-{% block content %}
-    {{ sylius_grid_render(products, '@SyliusWeb/Frontend/Product/grid.html.twig') }}
-{% endblock %}

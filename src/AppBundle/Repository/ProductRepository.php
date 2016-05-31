@@ -11,7 +11,8 @@
 
 namespace AppBundle\Repository;
 
-use \Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository as BaseProductRepository;
+use Doctrine\ORM\QueryBuilder;
+use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository as BaseProductRepository;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
 
@@ -21,11 +22,20 @@ use Sylius\Component\Core\Model\TaxonInterface;
 class ProductRepository extends BaseProductRepository
 {
     /**
+     * @param array|null $criteria
+     * @param array|null $sorting
+     *
      * @return QueryBuilder
      */
-    public function createListQueryBuilder(array $criteria = null)
+    public function createListQueryBuilder(array $criteria = null, array $sorting = null)
     {
         $queryBuilder = $this->createQueryBuilder('o');
+        $queryBuilder->leftJoin('o.translations', 'translation');
+        $queryBuilder->leftJoin('o.variants', 'variant');
+
+        if (null !== $sorting) {
+            $this->applySorting($queryBuilder, $sorting);
+        }
 
         if (null === $criteria) {
             return $queryBuilder;
@@ -119,7 +129,8 @@ class ProductRepository extends BaseProductRepository
                 ->andWhere(
                     $queryBuilder->expr()->not(
                         $queryBuilder->expr()->eq('o.id', $productId)
-                ))
+                    )
+                )
                 ->setMaxResults($limit)
                 ->getQuery()
                 ->getResult()
@@ -138,7 +149,7 @@ class ProductRepository extends BaseProductRepository
     {
         foreach ($product->getTaxons() as $taxon) {
             if ($taxon->isRoot()) {
-                throw new \InvalidArgumentException('Product should not be assigned to the root taxon.');
+                throw new \InvalidArgumentException('Product should not be assigned to a root taxon.');
             }
 
             $rootTaxon = $taxon->getRoot();

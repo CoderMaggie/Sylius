@@ -1,0 +1,14 @@
+<div class="products-sort-by form-inline">
+    <div class="form-group">
+    <div class="hidden-xs hidden-sm" style="float: left;">
+        <label for="sortSelect">{{ 'app.ui.sort_by'|trans }}</label>
+    </div>
+    <select id="sortSelect" class="sort-by form-control" style="float: left;">
+        <option value="createdAt desc">{{ 'app.ui.newest'|trans }}</option>
+        <option value="translation.name asc">A-Z</option>
+        <option value="translation.name desc">Z-A</option>
+        <option value="variant.price asc">{{ 'sylius.ui.price'|trans }} &#9650;</option>
+        <option value="variant.price desc">{{ 'sylius.ui.price'|trans }} &#9660;</option>
+    </select>
+    </div>
+</div>

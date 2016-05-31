@@ -80,3 +80,7 @@ app:
         if_you_did_not_subscribe_contact: If you didn't subscribe please contact bob@caponica.com.
         if_you_would_like_to_unsubscribe: If you would like to unsubscribe, follow the link bellow.
         for_subscribing: for subscribing to our newsletter
+        sort_by: Sort by
+        newest: Newest
+        clear: Clear
+        apply: Apply
