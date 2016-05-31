@@ -26,7 +26,7 @@ class LoadShippingData extends DataFixture
      */
     public function getOrder()
     {
-        return 30;
+        return 35;
     }
 
     /**
@@ -51,6 +51,7 @@ class LoadShippingData extends DataFixture
         $method->setCalculator($calculator);
         $method->setConfiguration($configuration);
         $method->setCategory($category);
+        $method->setTaxCategory($this->getReference('App.TaxCategory.taxable'));
 
         $this->setReference('App.ShippingMethod.'.$code, $method);
 
