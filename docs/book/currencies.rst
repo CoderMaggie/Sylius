@@ -4,18 +4,18 @@
 Currencies
 ==========
 
-Sylius supports multiple currencies per store and makes it very easy to manage them.
+Sylius supports multiple currencies per channel and makes it very easy to manage them.
 
-There are several approaches to processing several currencies, but we decided to use the simplest solution
-we are storing all money values in the **base currency** and convert them to other currencies with current rates or specific rates.
+There are several approaches to processing several currencies, but we decided to use the simplest solution.
+We are storing all money values in the **base currency** and convert them to other currencies with current rates or specific rates.
 
 .. note::
 
-    The **base currency** is set during the installation of Sylius and it has the **exchange rate** equal to "1.000".
+    The **base currency** is set during the installation of Sylius and it has the **exchange rate** equal to "1.00".
 
 .. tip::
 
-    In the dev environment you can easily check the base currency in the Symfony debug toolbar:
+    In the dev environment you can easily check the active and the base currencies in the Symfony debug toolbar:
 
     .. image:: ../_images/toolbar.png
         :align: center
@@ -25,7 +25,7 @@ Currency Context
 
 By default, user can switch the current currency in the frontend of the store.
 
-To manage the currently used currency, we use the **CurrencyContext**. You can always access it through the ``sylius.context.currency`` id.
+To manage the currently used currency, we use the **Currency Context**. You can always access it through the ``sylius.context.currency`` id.
 
 .. code-block:: php
 
@@ -33,13 +33,13 @@ To manage the currently used currency, we use the **CurrencyContext**. You can a
 
     public function fooAction()
     {
-        $currency = $this->get('sylius.context.currency')->getCurrency();
+        $currencyCode = $this->get('sylius.context.currency')->getCurrencyCode();
     }
 
 Currency Converter
 ------------------
 
-The **Sylius\Component\Currency\Converter\CurrencyConverter** is a service available under the ``sylius.currency_converter`` id.
+The **Currency Converter** is a service available under the ``sylius.currency_converter`` id.
 
 It lets you to convert money values from the base currency to all the other currencies and backwards.
 
@@ -49,17 +49,18 @@ It lets you to convert money values from the base currency to all the other curr
 
     public function fooAction()
     {
-        // convert 100 of the base currency (for instance 100$ if USD is your base) to PLN.
+        // convert 100 of the base currency (for instance $1.00 if USD is your base) to PLN.
         $this->get('sylius.currency_converter')->convertFromBase(100, 'PLN');
 
-        // or the other way - convert 100 PLN to amount in the base currency
+        // or the other way - convert 1.00 PLN to amount in the base currency
         $this->get('sylius.currency_converter')->convertToBase(100, 'PLN');
     }
 
-Available Currencies Provider
------------------------------
+Currency Provider
+-----------------
 
-The default menu for selecting currency is using a service - **CurrencyProvider** - with the ``sylius.currency_provider`` id, which returns all enabled currencies.
+The default menu for selecting currency is using a service - **Currency Provider** - with the ``sylius.currency_provider`` id,
+which returns all available currencies and the default one.
 This is your entry point if you would like override this logic and return different currencies for various scenarios.
 
 .. code-block:: php
@@ -68,8 +69,14 @@ This is your entry point if you would like override this logic and return differ
 
     public function fooAction()
     {
-        $currencies = $this->get('sylius.currency_provider')->getAvailableCurrencies();
+        $defaultCurrencyCode = $this->get('sylius.currency_provider')->getDefaultCurrencyCode();
+
+        $currenciesCodes = $this->get('sylius.currency_provider')->getAvailableCurrenciesCodes();
     }
+
+.. note::
+
+    The default currency does not have to be your base currency.
 
 Learn more
 ----------
