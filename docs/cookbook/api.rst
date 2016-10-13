@@ -1,10 +1,8 @@
-How to add a custom model?
-==========================
+How to use Sylius API?
+======================
 
-In some cases you may be needing to add new models to your application in order to cover unique business needs.
-The proccess of extending Sylius with new entities is simple and intuitive.
-
-As an example we will take a **Supplier entity**, which may be really useful for shop maintenance.
+In some cases you may be needing to manipulate the resources of your application ivia its API.
+This guide aims to introduce you to the world of Sylius API. For more sophisticated examples and cases follow the :doc:`API Guide </api/index>`.
 
 Authenitication
 ---------------
